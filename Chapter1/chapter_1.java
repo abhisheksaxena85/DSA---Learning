@@ -48,16 +48,32 @@ public class chapter_1 {
         // }
 
 
-        int n = 5;
-        char character = 'A';
+        // int n = 5;
+        // char character = 'A';
 
-        for(int line = 1; line<=n ; line ++){
-            for(int innterLine = 1; innterLine <= line; innterLine++){
-                System.out.print(character);
-                character++;
-            }
-            System.out.println();
-        }
+        // for(int line = 1; line<=n ; line ++){
+        //     for(int innterLine = 1; innterLine <= line; innterLine++){
+        //         System.out.print(character);
+        //         character++;
+        //     }
+        //     System.out.println();
+        // }
+
+/* 
+==============================================================================
+                      Starting Methods and Functions
+==============================================================================
+ */        
+
+        // Calling the Custom Method or function
+        printHelloWorld();
+
+
+
+    }
+
+    public static void printHelloWorld(){
+        System.out.println("Hello World From Void Method");
     }
 }
 
