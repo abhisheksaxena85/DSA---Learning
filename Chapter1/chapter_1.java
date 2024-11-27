@@ -19,7 +19,7 @@ public class chapter_1 {
         //     for(int i=0;i<3;i++){
         //         String s1=sc.next();
         //         int x=sc.nextInt();
-        //         System.out.println(s1+"        "+x);
+        //         System.out.println(s1+""+x);
         //     }
         //     System.out.println("================================");
         // for(int i=4; i>=0; i--){
@@ -29,9 +29,20 @@ public class chapter_1 {
         //     System.out.println();
         // }
 
-        for(int i=0; i<=4; i++){
-            for(int j= 1; j<=i; j++){
-                System.out.print("*");
+        // for(int i=0; i<=4; i++){
+        //     for(int j= 1; j<=i; j++){
+        //         System.out.print("*");
+        //     }
+        //     System.out.println();
+        // }
+
+        /// Printing Half Pyramid Pattern of Numbers
+        
+        int n = 20; 
+        // Adding the loop
+        for(int line = 1; line<=n; line++){
+            for(int innerLine = 1; innerLine <= line; innerLine++){
+                System.out.print(innerLine);
             }
             System.out.println();
         }
