@@ -38,11 +38,23 @@ public class chapter_1 {
 
         /// Printing Half Pyramid Pattern of Numbers
         
-        int n = 20; 
-        // Adding the loop
-        for(int line = 1; line<=n; line++){
-            for(int innerLine = 1; innerLine <= line; innerLine++){
-                System.out.print(innerLine);
+        // int n = 20; 
+        // // Adding the loop
+        // for(int line = 1; line<=n; line++){
+        //     for(int innerLine = 1; innerLine <= line; innerLine++){
+        //         System.out.print(innerLine);
+        //     }
+        //     System.out.println();
+        // }
+
+
+        int n = 5;
+        char character = 'A';
+
+        for(int line = 1; line<=n ; line ++){
+            for(int innterLine = 1; innterLine <= line; innterLine++){
+                System.out.print(character);
+                character++;
             }
             System.out.println();
         }
