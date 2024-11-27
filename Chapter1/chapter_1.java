@@ -66,15 +66,23 @@ public class chapter_1 {
  */        
 
         // Calling the Custom Method or function
-        printHelloWorld();
+        // printHelloWorld();
 
-
-
+        // Calling function with Parameter 
+        int valueOne = 34; 
+        int valueSecond = 234; 
+        int sum = AddValue(valueOne, valueSecond);
+        System.out.println(sum);
     }
 
-    public static void printHelloWorld(){
-        System.out.println("Hello World From Void Method");
+    public static int AddValue(int a, int b){
+        return a+b;
     }
+
+    // public static int printHelloWorld(){
+    //     System.out.println("Hello World From Void Method");
+    //     return 0;
+    // }
 }
 
 // public class chapter_1{
