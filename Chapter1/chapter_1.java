@@ -117,11 +117,20 @@ public class chapter_1 {
         // }
         // sc.close();
         
+        // Scanner sc = new Scanner(System.in);
+        // int value = sc.nextInt();
+
+        // System.out.println("Is this value is prime: "+isPrime(value));
+
+        /// Printing all prime values from one to n
         Scanner sc = new Scanner(System.in);
         int value = sc.nextInt();
-
-        System.out.println("Is this value is prime: "+isPrime(value));
-
+        
+        for(int i = 3; i<=value; i++ ){
+            if(isPrime(i)){
+                System.out.print(i+", ");
+            }
+        }
 
 
     }
