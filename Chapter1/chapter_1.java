@@ -78,13 +78,30 @@ public class chapter_1 {
         // int product = multiply(valueOne, valueSecond);
         // System.out.println("The product of values is: " + product);
 
+        // Scanner sc = new Scanner(System.in);
+        // System.out.print("Enter value to get factorial: ");
+        // int innputValue = sc.nextInt();
+        // long factorial = factorial(innputValue);
+        // System.out.println("The factorial value of input: " + factorial);
+
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter value to get factorial: ");
-        int innputValue = sc.nextInt();
-        long factorial = factorial(innputValue);
-        System.out.println("The factorial value of input: " + factorial);
+        System.out.print("Enter value of n: ");
+        int n = sc.nextInt()    ;
+        System.out.print("Enter the value of r: ");
+        int r = sc.nextInt();
+
+        long biCoefficient = biCof(n, r);
+        System.out.println("BiCoefficient result of n & r: " + biCoefficient);
 
     }
+
+    /// n!/{r!(n-r)!} - Mathematical Equation of Binomial Coefficient
+    /// Calculating Binomial Coefficient
+    static long biCof(int n, int r){
+        long biCoefficient = factorial(n)/(factorial(r) * factorial(n-r));
+        return biCoefficient;
+    }
+
 
     // Calculating factorial value through method
     static long factorial(int value){
