@@ -85,32 +85,55 @@ public class chapter_1 {
         // System.out.println("The factorial value of input: " + factorial);
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter value of n: ");
-        int n = sc.nextInt()    ;
-        System.out.print("Enter the value of r: ");
-        int r = sc.nextInt();
+        // System.out.print("Enter value of n: ");
+        // int n = sc.nextInt();
+        // System.out.print("Enter the value of r: ");
+        // int r = sc.nextInt();
 
-        long biCoefficient = biCof(n, r);
-        System.out.println("BiCoefficient result of n & r: " + biCoefficient);
+        // long biCoefficient = biCof(n, r);
+        // System.out.println("BiCoefficient result of n & r: " + biCoefficient);
+
+        int a = 10;
+        int b = 12;
+        int c = 14;
+        int d = 16;
+        
+        int sum = sum(a, b, c, d);
+        System.out.println("Sum is : "+sum);
 
     }
+
+
+    /// Testing function or method overloading
+    static int sum(int a, int b){
+        return a+b;
+    }
+
+    static int sum(int a, int b, int c){
+        return a+b+c;
+    }
+    
+    static int sum(int a, int b, int c, int d){
+        return a+b+c+d;
+    }
+
 
     /// n!/{r!(n-r)!} - Mathematical Equation of Binomial Coefficient
     /// Calculating Binomial Coefficient
-    static long biCof(int n, int r){
-        long biCoefficient = factorial(n)/(factorial(r) * factorial(n-r));
-        return biCoefficient;
-    }
+    // static long biCof(int n, int r){
+    //     long biCoefficient = factorial(n)/(factorial(r) * factorial(n-r));
+    //     return biCoefficient;
+    // }
 
 
-    // Calculating factorial value through method
-    static long factorial(int value){
-        long factorial = 1;
-        for(int i = 1; i<=value; i++){
-            factorial = factorial * i;
-        }
-        return factorial;
-    }
+    // // Calculating factorial value through method
+    // static long factorial(int value){
+    //     long factorial = 1;
+    //     for(int i = 1; i<=value; i++){
+    //         factorial = factorial * i;
+    //     }
+    //     return factorial;
+    // }
 
     // n = 1 * 2 * 3 * 4 * 5 * 6..........n
 
