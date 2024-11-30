@@ -1,5 +1,5 @@
 public class chapter_1 {
-    public static void main(String[] values) {
+    public static  void main(String[] values) {
         // Scanner scan = new Scanner(System.in);
         // int valueInput = scan.nextInt();
         // int reverse = 0;
@@ -72,11 +72,19 @@ public class chapter_1 {
         int valueOne = 34; 
         int valueSecond = 234; 
         int sum = AddValue(valueOne, valueSecond);
-        System.out.println(sum);
+        System.out.println("The sum of values is: "+sum);
+        int product = multiply(valueOne, valueSecond);
+        System.out.println("The product of values is: " + product);
+
     }
 
     public static int AddValue(int a, int b){
         return a+b;
+    }
+
+    static int multiply(int param1, int param2){
+        int product =  param1 * param2;
+        return product;
     }
 
     // public static int printHelloWorld(){
