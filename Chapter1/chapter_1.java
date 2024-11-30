@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class chapter_1 {
     public static  void main(String[] values) {
         // Scanner scan = new Scanner(System.in);
@@ -69,23 +71,41 @@ public class chapter_1 {
         // printHelloWorld();
 
         // Calling function with Parameter 
-        int valueOne = 34; 
-        int valueSecond = 234; 
-        int sum = AddValue(valueOne, valueSecond);
-        System.out.println("The sum of values is: "+sum);
-        int product = multiply(valueOne, valueSecond);
-        System.out.println("The product of values is: " + product);
+        // int valueOne = 34; 
+        // int valueSecond = 234; 
+        // int sum = AddValue(valueOne, valueSecond);
+        // System.out.println("The sum of values is: "+sum);
+        // int product = multiply(valueOne, valueSecond);
+        // System.out.println("The product of values is: " + product);
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter value to get factorial: ");
+        int innputValue = sc.nextInt();
+        long factorial = factorial(innputValue);
+        System.out.println("The factorial value of input: " + factorial);
 
     }
 
-    public static int AddValue(int a, int b){
-        return a+b;
+    // Calculating factorial value through method
+    static long factorial(int value){
+        long factorial = 1;
+        for(int i = 1; i<=value; i++){
+            factorial = factorial * i;
+        }
+        return factorial;
     }
 
-    static int multiply(int param1, int param2){
-        int product =  param1 * param2;
-        return product;
-    }
+    // n = 1 * 2 * 3 * 4 * 5 * 6..........n
+
+
+    // public static int AddValue(int a, int b){
+    //     return a+b;
+    // }
+
+    // static int multiply(int param1, int param2){
+    //     int product =  param1 * param2;
+    //     return product;
+    // }
 
     // public static int printHelloWorld(){
     //     System.out.println("Hello World From Void Method");
