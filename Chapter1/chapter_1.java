@@ -103,19 +103,39 @@ public class chapter_1 {
 
         /// Checking if Entered Number through console, is prime or not
 
+        // Scanner sc = new Scanner(System.in);
+        // System.out.print("Enter the value: ");
+        // int value = sc.nextInt();
+        // for(int i = 2; i<=value-1; i++ ){
+        //     if(value%i==0){
+        //         System.out.println("Value is not a prime number");
+        //         break;
+        //     }else{
+        //         System.out.println("Value is a prime number");
+        //         break;
+        //     }
+        // }
+        // sc.close();
+        
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the value: ");
         int value = sc.nextInt();
-        for(int i = 2; i<=value-1; i++ ){
+
+        System.out.println("Is this value is prime: "+isPrime(value));
+
+
+
+    }
+
+
+    /// Checking if Value is prime or not
+    static boolean  isPrime(int value){
+        boolean isPrimeNumber = true;
+        for(int i= 2; i<= value-1; i++){
             if(value%i==0){
-                System.out.println("Value is not a prime number");
-                break;
-            }else{
-                System.out.println("Value is a prime number");
-                break;
+                isPrimeNumber = false ;
             }
         }
-        sc.close();
+        return isPrimeNumber;
     }
 
 
