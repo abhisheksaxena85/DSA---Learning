@@ -84,7 +84,7 @@ public class chapter_1 {
         // long factorial = factorial(innputValue);
         // System.out.println("The factorial value of input: " + factorial);
 
-        Scanner sc = new Scanner(System.in);
+        // Scanner sc = new Scanner(System.in);
         // System.out.print("Enter value of n: ");
         // int n = sc.nextInt();
         // System.out.print("Enter the value of r: ");
@@ -93,29 +93,44 @@ public class chapter_1 {
         // long biCoefficient = biCof(n, r);
         // System.out.println("BiCoefficient result of n & r: " + biCoefficient);
 
-        int a = 10;
-        int b = 12;
-        int c = 14;
-        int d = 16;
+        // int a = 10;
+        // int b = 12;
+        // int c = 14;
+        // int d = 16;
         
-        int sum = sum(a, b, c, d);
-        System.out.println("Sum is : "+sum);
+        // int sum = sum(a, b, c, d);
+        // System.out.println("Sum is : "+sum);
 
+        /// Checking if Entered Number through console, is prime or not
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the value: ");
+        int value = sc.nextInt();
+        for(int i = 2; i<=value-1; i++ ){
+            if(value%i==0){
+                System.out.println("Value is not a prime number");
+                break;
+            }else{
+                System.out.println("Value is a prime number");
+                break;
+            }
+        }
+        sc.close();
     }
 
 
     /// Testing function or method overloading
-    static int sum(int a, int b){
-        return a+b;
-    }
+    // static int sum(int a, int b){
+    //     return a+b;
+    // }
 
-    static int sum(int a, int b, int c){
-        return a+b+c;
-    }
+    // static int sum(int a, int b, int c){
+    //     return a+b+c;
+    // }
     
-    static int sum(int a, int b, int c, int d){
-        return a+b+c+d;
-    }
+    // static int sum(int a, int b, int c, int d){
+    //     return a+b+c+d;
+    // }
 
 
     /// n!/{r!(n-r)!} - Mathematical Equation of Binomial Coefficient
