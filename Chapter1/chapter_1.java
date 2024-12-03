@@ -172,21 +172,43 @@ public class chapter_1 {
         // int lines = sc.nextInt();
         // invertedHalfPyramidWithNumbers(lines);
 
+        // Scanner sc = new Scanner(System.in);
+        // int line = sc.nextInt();
+        // floydTriangle(line); 
+
+
+        /// 0 - 1 Triangle
         Scanner sc = new Scanner(System.in);
         int line = sc.nextInt();
-        floydTriangle(line); 
+        zeroOneTriangle(line);
+
     }
 
-    static void floydTriangle(int line){
-        int counter = 1; 
-        for(int i =1; i<=line; i++){
-            for(int j =1; j<=i; j++){
-                System.out.print(" "+counter);
-                counter++;
+
+    static void zeroOneTriangle(int line){
+        for(int i = 1; i<=line; i++){
+            for(int j = 1; j<= i; j++){
+                if((i+j)%2==0){
+                    System.out.print(" 1 ");
+                }else{
+                    System.out.print(" 0 ");
+                }
             }
             System.out.println();
         }
     }
+
+
+    // static void floydTriangle(int line){
+    //     int counter = 1; 
+    //     for(int i =1; i<=line; i++){
+    //         for(int j =1; j<=i; j++){
+    //             System.out.print(" "+counter);
+    //             counter++;
+    //         }
+    //         System.out.println();
+    //     }
+    // }
 
 
     // static void invertedHalfPyramidWithNumbers(int lines){
