@@ -1,13 +1,9 @@
 
 import java.util.Scanner;
 
-
-
-
-
-
 public class chapter_1 {
-    public static  void main(String[] values) {
+
+    public static void main(String[] values) {
         // Scanner scan = new Scanner(System.in);
         // int valueInput = scan.nextInt();
         // int reverse = 0;
@@ -43,7 +39,6 @@ public class chapter_1 {
         //     }
         //     System.out.println();
         // }
-
         /// Printing Half Pyramid Pattern of Numbers
         
         // int n = 20; 
@@ -154,46 +149,60 @@ public class chapter_1 {
         // binaryToDecimal(value);
 
         /// Printing a hollow rectangle
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter number of rows: ");
-        int rows = sc.nextInt();
-        System.out.print("Enter number of columns: ");
-        int column = sc.nextInt();
+        // Scanner sc = new Scanner(System.in);
+        // System.out.print("Enter number of rows: ");
+        // int rows = sc.nextInt();
+        // System.out.print("Enter number of columns: ");
+        // int column = sc.nextInt();
 
-        hollowRectangle(rows, column);
+        // hollowRectangle(rows, column);
+
+        /// Printing Half Inverted Pyramid
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter number of lines: ");
+        int totalLine = sc.nextInt();
+        invertedHalfPyramid(totalLine);
 
     }
 
-    static void hollowRectangle(int rows, int column){
-        for(int i = 1; i <= rows; i++){
-            for(int j = 1; j<= column; j++){
-                if(i==1|| i==rows|| j==1|| j==column){
-                    System.out.print(" * ");
-                }else{
-                    System.out.print("   ");
-
-                }
+    static void invertedHalfPyramid(int totalLine) {
+        for (int i = 1; i <= totalLine; i++) {
+            // Print Empty Spaces
+            for (int j = 1; j <= totalLine - i; j++) {
+                System.out.print(" ");
             }
-            System.err.println("");
+            // Print Stars
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
         }
     }
 
-
+    // static void hollowRectangle(int rows, int column){
+    //     for(int i = 1; i <= rows; i++){
+    //         for(int j = 1; j<= column; j++){
+    //             if(i==1|| i==rows|| j==1|| j==column){
+    //                 System.out.print(" * ");
+    //             }else{
+    //                 System.out.print("   ");
+    //             }
+    //         }
+    //         System.err.println("");
+    //     }
+    // }
     // static void binaryToDecimal(int inputValue){
     //     int power = 0;
     //     int decimal = 0;
-
     //     while(inputValue > 0){
     //         int lastDigit = inputValue %10;
     //         decimal= decimal+(int)(lastDigit * Math.pow(2, power));
     //         inputValue = inputValue/10;
     //         power++;
     //     }
-        
     //     System.out.println("Output: " + decimal);
     // }
-
-
     // static void decimalToBinary(int inputValue){
     //     int remainder;
     //     int binary = 0;
@@ -207,8 +216,7 @@ public class chapter_1 {
     //     System.out.println("Binary Code: "+binary); 
     // }
 
-
-    /// Checking if Value is prime or not
+/// Checking if Value is prime or not
     // static boolean  isPrime(int value){
     //     boolean isPrimeNumber = true;
     //     for(int i= 2; i<= value-1; i++){
