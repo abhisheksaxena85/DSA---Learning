@@ -158,27 +158,44 @@ public class chapter_1 {
         // hollowRectangle(rows, column);
 
         /// Printing Half Inverted Pyramid
+        // Scanner sc = new Scanner(System.in);
+
+        // System.out.println("Enter number of lines: ");
+        // int totalLine = sc.nextInt();
+        // invertedHalfPyramid(totalLine);
+
+        /// Printing Inverted Half pyramid with numbers
         Scanner sc = new Scanner(System.in);
-
         System.out.println("Enter number of lines: ");
-        int totalLine = sc.nextInt();
-        invertedHalfPyramid(totalLine);
-
+        int lines = sc.nextInt();
+        invertedHalfPyramidWithNumbers(lines);
+        
     }
 
-    static void invertedHalfPyramid(int totalLine) {
-        for (int i = 1; i <= totalLine; i++) {
-            // Print Empty Spaces
-            for (int j = 1; j <= totalLine - i; j++) {
-                System.out.print(" ");
-            }
-            // Print Stars
-            for (int j = 1; j <= i; j++) {
-                System.out.print("*");
+
+    static void invertedHalfPyramidWithNumbers(int lines){
+        for(int i = 0; i<=lines-1; i++){
+            for(int j = 1; j<=lines-i; j++){
+                System.out.print(j);
             }
             System.out.println();
         }
     }
+
+
+    // static void invertedHalfPyramid(int totalLine) {
+    //     for (int i = 1; i <= totalLine; i++) {
+    //         // Print Empty Spaces
+    //         for (int j = 1; j <= totalLine - i; j++) {
+    //             System.out.print(" ");
+    //         }
+    //         // Print Stars
+    //         for (int j = 1; j <= i; j++) {
+    //             System.out.print("*");
+    //         }
+    //         System.out.println();
+    //     }
+    // }
 
     // static void hollowRectangle(int rows, int column){
     //     for(int i = 1; i <= rows; i++){
