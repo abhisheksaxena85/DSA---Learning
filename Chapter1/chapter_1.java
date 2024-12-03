@@ -2,6 +2,8 @@
 import java.util.Scanner;
 
 
+
+
 public class chapter_1 {
     public static  void main(String[] values) {
         // Scanner scan = new Scanner(System.in);
@@ -137,28 +139,49 @@ public class chapter_1 {
 
         /// Converting the Decimal Numbers to Binary Numbers
         
+        // Scanner sc = new Scanner(System.in);
+        // System.out.print("Enter your input to convert into binary: ");
+        // int input = sc.nextInt();
+        // decimalToBinary(input);
+
+        /// Converting the Binary Numbers into Decimal Number System
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter your input to convert into binary: ");
-        int input = sc.nextInt();
-        decimalToBinary(input);
+        System.out.print("Enter value through input: ");
+        int value = sc.nextInt();
+
+        binaryToDecimal(value);
+
 
     }
 
-    static void decimalToBinary(int inputValue){
 
-        int remainder;
-        int binary = 0;
+    static void binaryToDecimal(int inputValue){
         int power = 0;
+        int decimal = 0;
 
         while(inputValue > 0){
-            remainder = inputValue % 2;
-            binary = (int) (binary + remainder * Math.pow(10, power));
-            inputValue = inputValue /2;
+            int lastDigit = inputValue %10;
+            decimal= decimal+(int)(lastDigit * Math.pow(2, power));
+            inputValue = inputValue/10;
             power++;
         }
-        System.out.println("Binary Code: "+binary);
-
+        
+        System.out.println("Output: " + decimal);
     }
+
+
+    // static void decimalToBinary(int inputValue){
+    //     int remainder;
+    //     int binary = 0;
+    //     int power = 0; 
+    //     while(inputValue > 0){
+    //         remainder = inputValue % 2;
+    //         binary = (int) (binary + remainder * Math.pow(10, power));
+    //         inputValue = inputValue /2;
+    //         power++;
+    //     }
+    //     System.out.println("Binary Code: "+binary); 
+    // }
 
 
     /// Checking if Value is prime or not
