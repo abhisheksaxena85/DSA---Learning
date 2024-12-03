@@ -1,4 +1,6 @@
-import java.util.*;
+
+import java.util.Scanner;
+
 
 public class chapter_1 {
     public static  void main(String[] values) {
@@ -123,29 +125,52 @@ public class chapter_1 {
         // System.out.println("Is this value is prime: "+isPrime(value));
 
         /// Printing all prime values from one to n
-        Scanner sc = new Scanner(System.in);
-        int value = sc.nextInt();
-        
-        for(int i = 3; i<=value; i++ ){
-            if(isPrime(i)){
-                System.out.print(i+", ");
-            }
-        }
+        // Scanner sc = new Scanner(System.in);
+        // int value = sc.nextInt();
+            
+        // for(int i = 3; i<=value; i++ ){
+        //     if(isPrime(i)){
+        //         System.out.print(i+", ");
+        //     }
+        // }
 
+
+        /// Converting the Decimal Numbers to Binary Numbers
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your input to convert into binary: ");
+        int input = sc.nextInt();
+        decimalToBinary(input);
+
+    }
+
+    static void decimalToBinary(int inputValue){
+
+        int remainder;
+        int binary = 0;
+        int power = 0;
+
+        while(inputValue > 0){
+            remainder = inputValue % 2;
+            binary = (int) (binary + remainder * Math.pow(10, power));
+            inputValue = inputValue /2;
+            power++;
+        }
+        System.out.println("Binary Code: "+binary);
 
     }
 
 
     /// Checking if Value is prime or not
-    static boolean  isPrime(int value){
-        boolean isPrimeNumber = true;
-        for(int i= 2; i<= value-1; i++){
-            if(value%i==0){
-                isPrimeNumber = false ;
-            }
-        }
-        return isPrimeNumber;
-    }
+    // static boolean  isPrime(int value){
+    //     boolean isPrimeNumber = true;
+    //     for(int i= 2; i<= value-1; i++){
+    //         if(value%i==0){
+    //             isPrimeNumber = false ;
+    //         }
+    //     }
+    //     return isPrimeNumber;
+    // }
 
 
     /// Testing function or method overloading
