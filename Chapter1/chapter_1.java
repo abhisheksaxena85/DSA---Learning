@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 
 
+
+
 public class chapter_1 {
     public static  void main(String[] values) {
         // Scanner scan = new Scanner(System.in);
@@ -145,29 +147,51 @@ public class chapter_1 {
         // decimalToBinary(input);
 
         /// Converting the Binary Numbers into Decimal Number System
+        // Scanner sc = new Scanner(System.in);
+        // System.out.print("Enter value through input: ");
+        // int value = sc.nextInt();
+
+        // binaryToDecimal(value);
+
+        /// Printing a hollow rectangle
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter value through input: ");
-        int value = sc.nextInt();
+        System.out.print("Enter number of rows: ");
+        int rows = sc.nextInt();
+        System.out.print("Enter number of columns: ");
+        int column = sc.nextInt();
 
-        binaryToDecimal(value);
-
+        hollowRectangle(rows, column);
 
     }
 
+    static void hollowRectangle(int rows, int column){
+        for(int i = 1; i <= rows; i++){
+            for(int j = 1; j<= column; j++){
+                if(i==1|| i==rows|| j==1|| j==column){
+                    System.out.print(" * ");
+                }else{
+                    System.out.print("   ");
 
-    static void binaryToDecimal(int inputValue){
-        int power = 0;
-        int decimal = 0;
-
-        while(inputValue > 0){
-            int lastDigit = inputValue %10;
-            decimal= decimal+(int)(lastDigit * Math.pow(2, power));
-            inputValue = inputValue/10;
-            power++;
+                }
+            }
+            System.err.println("");
         }
-        
-        System.out.println("Output: " + decimal);
     }
+
+
+    // static void binaryToDecimal(int inputValue){
+    //     int power = 0;
+    //     int decimal = 0;
+
+    //     while(inputValue > 0){
+    //         int lastDigit = inputValue %10;
+    //         decimal= decimal+(int)(lastDigit * Math.pow(2, power));
+    //         inputValue = inputValue/10;
+    //         power++;
+    //     }
+        
+    //     System.out.println("Output: " + decimal);
+    // }
 
 
     // static void decimalToBinary(int inputValue){
