@@ -1,6 +1,8 @@
 
 import java.util.Scanner;
 
+
+
 public class chapter_1 {
 
     public static void main(String[] values) {
@@ -165,22 +167,36 @@ public class chapter_1 {
         // invertedHalfPyramid(totalLine);
 
         /// Printing Inverted Half pyramid with numbers
+        // Scanner sc = new Scanner(System.in);
+        // System.out.println("Enter number of lines: ");
+        // int lines = sc.nextInt();
+        // invertedHalfPyramidWithNumbers(lines);
+
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter number of lines: ");
-        int lines = sc.nextInt();
-        invertedHalfPyramidWithNumbers(lines);
-        
+        int line = sc.nextInt();
+        floydTriangle(line); 
     }
 
-
-    static void invertedHalfPyramidWithNumbers(int lines){
-        for(int i = 0; i<=lines-1; i++){
-            for(int j = 1; j<=lines-i; j++){
-                System.out.print(j);
+    static void floydTriangle(int line){
+        int counter = 1; 
+        for(int i =1; i<=line; i++){
+            for(int j =1; j<=i; j++){
+                System.out.print(" "+counter);
+                counter++;
             }
             System.out.println();
         }
     }
+
+
+    // static void invertedHalfPyramidWithNumbers(int lines){
+    //     for(int i = 0; i<=lines-1; i++){
+    //         for(int j = 1; j<=lines-i; j++){
+    //             System.out.print(j);
+    //         }
+    //         System.out.println();
+    //     }
+    // }
 
 
     // static void invertedHalfPyramid(int totalLine) {
