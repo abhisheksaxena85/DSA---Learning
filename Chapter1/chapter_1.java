@@ -197,28 +197,57 @@ public class chapter_1 {
 
 
         /// Printing Hollow Rhombus
+        // Scanner sc = new Scanner(System.in);
+        // System.out.println("Enter number of lines: ");
+        // int value = sc.nextInt();
+        // hollowRhombus(value);
+
+        
+        /// Printing Diamond Pattern
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter number of lines: ");
         int value = sc.nextInt();
-        hollowRhombus(value);
+        diamondPattern(value);
     }
 
-    static void hollowRhombus(int n) {
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n - i; j++) {
+    static void diamondPattern(int n) {
+        for(int i = 1; i<=n; i++){
+            /// First Spaces
+            for(int j = 1; j<=(n-i);j++){
                 System.out.print(" ");
             }
-            for (int j = 1; j <= n; j++) {
-                if(i==n||j==n||i==1||j==1){
-                    System.out.print("*");
-                }else{
-                    System.out.print(" ");
-                }
+            for(int j=1; j<=(2*i)-1;j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        for(int i = n; i>=1; i--){
+            /// First Spaces
+            for(int j = 1; j<=(n-i);j++){
+                System.out.print(" ");
+            }
+            for(int j=1; j<=(2*i)-1;j++){
+                System.out.print("*");
             }
             System.out.println();
         }
     }
 
+    // static void hollowRhombus(int n) {
+    //     for (int i = 1; i <= n; i++) {
+    //         for (int j = 1; j <= n - i; j++) {
+    //             System.out.print(" ");
+    //         }
+    //         for (int j = 1; j <= n; j++) {
+    //             if(i==n||j==n||i==1||j==1){
+    //                 System.out.print("*");
+    //             }else{
+    //                 System.out.print(" ");
+    //             }
+    //         }
+    //         System.out.println();
+    //     }
+    // }
     // static void solidRhombus(int n){
     //     for(int i = 1; i<=n; i++){
     //         for(int j =1;j<= n-i;j++){
