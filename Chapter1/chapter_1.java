@@ -184,40 +184,63 @@ public class chapter_1 {
 
 
         /// Printing the Butterfly Pattern
+        // Scanner sc = new Scanner(System.in);
+        // System.out.print("Enter the number of lines: ");
+        // int value = sc.nextInt();
+        // butterflyPattern(value);
+
+
+
+        /// Printing Solid RhomBus
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the number of lines: ");
+        System.err.println("Enter numbers of line: ");
         int value = sc.nextInt();
-        butterflyPattern(value);
+        solidRhombus(value);
+
+
     }
 
-    static void butterflyPattern(int n){
+    static void solidRhombus(int n){
         for(int i = 1; i<=n; i++){
-                for(int k =1; k<=i; k++){
-                    System.out.print(" * ");
-                }
-                for(int l= 1; l<=2*(n-i);l++){
-                    System.out.print("   ");
-                }
-                for(int k =1; k<=i; k++){
-                    System.out.print(" * ");
-                }
-        
+            for(int j =1;j<= n-i;j++){
+                System.out.print(" ");
+            }
+            for(int j = 1; j<=n; j++){
+                System.out.print("*");
+            }
             System.out.println();
         }
-        for(int i = n; i>=0; i--){
-                for(int k =1; k<=i; k++){
-                    System.out.print(" * ");
-                }
-                for(int l= 1; l<=2*(n-i);l++){
-                    System.out.print("   ");
-                }
-                for(int k =1; k<=i; k++){
-                    System.out.print(" * ");
-                }
-        
-            System.out.println();
-        }
+
     }
+
+    // static void butterflyPattern(int n){
+    //     for(int i = 1; i<=n; i++){
+    //             for(int k =1; k<=i; k++){
+    //                 System.out.print(" * ");
+    //             }
+    //             for(int l= 1; l<=2*(n-i);l++){
+    //                 System.out.print("   ");
+    //             }
+    //             for(int k =1; k<=i; k++){
+    //                 System.out.print(" * ");
+    //             }
+        
+    //         System.out.println();
+    //     }
+    //     for(int i = n; i>=0; i--){
+    //             for(int k =1; k<=i; k++){
+    //                 System.out.print(" * ");
+    //             }
+    //             for(int l= 1; l<=2*(n-i);l++){
+    //                 System.out.print("   ");
+    //             }
+    //             for(int k =1; k<=i; k++){
+    //                 System.out.print(" * ");
+    //             }
+        
+    //         System.out.println();
+    //     }
+    // }
 
 
     // static void zeroOneTriangle(int line){
