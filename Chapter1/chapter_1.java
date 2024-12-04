@@ -178,25 +178,60 @@ public class chapter_1 {
 
 
         /// 0 - 1 Triangle
-        Scanner sc = new Scanner(System.in);
-        int line = sc.nextInt();
-        zeroOneTriangle(line);
+        // Scanner sc = new Scanner(System.in);
+        // int line = sc.nextInt();
+        // zeroOneTriangle(line);
 
+
+        /// Printing the Butterfly Pattern
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of lines: ");
+        int value = sc.nextInt();
+        butterflyPattern(value);
     }
 
-
-    static void zeroOneTriangle(int line){
-        for(int i = 1; i<=line; i++){
-            for(int j = 1; j<= i; j++){
-                if((i+j)%2==0){
-                    System.out.print(" 1 ");
-                }else{
-                    System.out.print(" 0 ");
+    static void butterflyPattern(int n){
+        for(int i = 1; i<=n; i++){
+                for(int k =1; k<=i; k++){
+                    System.out.print(" * ");
                 }
-            }
+                for(int l= 1; l<=2*(n-i);l++){
+                    System.out.print("   ");
+                }
+                for(int k =1; k<=i; k++){
+                    System.out.print(" * ");
+                }
+        
+            System.out.println();
+        }
+        for(int i = n; i>=0; i--){
+                for(int k =1; k<=i; k++){
+                    System.out.print(" * ");
+                }
+                for(int l= 1; l<=2*(n-i);l++){
+                    System.out.print("   ");
+                }
+                for(int k =1; k<=i; k++){
+                    System.out.print(" * ");
+                }
+        
             System.out.println();
         }
     }
+
+
+    // static void zeroOneTriangle(int line){
+    //     for(int i = 1; i<=line; i++){
+    //         for(int j = 1; j<= i; j++){
+    //             if((i+j)%2==0){
+    //                 System.out.print(" 1 ");
+    //             }else{
+    //                 System.out.print(" 0 ");
+    //             }
+    //         }
+    //         System.out.println();
+    //     }
+    // }
 
 
     // static void floydTriangle(int line){
