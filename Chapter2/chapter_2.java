@@ -1,5 +1,3 @@
-
-
 /* 
         Starting Array Data Structure
         start date - 5 Dec, 12:43 AM
@@ -28,6 +26,21 @@ public class chapter_2{
         // int limit = 120;
 
         // int val[] = new int[limit];
+
+
+        /// Linear Search in Array
+        int numbers[] = {12, 123,2, 6, 98, 76, 56, 74, 78, 23, 52, 16, 9,4};
+        int searchedIndex = linearSearch(numbers, 2);
+        System.out.println(searchedIndex);
         
+    }
+
+    public static int linearSearch(int numbers[], int key){
+        for(int i = 0; i<numbers.length;i++){
+            if(numbers[i] == key){
+                return i;
+            }
+        }
+        return -1;
     }
 }
