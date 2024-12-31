@@ -29,18 +29,34 @@ public class chapter_2{
 
 
         /// Linear Search in Array
+        // int numbers[] = {12, 123,2, 6, 98, 76, 56, 74, 78, 23, 52, 16, 9,4};
+        // int searchedIndex = linearSearch(numbers, 2);
+        // System.out.println(searchedIndex);
+
         int numbers[] = {12, 123,2, 6, 98, 76, 56, 74, 78, 23, 52, 16, 9,4};
-        int searchedIndex = linearSearch(numbers, 2);
-        System.out.println(searchedIndex);
+        int largestNumber = largestNumber(numbers);
+        System.out.println("Largest number : "+largestNumber);
         
     }
 
-    public static int linearSearch(int numbers[], int key){
-        for(int i = 0; i<numbers.length;i++){
-            if(numbers[i] == key){
-                return i;
+    public static int largestNumber(int numbers[]){
+        int largest = 0;
+
+        for(int i = 0; i<numbers.length; i++){
+            if(largest < numbers[i]){
+                largest = numbers[i];
             }
         }
-        return -1;
+
+        return largest;
     }
+
+    // public static int linearSearch(int numbers[], int key){
+    //     for(int i = 0; i<numbers.length;i++){
+    //         if(numbers[i] == key){
+    //             return i;
+    //         }
+    //     }
+    //     return -1;
+    // }
 }
