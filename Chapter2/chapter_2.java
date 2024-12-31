@@ -25,7 +25,7 @@ public class chapter_2{
         // String val = markValues.toString();
         // System.out.println(markValues);
 
-        int limit = 120;
+        // int limit = 120;
 
         // int val[] = new int[limit];
         

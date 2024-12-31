@@ -1,4 +1,4 @@
-import 'dart:developer';
+// import 'dart:developer';
 import 'dart:io';
 
 void main() {
@@ -9,8 +9,8 @@ void main() {
   //   print("Card is not draft type");
   // }
   switch (card) {
-    case cardType.draft:
-      print("Card is draft");
+    // case cardType.draft:
+    // print("Card is draft");
     default:
       print("Card is not draft");
   }
