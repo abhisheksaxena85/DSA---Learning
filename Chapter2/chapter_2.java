@@ -33,22 +33,20 @@ public class chapter_2{
         // int searchedIndex = linearSearch(numbers, 2);
         // System.out.println(searchedIndex);
 
-        int numbers[] = {12, 123,2, 6, 98, 76, 56, 74, 78, 23, 52, 16, 9,4};
-        int largestNumber = largestNumber(numbers);
-        System.out.println("Largest number : "+largestNumber);
-        
+        int numbers[] = {12, 123, 6, 98, 76, 56, 74, 78, 23, 52, 16, 9,4};
+        int smallestNumber = smallestNumber(numbers);
+        System.out.println("Smallest number : "+smallestNumber);
     }
 
-    public static int largestNumber(int numbers[]){
-        int largest = 0;
+    public static int smallestNumber(int numbers[]){
+        int smallest = Integer.MAX_VALUE;
 
         for(int i = 0; i<numbers.length; i++){
-            if(largest < numbers[i]){
-                largest = numbers[i];
+            if(smallest > numbers[i]){
+                smallest = numbers[i];
             }
         }
-
-        return largest;
+        return smallest;
     }
 
     // public static int linearSearch(int numbers[], int key){
