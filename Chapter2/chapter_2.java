@@ -42,28 +42,51 @@ public class chapter_2{
         /// Binary Search
         /// There must be a sorted array for binary search
         // Sorted Array 
+        // int sortedArr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 12, 13};
+        // // int foundValue = binarySearch(sortedArr, 90);
+        // System.out.println("Found value :"+sortedArr.length);
+
         int sortedArr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 12, 13};
-        // int foundValue = binarySearch(sortedArr, 90);
-        System.out.println("Found value :"+sortedArr.length);
-    }
+        reverseNumber(sortedArr);
 
-    public static int binarySearch(int sortedArr[], int key){
-        int start = 0;
-        int end = sortedArr.length-1;
-
-        while(start<=end){
-            int mid = (start+end)/2;
-
-            if(sortedArr[mid] == key){
-                return mid;
-            }else if(sortedArr[mid] > key){
-                end = mid-1;
-            }else{
-                start = mid+1;
-            }
+        for(int i = 0; i<=sortedArr.length-1;i++){
+            System.err.print(" " + sortedArr[i]);
         }
-        return -1;
+        System.err.println("");
     }
+
+    public static void reverseNumber(int numbers[]){
+        int first = 0, end = numbers.length-1;
+
+        while(first<end){
+            int temp = numbers[first];
+            numbers[first] = numbers[end];
+            numbers[end] = temp;
+
+            first++;
+            end--;
+        }
+
+    }
+
+
+    // public static int binarySearch(int sortedArr[], int key){
+    //     int start = 0;
+    //     int end = sortedArr.length-1;
+
+    //     while(start<=end){
+    //         int mid = (start+end)/2;
+
+    //         if(sortedArr[mid] == key){
+    //             return mid;
+    //         }else if(sortedArr[mid] > key){
+    //             end = mid-1;
+    //         }else{
+    //             start = mid+1;
+    //         }
+    //     }
+    //     return -1;
+    // }
 
     // public static int smallestNumber(int numbers[]){
     //     int smallest = Integer.MAX_VALUE;
