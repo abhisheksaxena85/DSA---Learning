@@ -50,19 +50,38 @@ public class chapter_2 {
         // System.err.println("");
 
         /// Making Possible unique pairs in Array 
-        int array[] = {1,2,3,4,5, 6, 7, 8, 9,};
-        pairOfArray(array);
+        // int array[] = {1,2,3,4,5, 6, 7, 8, 9,};
+        // pairOfArray(array);
+
+        /// Printing possible sub-arrays
+        int numbers[] = {1,2,3,4,5,6};
+        subArray(numbers);
 
     }
 
-    public static void pairOfArray(int array[]) {
-        for (int i = 0; i <= array.length - 1; i++) {
-            for (int j = i + 1; j <= array.length - 1; j++) {
-                System.out.print("(" + array[i] + ", " + array[j] + "), ");
+    public static void subArray(int numbers[]){
+        int currentValue = 0;
+        int maxSum = Integer.MIN_VALUE;
+        for(int i=0;i<=numbers.length-1;i++){
+            for(int j = i; j<=numbers.length-1;j++){
+                /// Printing each indivisual Array
+                for(int k = i; k<=j;k++){
+                    System.out.print(numbers[k]+",");
+                }
+                System.err.println("");
             }
-            System.out.println();
+                System.err.println("");
         }
     }
+
+    // public static void pairOfArray(int array[]) {
+    //     for (int i = 0; i <= array.length - 1; i++) {
+    //         for (int j = i + 1; j <= array.length - 1; j++) {
+    //             System.out.print("(" + array[i] + ", " + array[j] + "), ");
+    //         }
+    //         System.out.println();
+    //     }
+    // }
 
     // public static void reverseNumber(int numbers[]){
     //     int first = 0, end = numbers.length-1;
