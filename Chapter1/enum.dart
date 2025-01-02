@@ -1,7 +1,10 @@
 // import 'dart:developer';
+import 'dart:developer';
 import 'dart:io';
 
 void main() {
+  // int value = 0, name = 23;
+  // log((value + name).toString());
   String? card = stdin.readLineSync();
   // if (card!.toLowerCase() == cardType.draft.toString().toLowerCase()) {
   //   print('Card is draft');
