@@ -54,7 +54,7 @@ public class chapter_2 {
         // pairOfArray(array);
 
         /// Printing possible sub-arrays
-        int numbers[] = {1,2,3,4,5,6};
+        int numbers[] = {1,-2,6,-1,3};
         subArray(numbers);
 
     }
@@ -65,13 +65,19 @@ public class chapter_2 {
         for(int i=0;i<=numbers.length-1;i++){
             for(int j = i; j<=numbers.length-1;j++){
                 /// Printing each indivisual Array
+                currentValue = 0;
                 for(int k = i; k<=j;k++){
-                    System.out.print(numbers[k]+",");
+                    currentValue += numbers[k];
+                }
+                if(maxSum<currentValue){
+                    maxSum = currentValue;
                 }
                 System.err.println("");
             }
                 System.err.println("");
         }
+
+        System.out.println("Max sum of sub-array: "+maxSum);
     }
 
     // public static void pairOfArray(int array[]) {
