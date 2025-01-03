@@ -54,31 +54,59 @@ public class chapter_2 {
         // pairOfArray(array);
 
         /// Printing possible sub-arrays
+        // int numbers[] = {1,-2,6,-1,3};
+        // subArray(numbers);
+
+        /// Getting Max value of sum of max sub-arrays
         int numbers[] = {1,-2,6,-1,3};
-        subArray(numbers);
+        maxValueOfSumOfSubArrayFromPrefix(numbers);
 
     }
 
-    public static void subArray(int numbers[]){
-        int currentValue = 0;
-        int maxSum = Integer.MIN_VALUE;
-        for(int i=0;i<=numbers.length-1;i++){
-            for(int j = i; j<=numbers.length-1;j++){
-                /// Printing each indivisual Array
-                currentValue = 0;
-                for(int k = i; k<=j;k++){
-                    currentValue += numbers[k];
-                }
-                if(maxSum<currentValue){
-                    maxSum = currentValue;
-                }
-                System.err.println("");
-            }
-                System.err.println("");
+    public static void maxValueOfSumOfSubArrayFromPrefix(int number[]){
+        int currentSum;
+        int maxValue = Integer.MIN_VALUE;
+        int prefix[] = new int[number.length];
+        
+        prefix[0] = number[0];
+        for(int i =1;i<=prefix.length-1;i++){
+            prefix[i] += number[i];
         }
 
-        System.out.println("Max sum of sub-array: "+maxSum);
+        for(int i = 0;i<=number.length;i++){
+            for(int j = i; j<number.length; j++){
+                currentSum = i==0? prefix[0] : prefix[j] - prefix[i-1];
+                if(currentSum>maxValue){
+                    maxValue = currentSum;
+                }
+            }
+        }
+
+        System.out.println("Max value :" + maxValue);
+        
     }
+
+
+    // public static void subArray(int numbers[]){
+    //     int currentValue = 0;
+    //     int maxSum = Integer.MIN_VALUE;
+    //     for(int i=0;i<=numbers.length-1;i++){
+    //         for(int j = i; j<=numbers.length-1;j++){
+    //             /// Printing each indivisual Array
+    //             currentValue = 0;
+    //             for(int k = i; k<=j;k++){
+    //                 currentValue += numbers[k];
+    //             }
+    //             if(maxSum<currentValue){
+    //                 maxSum = currentValue;
+    //             }
+    //             System.err.println("");
+    //         }
+    //             System.err.println("");
+    //     }
+
+    //     System.out.println("Max sum of sub-array: "+maxSum);
+    // }
 
     // public static void pairOfArray(int array[]) {
     //     for (int i = 0; i <= array.length - 1; i++) {
