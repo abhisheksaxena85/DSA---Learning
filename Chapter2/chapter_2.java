@@ -67,38 +67,40 @@ public class chapter_2 {
         // kadanesAlgo(numbers);
 
         /// Trapped Water Area With Auxiliary Array
-        int numbers[] = {4,2,0, 6, 3, 2, 5};
-        int totalArea = trappedWaterArea(numbers);
-        System.out.println("Total Area : " + totalArea);
+        // int numbers[] = {4,2,0, 6, 3, 2, 5};
+        // int totalArea = trappedWaterArea(numbers);
+        // System.out.println("Total Area : " + totalArea);
+
+        
     }
 
-    public static int trappedWaterArea(int numbers[]){
-        int totalWaterArea = 0;
-        int n = numbers.length;
+    // public static int trappedWaterArea(int numbers[]){
+    //     int totalWaterArea = 0;
+    //     int n = numbers.length;
 
-        /// Auxilary Array to store the left side max values
-        int leftMax[] = new int[n];    
-        leftMax[0] = numbers[0];
-        for(int i=1;i<n;i++){
-            leftMax[i] = Math.max(numbers[i] ,leftMax[i-1]);
-        }
+    //     /// Auxilary Array to store the left side max values
+    //     int leftMax[] = new int[n];    
+    //     leftMax[0] = numbers[0];
+    //     for(int i=1;i<n;i++){
+    //         leftMax[i] = Math.max(numbers[i] ,leftMax[i-1]);
+    //     }
 
-        /// Auxilary Array to store the right side max values
-        int rightMax[] = new int[n];
-        rightMax[n-1] = numbers[n-1];
-        for(int i=n-2; i>=0; i--){
-            rightMax[i] = Math.max(numbers[i], rightMax[i+1]);
-        }
+    //     /// Auxilary Array to store the right side max values
+    //     int rightMax[] = new int[n];
+    //     rightMax[n-1] = numbers[n-1];
+    //     for(int i=n-2; i>=0; i--){
+    //         rightMax[i] = Math.max(numbers[i], rightMax[i+1]);
+    //     }
 
-        /// Now calculate the area of trapped water
-        for(int i=0;i<n;i++){
-            int waterLevel = Math.min(leftMax[i], rightMax[i]);
-            int trappedWater = waterLevel - numbers[i];
-            totalWaterArea += trappedWater;
-        }
+    //     /// Now calculate the area of trapped water
+    //     for(int i=0;i<n;i++){
+    //         int waterLevel = Math.min(leftMax[i], rightMax[i]);
+    //         int trappedWater = waterLevel - numbers[i];
+    //         totalWaterArea += trappedWater;
+    //     }
 
-        return totalWaterArea;
-    }
+    //     return totalWaterArea;
+    // }
 
     // public static void kadanesAlgo(int numbers[]){
     //     int maxSum = Integer.MIN_VALUE;
