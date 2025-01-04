@@ -1,3 +1,5 @@
+
+
 /* 
         Starting Array Data Structure
         start date - 5 Dec, 12:43 AM
@@ -58,33 +60,82 @@ public class chapter_2 {
         // subArray(numbers);
 
         /// Getting Max value of sum of max sub-arrays
-        int numbers[] = {1,-2,6,-1,3};
-        maxValueOfSumOfSubArrayFromPrefix(numbers);
+        // int numbers[] = {1,-2,6,-1,3};
+        // maxValueOfSumOfSubArrayFromPrefix(numbers);
 
+        // int numbers[] = {-2, -3, -4, -1, -2, -1, -5, -3};
+        // kadanesAlgo(numbers);
+
+        /// Trapped Water Area With Auxiliary Array
+        int numbers[] = {4,2,0, 6, 3, 2, 5};
+        int totalArea = trappedWaterArea(numbers);
+        System.out.println("Total Area : " + totalArea);
     }
 
-    public static void maxValueOfSumOfSubArrayFromPrefix(int number[]){
-        int currentSum;
-        int maxValue = Integer.MIN_VALUE;
-        int prefix[] = new int[number.length];
-        
-        prefix[0] = number[0];
-        for(int i =1;i<=prefix.length-1;i++){
-            prefix[i] += number[i];
+    public static int trappedWaterArea(int numbers[]){
+        int totalWaterArea = 0;
+        int n = numbers.length;
+
+        /// Auxilary Array to store the left side max values
+        int leftMax[] = new int[n];    
+        leftMax[0] = numbers[0];
+        for(int i=1;i<n;i++){
+            leftMax[i] = Math.max(numbers[i] ,leftMax[i-1]);
         }
 
-        for(int i = 0;i<=number.length;i++){
-            for(int j = i; j<number.length; j++){
-                currentSum = i==0? prefix[0] : prefix[j] - prefix[i-1];
-                if(currentSum>maxValue){
-                    maxValue = currentSum;
-                }
-            }
+        /// Auxilary Array to store the right side max values
+        int rightMax[] = new int[n];
+        rightMax[n-1] = numbers[n-1];
+        for(int i=n-2; i>=0; i--){
+            rightMax[i] = Math.max(numbers[i], rightMax[i+1]);
         }
 
-        System.out.println("Max value :" + maxValue);
-        
+        /// Now calculate the area of trapped water
+        for(int i=0;i<n;i++){
+            int waterLevel = Math.min(leftMax[i], rightMax[i]);
+            int trappedWater = waterLevel - numbers[i];
+            totalWaterArea += trappedWater;
+        }
+
+        return totalWaterArea;
     }
+
+    // public static void kadanesAlgo(int numbers[]){
+    //     int maxSum = Integer.MIN_VALUE;
+    //     int currentSum = 0;
+    //     for(int i = 0; i<numbers.length;i++){
+    //         currentSum = currentSum + numbers[i];
+    //         if(currentSum<0){
+    //             currentSum = 0;
+    //         }
+    //         if(maxSum < currentSum){
+    //             maxSum = currentSum;
+    //         }
+    //     }
+    //     System.out.println("Max Value : " + maxSum);
+    // }
+    // public static void maxValueOfSumOfSubArrayFromPrefix(int number[]){
+    //     int currentSum;
+    //     int maxValue = Integer.MIN_VALUE;
+    //     int prefix[] = new int[number.length];
+        
+    //     prefix[0] = number[0];
+    //     for(int i =1;i<=prefix.length-1;i++){
+    //         prefix[i] += number[i];
+    //     }
+
+    //     for(int i = 0;i<=number.length;i++){
+    //         for(int j = i; j<number.length; j++){
+    //             currentSum = i==0? prefix[0] : prefix[j] - prefix[i-1];
+    //             if(currentSum>maxValue){
+    //                 maxValue = currentSum;
+    //             }
+    //         }
+    //     }
+
+    //     System.out.println("Max value :" + maxValue);
+        
+    // }
 
 
     // public static void subArray(int numbers[]){
