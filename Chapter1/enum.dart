@@ -2,7 +2,10 @@
 // import 'dart:developer';
 import 'dart:io';
 
+dynamic value = 2;
+
 void main() {
+  value = true;
   // int value = 0, name = 23;
   // log((value + name).toString());
   String? card = stdin.readLineSync();

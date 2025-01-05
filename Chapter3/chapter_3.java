@@ -1,3 +1,5 @@
+
+
 /*
     Started Learning Sorting Algorithms
     Start Time -> 05-01-2025  01:38 AM
@@ -9,29 +11,48 @@ class chapter_3{
         // int unsortedArr[] = {9,3,4,6,7,1,8,44,34,11,98,89,5,0};
         // bubbleSortAlgorithm(unsortedArr);
  
-        int unsortedArr[] = {9,3,4,6,7,1,8,44,34,11,98,89,5,0};
-        selectionSort(unsortedArr);
+        // int unsortedArr[] = {9,3,4,6,7,1,8,44,34,11,98,89,5,0};
+        // selectionSort(unsortedArr);
         
+        int unsortedArr[] = {9,3,4,6,7,1,8,44,34,11,98,89,5,0};
+        insertionSort(unsortedArr);
 
+        for(int i=0;i<unsortedArr.length;i++){
+            System.out.println(unsortedArr[i]);
+        }
     }
+
+    /// Insertion Sorting Algorithm
+    public static void insertionSort(int arr[]){
+        for(int i=1; i<arr.length; i++){
+            int currentValue = arr[i];
+            int previousIndex = i-1;
+            while(previousIndex>=0 && arr[previousIndex] > currentValue){
+                arr[previousIndex+1] = arr[previousIndex];
+                previousIndex--;
+            }
+            arr[previousIndex+1] = currentValue;
+        }
+    }
+
 
     /// Selection Sorting Algorithm
-    public static void selectionSort(int arr[]){
-        for(int i=0;i<arr.length-1;i++){
-            int minPos = i;
-            for(int j = i+1;j<arr.length;j++){
-                if(arr[minPos] > arr[j]){
-                    minPos = j;
-                }
-            }
-            int temp = arr[minPos];
-            arr[minPos] = arr[i];
-            arr[i] = temp;  
-        }
-        for(int i = 0;i<=arr.length-1;i++){
-            System.out.println(arr[i]);
-        }
-    }
+    // public static void selectionSort(int arr[]){
+    //     for(int i=0;i<arr.length-1;i++){
+    //         int minPos = i;
+    //         for(int j = i+1;j<arr.length;j++){
+    //             if(arr[minPos] > arr[j]){
+    //                 minPos = j;
+    //             }
+    //         }
+    //         int temp = arr[minPos];
+    //         arr[minPos] = arr[i];
+    //         arr[i] = temp;  
+    //     }
+    //     for(int i = 0;i<=arr.length-1;i++){
+    //         System.out.println(arr[i]);
+    //     }
+    // }
 
 
     // /// Bubble Sorting Algorithm
