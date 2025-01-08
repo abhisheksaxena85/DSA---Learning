@@ -5,6 +5,9 @@
     Start Time -> 05-01-2025  01:38 AM
 */
 
+import java.util.Arrays;
+import java.util.Collections;
+
 class chapter_3{
     public static void main(String[] val){
         
@@ -14,26 +17,26 @@ class chapter_3{
         // int unsortedArr[] = {9,3,4,6,7,1,8,44,34,11,98,89,5,0};
         // selectionSort(unsortedArr);
         
-        int unsortedArr[] = {9,3,4,6,7,1,8,44,34,11,98,89,5,0};
-        insertionSort(unsortedArr);
+        Integer unsortedArr[] = {9,3,4,6,7,1,8,44,34,11,98,89,5,0};
+        Arrays.sort(unsortedArr, Collections.reverseOrder());
 
-        for(int i=0;i<unsortedArr.length;i++){
-            System.out.println(unsortedArr[i]);
+        for (Integer unsortedArr1 : unsortedArr) {
+            System.out.println(unsortedArr1);
         }
     }
 
     /// Insertion Sorting Algorithm
-    public static void insertionSort(int arr[]){
-        for(int i=1; i<arr.length; i++){
-            int currentValue = arr[i];
-            int previousIndex = i-1;
-            while(previousIndex>=0 && arr[previousIndex] > currentValue){
-                arr[previousIndex+1] = arr[previousIndex];
-                previousIndex--;
-            }
-            arr[previousIndex+1] = currentValue;
-        }
-    }
+    // public static void insertionSort(int arr[]){
+    //     for(int i=1; i<arr.length; i++){
+    //         int currentValue = arr[i];
+    //         int previousIndex = i-1;
+    //         while(previousIndex>=0 && arr[previousIndex] > currentValue){
+    //             arr[previousIndex+1] = arr[previousIndex];
+    //             previousIndex--;
+    //         }
+    //         arr[previousIndex+1] = currentValue;
+    //     }
+    // }
 
 
     /// Selection Sorting Algorithm
