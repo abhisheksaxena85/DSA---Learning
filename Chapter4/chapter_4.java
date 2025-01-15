@@ -50,20 +50,33 @@ public class chapter_4 {
     public static int diagonalSum(int matrix[][]) {
         int sum = 0;
 
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                // Primary Diagonal
-                if (i == j) {
-                    sum = sum + matrix[i][j];
-                }
+        ///Brute Force Approach, But Working with Time Complexicity O(n^2)
 
-                // Secondary Diagonal
-                if (i + j == matrix.length - 1) {
-                    if (!(i == j)) {
-                        sum = sum + matrix[i][j];
-                    }
+        // for (int i = 0; i < matrix.length; i++) {
+        //     for (int j = 0; j < matrix[0].length; j++) {
+        //         // Primary Diagonal
+        //         if (i == j) {
+        //             sum = sum + matrix[i][j];
+        //         }
 
-                }
+        //         // Secondary Diagonal
+        //         if (i + j == matrix.length - 1) {
+        //             if (i != j) {
+        //                 sum = sum + matrix[i][j];
+        //             }
+
+        //         }
+        //     }
+        // }
+
+
+        /// Optimized Approach with Time Complexicity O(n) highly Optimized
+        for(int i = 0; i<matrix.length;i++){
+            // Primary Diagonal
+            sum += matrix[i][i]; // when i == j
+            // Secondary Diagonal
+            if(i != matrix.length-1-i){ // When i != j
+                sum += matrix[i][matrix.length-1-i];
             }
         }
 
