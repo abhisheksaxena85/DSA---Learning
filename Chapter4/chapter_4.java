@@ -31,24 +31,46 @@ public class chapter_4 {
     // spiralMatrix(matrix);
 
     /// Diagonal Sum of Matrix
-    int matrix[][] = {
+    // int matrix[][] = {
             // {1,2,3,4}, 
             // {5,6,7,8},
             // {9,10,11,12}, 
             // {13,14,15,16}
-           {1,2,3,4,5},
-           {1,2,3,4,5},
-           {1,2,3,4,5},
-           {1,2,3,4,5},
-           {1,2,3,4,5},
+        //    {1,2,3,4,5},
+        //    {1,2,3,4,5},
+        //    {1,2,3,4,5},
+        //    {1,2,3,4,5},
+        //    {1,2,3,4,5},
+        // };
+
+        // System.out.println(diagonalSum(matrix));
+
+        int matrix[][] = {
+            {1,2,3,4}, 
+            {5,6,7,8}, 
+            {9,10,11,12}
         };
 
-        System.out.println(diagonalSum(matrix));
+        searchKeyInSortedMatrix(matrix, 4);
 
     }
+    
+    public static void searchKeyInSortedMatrix(int matrix[][], int key){
 
-    public static int diagonalSum(int matrix[][]) {
-        int sum = 0;
+        //! Brute Force Approach
+
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[i].length;j++){
+                if(matrix[i][j]==key){
+                    System.out.println("Key found at ("+i+", "+j+")");
+                }
+            }
+        }
+    }
+
+
+    // public static int diagonalSum(int matrix[][]) {
+    //     int sum = 0;
 
         ///Brute Force Approach, But Working with Time Complexicity O(n^2)
 
@@ -71,17 +93,17 @@ public class chapter_4 {
 
 
         /// Optimized Approach with Time Complexicity O(n) highly Optimized
-        for(int i = 0; i<matrix.length;i++){
-            // Primary Diagonal
-            sum += matrix[i][i]; // when i == j
-            // Secondary Diagonal
-            if(i != matrix.length-1-i){ // When i != j
-                sum += matrix[i][matrix.length-1-i];
-            }
-        }
+    //     for(int i = 0; i<matrix.length;i++){
+    //         // Primary Diagonal
+    //         sum += matrix[i][i]; // when i == j
+    //         // Secondary Diagonal
+    //         if(i != matrix.length-1-i){ // When i != j
+    //             sum += matrix[i][matrix.length-1-i];
+    //         }
+    //     }
 
-        return sum;
-    }
+    //     return sum;
+    // }
 
     // public static void spiralMatrix(int matrix[][]){
     //     int startRow = 0;
