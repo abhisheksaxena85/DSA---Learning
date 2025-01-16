@@ -55,17 +55,38 @@ public class chapter_4 {
 
     }
     
-    public static void searchKeyInSortedMatrix(int matrix[][], int key){
+    public static boolean searchKeyInSortedMatrix(int matrix[][], int key){
 
         //! Brute Force Approach
+        /// Time Complexity - O(n^2)
+        /// Space Complexity - O(m*n)
 
-        for(int i=0;i<matrix.length;i++){
-            for(int j=0;j<matrix[i].length;j++){
-                if(matrix[i][j]==key){
-                    System.out.println("Key found at ("+i+", "+j+")");
-                }
+        // for(int i=0;i<matrix.length;i++){
+        //     for(int j=0;j<matrix[i].length;j++){
+        //         if(matrix[i][j]==key){
+        //             System.out.println("Key found at ("+i+", "+j+")");
+        //         }
+        //     }
+        // }
+
+        ///? Optimized Approach
+        
+        int row = 0;
+        int col = matrix[0].length-1;
+
+
+        while(row<matrix.length && col>=0 ){
+            if(matrix[row][col]==key){
+                System.out.println("Key found at ("+row+", "+col+")");
+                return true;
+            }else if(key>matrix[row][col]){
+                row++;
+            }else if(key<matrix[row][col]){
+                col--;
             }
         }
+        System.out.println("Not Found Key");
+        return false;
     }
 
 
