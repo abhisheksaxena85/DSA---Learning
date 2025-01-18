@@ -24,35 +24,50 @@ public class chapter_5{
         // value = "Saxena";
 
         /// Find all the indexs as Unsorted Array of seached Value
-        int array[] = {1,2,3,4,5,2,4,3,7,5, 1, 3, 2, 2, 4, 7, 5, 55, 5};
-        int arr[] = findAllIndexs(array,2 );
+        // int array[] = {1,2,3,4,5,2,4,3,7,5, 1, 3, 2, 2, 4, 7, 5, 55, 5};
+        // int arr[] = findAllIndexs(array,2 );
 
-        for(int i = 0; i<arr.length;i++){
-            System.out.print(arr[i] +" ");
-        }
-        System.err.println();
+        // for(int i = 0; i<arr.length;i++){
+        //     System.out.print(arr[i] +" ");
+        // }
+        // System.err.println();
+
+        /// Checking if entered string value is palindrome
+        String name = "abhishek";
+        System.err.println(isPalindrome(name));
     }
+
+    /// Method to check value, if it is palindrome 
+    public static boolean isPalindrome(String name){
+        for(int i=0;i<name.length()/2; i++){
+            if(name.charAt(i) != name.charAt(name.length()-1-i)){
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     /// Find the all indexs of of seached Value as an unsorted Array
-    public static int[] findAllIndexs(int arr[], int searchedValue){
-        int totalFoundIndexsLength =  0;
-        for(int i = 0;i<arr.length;i++){
-            if(arr[i] == searchedValue){
-                totalFoundIndexsLength++;
-            }
-        }
+    // public static int[] findAllIndexs(int arr[], int searchedValue){
+    //     int totalFoundIndexsLength =  0;
+    //     for(int i = 0;i<arr.length;i++){
+    //         if(arr[i] == searchedValue){
+    //             totalFoundIndexsLength++;
+    //         }
+    //     }
 
-        int seachedIndexs[] = new int[totalFoundIndexsLength];
-        int index = 0;
+    //     int seachedIndexs[] = new int[totalFoundIndexsLength];
+    //     int index = 0;
 
-        for(int i=0;i<arr.length;i++){
-            if(arr[i] == searchedValue){
-                seachedIndexs[index] = i;
-                index++;
-            }
-        }
-        return seachedIndexs;
-    }
+    //     for(int i=0;i<arr.length;i++){
+    //         if(arr[i] == searchedValue){
+    //             seachedIndexs[index] = i;
+    //             index++;
+    //         }
+    //     }
+    //     return seachedIndexs;
+    // }
 
     /// Method to find first index of seachvalue in the arrays
     // public static int findFirstIndex(int array[], int searchValue){
