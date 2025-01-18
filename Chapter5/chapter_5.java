@@ -15,21 +15,54 @@ public class chapter_5{
         // operations(name);
 
         /// Finding the first index of Seach - Value in the Array
-        int array[] = {1,2,3,4,5,2,4,3,7,5};
+        // int array[] = {1,2,3,4,5,2,4,3,7,5};
 
-        int firstIndex = findFirstIndex(array, 5);
-        System.out.println("First Index of Searched Value : " + firstIndex);
+        // int firstIndex = findFirstIndex(array, 78);
+        // System.out.println("First Index of Searched Value : " + firstIndex);
+
+        // final String value = "Abhishek";
+        // value = "Saxena";
+
+        /// Find all the indexs as Unsorted Array of seached Value
+        int array[] = {1,2,3,4,5,2,4,3,7,5, 1, 3, 2, 2, 4, 7, 5, 55, 5};
+        int arr[] = findAllIndexs(array,2 );
+
+        for(int i = 0; i<arr.length;i++){
+            System.out.print(arr[i] +" ");
+        }
+        System.err.println();
+    }
+
+    /// Find the all indexs of of seached Value as an unsorted Array
+    public static int[] findAllIndexs(int arr[], int searchedValue){
+        int totalFoundIndexsLength =  0;
+        for(int i = 0;i<arr.length;i++){
+            if(arr[i] == searchedValue){
+                totalFoundIndexsLength++;
+            }
+        }
+
+        int seachedIndexs[] = new int[totalFoundIndexsLength];
+        int index = 0;
+
+        for(int i=0;i<arr.length;i++){
+            if(arr[i] == searchedValue){
+                seachedIndexs[index] = i;
+                index++;
+            }
+        }
+        return seachedIndexs;
     }
 
     /// Method to find first index of seachvalue in the arrays
-    public static int findFirstIndex(int array[], int searchValue){
-        for(int i=0;i<array.length;i++){
-            if(array[i] == searchValue){
-                return i;
-            }
-        }
-        return -1;
-    }
+    // public static int findFirstIndex(int array[], int searchValue){
+    //     for(int i=0;i<array.length;i++){
+    //         if(array[i] == searchValue){
+    //             return i;
+    //         }
+    //     }
+    //     return -1;
+    // }
 
     /// Basic Operations on String 
     // public static void operations(String stringValue){
