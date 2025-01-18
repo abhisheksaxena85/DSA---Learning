@@ -33,19 +33,46 @@ public class chapter_5{
         // System.err.println();
 
         /// Checking if entered string value is palindrome
-        String name = "abhishek";
-        System.err.println(isPalindrome(name));
+        // String name = "abhishek";
+        // System.err.println(isPalindrome(name));
+
+        /// Finding the shortest path
+        String route = "NS";
+        findShortestPath(route);
+    }
+
+    /// Finding the shortest path when given route - [E, W, N, S]
+    public static void findShortestPath(String route){
+        int x=0,y=0;
+        for(int i = 0; i<route.length(); i++){
+            if(route.charAt(i) == 'E'){
+                x++;
+            }else if ( route.charAt(i) == 'W') {
+                x--;
+            }else if (route.charAt(i) == 'N'){
+                y++;
+            }else {
+                y--;
+            }
+        }
+
+        int xSq = x*x;
+        int ySq = y*y;
+
+        int shortestRoute = (int) Math.sqrt(xSq+ySq);
+
+        System.out.println("The Shortest Path is : " + shortestRoute);
     }
 
     /// Method to check value, if it is palindrome 
-    public static boolean isPalindrome(String name){
-        for(int i=0;i<name.length()/2; i++){
-            if(name.charAt(i) != name.charAt(name.length()-1-i)){
-                return false;
-            }
-        }
-        return true;
-    }
+    // public static boolean isPalindrome(String name){
+    //     for(int i=0;i<name.length()/2; i++){
+    //         if(name.charAt(i) != name.charAt(name.length()-1-i)){
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
 
 
     /// Find the all indexs of of seached Value as an unsorted Array
