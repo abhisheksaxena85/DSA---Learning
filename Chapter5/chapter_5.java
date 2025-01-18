@@ -11,14 +11,30 @@ public class chapter_5{
         // name = sc.nextLine();
         // System.err.println(name.contains("a"));
 
-        String name = "Mashroom-on-the-ground";
-        operations(name);
+        // String name = "Mashroom-on-the-ground";
+        // operations(name);
+
+        /// Finding the first index of Seach - Value in the Array
+        int array[] = {1,2,3,4,5,2,4,3,7,5};
+
+        int firstIndex = findFirstIndex(array, 5);
+        System.out.println("First Index of Searched Value : " + firstIndex);
+    }
+
+    /// Method to find first index of seachvalue in the arrays
+    public static int findFirstIndex(int array[], int searchValue){
+        for(int i=0;i<array.length;i++){
+            if(array[i] == searchValue){
+                return i;
+            }
+        }
+        return -1;
     }
 
     /// Basic Operations on String 
-    public static void operations(String stringValue){
-        for(int i = 0;i<stringValue.length();i++){
-            System.out.print(stringValue.charAt(i)+" ");
-        }
-    }
+    // public static void operations(String stringValue){
+    //     for(int i = 0;i<stringValue.length();i++){
+    //         System.out.print(stringValue.charAt(i)+" ");
+    //     }
+    // }
 }
