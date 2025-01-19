@@ -2,8 +2,9 @@
     Starting Strings In Java
     Start Date - January 17th, 2025 12:34 AM
  */
-public class chapter_5{
-    public static void main(String[] arg){
+public class chapter_5 {
+
+    public static void main(String[] arg) {
         // String name = "Abhishek Saxena";
         // System.out.println(name);
         // Scanner sc = new Scanner(System.in);
@@ -13,7 +14,6 @@ public class chapter_5{
 
         // String name = "Mashroom-on-the-ground";
         // operations(name);
-
         /// Finding the first index of Seach - Value in the Array
         // int array[] = {1,2,3,4,5,2,4,3,7,5};
 
@@ -42,21 +42,42 @@ public class chapter_5{
 
 
         /// Finding the largest string lexicographically 
-        String name[] = {"abhishek", "mohit","deepu","saurabh","ankit"};
+        // String name[] = {"abhishek", "mohit","deepu","saurabh","ankit"};
 
-        findLargest(name);
+        // findLargest(name);
+
+        int nums[] = {3, 2, 4}, target = 6;
+
+        int values[] = twoSum(nums, target);
+
+        for (int i = 0; i < values.length; i++) {
+            System.out.print(i + " ");
+        }
+
     }
 
-    /// Method to find the largest string value in the array 
-    public static void findLargest(String name[]){
-        String largestString = "";
-        for(int i = 0; i<name.length; i++){
-            if(largestString.compareTo(name[i]) < 0){
-                largestString = name[i];
+    public static int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i+1; j < nums.length; j++) {
+                if ((nums[i] + nums[j]) == target) {
+                    return new int[]{i, j};
+                }
             }
         }
-        System.err.println("The largest name is lexicographically : " + largestString);
+        return new int[]{};
     }
+
+
+/// Method to find the largest string value in the array 
+    // public static void findLargest(String name[]){
+    //     String largestString = "";
+    //     for(int i = 0; i<name.length; i++){
+    //         if(largestString.compareTo(name[i]) < 0){
+    //             largestString = name[i];
+    //         }
+    //     }
+    //     System.err.println("The largest name is lexicographically : " + largestString);
+    // }
 
     /// Finding the shortest path when given route - [E, W, N, S]
     // public static void findShortestPath(String route){
