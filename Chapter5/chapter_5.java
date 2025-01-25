@@ -46,27 +46,67 @@ public class chapter_5 {
 
         // findLargest(name);
 
-        int nums[] = {3, 2, 4}, target = 6;
+        // int nums[] = {3, 2, 4}, target = 6;
 
-        int values[] = twoSum(nums, target);
+        // int values[] = twoSum(nums, target);
 
-        for (int i = 0; i < values.length; i++) {
-            System.out.print(i + " ");
-        }
+        // for (int i = 0; i < values.length; i++) {
+        //     System.out.print(i + " ");
+        // }
 
+        // int value = 123;
+        // System.err.println(isPalindrome(value));
+
+        /// Making Input String's first letter uppercase
+        String str = "hello, i am abhishek saxena";
+        System.out.println(firstLetterUpperCase(str));
     }
 
-    public static int[] twoSum(int[] nums, int target) {
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i+1; j < nums.length; j++) {
-                if ((nums[i] + nums[j]) == target) {
-                    return new int[]{i, j};
-                }
+    /// First Letter UpperCase
+    public static String firstLetterUpperCase(String str){
+        StringBuilder string = new StringBuilder();
+        
+        string.append(Character.toUpperCase(str.charAt(0)));
+
+        for(int i = 1; i<str.length();i++){
+            if(str.charAt(i) == ' ' && i<str.length()-1){
+                string.append(' ');
+                i++;
+                string.append(Character.toUpperCase(str.charAt(i)));
+            }else{
+                string.append(str.charAt(i));
             }
         }
-        return new int[]{};
+
+        return string.toString();
     }
 
+    // public static boolean isPalindrome(int x) {
+    //     int originalvalue = x;
+    //     int reversedNumber = 0;
+    //     int power = 0;
+    //     if(x==10){return false;}
+    //     while (x > 0) {
+    //         int lastDigit = x % 10;/// 12 -> 2
+
+    //         x = x / 10; /// 12 -> 1
+    //         reversedNumber = (int)(reversedNumber+(lastDigit * Math.pow(10, power))); /// 3
+    //         power++; // 1
+    //         System.out.println(reversedNumber); // 3
+    //     }
+    //     return originalvalue == reversedNumber;
+    // }
+
+    // public static int[] twoSum(int[] nums, int target) {
+    //     for (int i = 0; i < nums.length; i++) {
+    //         for (int j = i+1; j < nums.length; j++) {
+    //             if ((nums[i] + nums[j]) == target) {
+    //                 return new int[]{i, j};
+    //             }
+    //         }
+    //     }
+    //     return new int[]{};
+    // }
 
 /// Method to find the largest string value in the array 
     // public static void findLargest(String name[]){
