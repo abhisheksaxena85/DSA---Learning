@@ -62,29 +62,28 @@ public class chapter_5 {
         // System.out.println(firstLetterUpperCase(str));
 
         /// Compressing the input string on repeating characters
-        String value = "eeeetttttrrydd";
-        System.out.println(stringCompression(value));
+        // String value = "eeeetttttrrydd";
+        // System.out.println(stringCompression(value));
     }
 
 
     /// Method to make the string compressed when repeating
-    public static String stringCompression(String value){
-        String newStringValue = "";
-        for(int i= 0; i<value.length();i++){
-            Integer counter = 1;
+    // public static String stringCompression(String value){
+    //     String newStringValue = "";
+    //     for(int i= 0; i<value.length();i++){
+    //         Integer counter = 1;
 
-            while(i<value.length()-1 && value.charAt(i) == value.charAt(i+1)){
-                counter++;
-                i++;
-            }
-
-            newStringValue += value.charAt(i);
-            if(counter>1){
-                newStringValue += counter.toString(); 
-            }
-        }
-        return newStringValue;
-    }
+    //         while(i<value.length()-1 && value.charAt(i) == value.charAt(i+1)){
+    //             counter++;
+    //             i++;
+    //         }
+    //         newStringValue += value.charAt(i);
+    //         if(counter>1){
+    //             newStringValue += counter.toString(); 
+    //         }
+    //     }
+    //     return newStringValue;
+    // }
 
     /// First Letter UpperCase
     // public static String firstLetterUpperCase(String str){
