@@ -58,28 +58,52 @@ public class chapter_5 {
         // System.err.println(isPalindrome(value));
 
         /// Making Input String's first letter uppercase
-        String str = "hello, i am abhishek saxena";
-        System.out.println(firstLetterUpperCase(str));
+        // String str = "hello, i am abhishek saxena";
+        // System.out.println(firstLetterUpperCase(str));
+
+        /// Compressing the input string on repeating characters
+        String value = "eeeetttttrrydd";
+        System.out.println(stringCompression(value));
+    }
+
+
+    /// Method to make the string compressed when repeating
+    public static String stringCompression(String value){
+        String newStringValue = "";
+        for(int i= 0; i<value.length();i++){
+            Integer counter = 1;
+
+            while(i<value.length()-1 && value.charAt(i) == value.charAt(i+1)){
+                counter++;
+                i++;
+            }
+
+            newStringValue += value.charAt(i);
+            if(counter>1){
+                newStringValue += counter.toString(); 
+            }
+        }
+        return newStringValue;
     }
 
     /// First Letter UpperCase
-    public static String firstLetterUpperCase(String str){
-        StringBuilder string = new StringBuilder();
+    // public static String firstLetterUpperCase(String str){
+    //     StringBuilder string = new StringBuilder();
         
-        string.append(Character.toUpperCase(str.charAt(0)));
+    //     string.append(Character.toUpperCase(str.charAt(0)));
 
-        for(int i = 1; i<str.length();i++){
-            if(str.charAt(i) == ' ' && i<str.length()-1){
-                string.append(' ');
-                i++;
-                string.append(Character.toUpperCase(str.charAt(i)));
-            }else{
-                string.append(str.charAt(i));
-            }
-        }
+    //     for(int i = 1; i<str.length();i++){
+    //         if(str.charAt(i) == ' ' && i<str.length()-1){
+    //             string.append(' ');
+    //             i++;
+    //             string.append(Character.toUpperCase(str.charAt(i)));
+    //         }else{
+    //             string.append(str.charAt(i));
+    //         }
+    //     }
 
-        return string.toString();
-    }
+    //     return string.toString();
+    // }
 
     // public static boolean isPalindrome(int x) {
     //     int originalvalue = x;
