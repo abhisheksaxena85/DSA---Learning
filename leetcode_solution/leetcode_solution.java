@@ -5,33 +5,46 @@ public class leetcode_solution {
         // System.out.println("LeetCode: ");
         // int value = 1000;
         // System.out.println(isPalindrome(value));
-        int value = 1534236469;
-        System.out.println(reverseNumber(value));
+        // int value = 1534236469;
+        // System.out.println(reverseNumber(value));
+        System.out.println(strStr("hello", "ll"));
     }
 
-    /// Reverse the input int value only in 32bit signed integer, If it crosses 32bit limit then return 0;
-    public static int reverseNumber(int x) {
-        int a = x;
-        long r = 0;
-        if(x>0){
-            while (a > 0) {
-                int l = a % 10;
-                a = a / 10;
-                r = (r * 10) + l;
-            }
-        }else{
-            while (a < 0) {
-                int l = a % 10;
-                a = a / 10;
-                r = (r * 10) + l;
+    public static int strStr(String haystack, String needle) {
+
+        for (int i = 0; i < haystack.length(); i++) {
+            if (haystack.charAt(i) == needle.charAt(i)) {
+                return 0;
             }
         }
-        if (r < 2147483648L && r > -2147483649L) {
-            return (int) r;
-        } else {
-            return 0;
-        }
+        return 0;
+
     }
+
+
+/// Reverse the input int value only in 32bit signed integer, If it crosses 32bit limit then return 0;
+    // public static int reverseNumber(int x) {
+    //     int a = x;
+    //     long r = 0;
+    //     if(x>0){
+    //         while (a > 0) {
+    //             int l = a % 10;
+    //             a = a / 10;
+    //             r = (r * 10) + l;
+    //         }
+    //     }else{
+    //         while (a < 0) {
+    //             int l = a % 10;
+    //             a = a / 10;
+    //             r = (r * 10) + l;
+    //         }
+    //     }
+    //     if (r < 2147483648L && r > -2147483649L) {
+    //         return (int) r;
+    //     } else {
+    //         return 0;
+    //     }
+    // }
 
     // public static boolean isPalindrome(Integer x) {
     //     int a = x;
