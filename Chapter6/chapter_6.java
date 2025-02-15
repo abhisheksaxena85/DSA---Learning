@@ -11,7 +11,7 @@ public class chapter_6 {
         // int c = a&b;   
         // System.err.println("Is value Even: "+isEven(11));
         // System.out.println("Bit at ith place " + getBit(5, 4));
-        System.out.println("Value after fliping the bit at ith place to 1: " + setBit(5, 1));
+        System.out.println("Value after fliping the bit at ith place to 1: " + clearBit(5, 0));
     }
 
     /// Gettting the bit of the Ith place 
@@ -22,6 +22,11 @@ public class chapter_6 {
 
     public static int setBit(int n, int i) {
         int x = n | (1 << i);
+        return x;
+    }
+
+    public static int clearBit(int n, int i){
+        int x = n & (~(1<<i));
         return x;
     }
 
