@@ -12,7 +12,15 @@ public class chapter_6 {
         // System.err.println("Is value Even: "+isEven(11));
         // System.out.println("Bit at ith place " + getBit(5, 4)); 101
         // System.out.println("Value after updating the bit at ith place to 0: " + updateBit(5, 1, 1));
-        System.out.println("Claring the last bits : " + clearBits(15, 2));
+        // System.out.println("Claring the last bits : " + clearBits(15, 2));
+        System.out.println("Clearing the range of bits: " + clearRangeOfBits(10, 2, 4));
+    }
+
+    /// Clear range of bits 
+    public static int clearRangeOfBits(int n, int i, int j) {
+        int a = (~0) << (j + 1);
+        int b = (1 << i) - 1;
+        return n & (a | b);
     }
 
     /// Clearing the last bits of given number
