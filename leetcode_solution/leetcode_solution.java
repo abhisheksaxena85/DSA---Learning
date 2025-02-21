@@ -7,19 +7,51 @@ public class leetcode_solution {
         // System.out.println(isPalindrome(value));
         // int value = 1534236469;
         // System.out.println(reverseNumber(value));
-        System.out.println(strStr("hello", "ll"));
+        // System.out.println(strStr("hello", "ll"));
+
+        /// Roman to int
+        System.out.println("Roman to int : "+romanToInt("MCMXCIV"));
     }
 
-    public static int strStr(String haystack, String needle) {
+    public static int romanToInt(String s) {
+        int x = 0;
+        for(int i = 0;i<s.length();i++){
+            x += getValue(s.charAt(i));
+        }
+        return x;
+    }
 
-        for (int i = 0; i < haystack.length(); i++) {
-            if (haystack.charAt(i) == needle.charAt(i)) {
-                return 0;
-            }
+
+    public static int getValue(char roVal){
+        switch(roVal){
+            case 'I':
+                return 1;
+            case 'V': 
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C': 
+                return 100;
+            case 'D': 
+                return 500;
+            case 'M':
+                return 1000;
         }
         return 0;
-
     }
+
+    // public static int strStr(String haystack, String needle) {
+
+    //     for (int i = 0; i < haystack.length(); i++) {
+    //         if (haystack.charAt(i) == needle.charAt(i)) {
+    //             return 0;
+    //         }
+    //     }
+    //     return 0;
+
+    // }
 
 
 /// Reverse the input int value only in 32bit signed integer, If it crosses 32bit limit then return 0;

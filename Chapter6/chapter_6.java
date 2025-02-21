@@ -10,8 +10,19 @@ public class chapter_6 {
         // int b = 2147483647; 
         // int c = a&b;   
         // System.err.println("Is value Even: "+isEven(11));
-        // System.out.println("Bit at ith place " + getBit(5, 4));
-        System.out.println("Value after fliping the bit at ith place to 1: " + clearBit(5, 0));
+        // System.out.println("Bit at ith place " + getBit(5, 4)); 101
+        System.out.println("Value after updating the bit at ith place to 0: " + updateBit(5, 1, 1));
+    }
+
+    /// Updating the ith bit 
+    public static int updateBit(int n, int i, int newBit) {
+        // if (newBit == 0) {
+        //     return clearBit(n, i);
+        // } else {
+        //     return setBit(n, i);
+        // }
+        clearBit(n, i);
+        return n | (newBit << i);
     }
 
     /// Gettting the bit of the Ith place 
@@ -25,13 +36,13 @@ public class chapter_6 {
         return x;
     }
 
-    public static int clearBit(int n, int i){
-        int x = n & (~(1<<i));
+    public static int clearBit(int n, int i) {
+        int x = n & (~(1 << i));
         return x;
     }
 
 
-    /// Finding out if value is Odd or even by calculating on the bit level
+/// Finding out if value is Odd or even by calculating on the bit level
     // public static boolean isEven(int x){
     //     return (x&1)!=1;
     // }
