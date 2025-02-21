@@ -14,7 +14,20 @@ public class chapter_6 {
         // System.out.println("Value after updating the bit at ith place to 0: " + updateBit(5, 1, 1));
         // System.out.println("Claring the last bits : " + clearBits(15, 2));
         // System.out.println("Clearing the range of bits: " + clearRangeOfBits(10, 2, 4));
-        System.out.println(isPowerOfTwo(98));
+        System.out.println(countSetBits(3));
+    }
+
+    /// Count number of set bits in a number
+    public static int countSetBits(int n) {
+        int count = 0;
+        while (n > 0) {
+            int lsb = n & 1;
+            if (lsb != 0) {
+                count++;
+            }
+            n = (n >> 1);
+        }
+        return count;
     }
 
     /// Checking if value is 2 to the power or not 
