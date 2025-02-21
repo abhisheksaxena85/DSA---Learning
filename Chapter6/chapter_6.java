@@ -11,7 +11,13 @@ public class chapter_6 {
         // int c = a&b;   
         // System.err.println("Is value Even: "+isEven(11));
         // System.out.println("Bit at ith place " + getBit(5, 4)); 101
-        System.out.println("Value after updating the bit at ith place to 0: " + updateBit(5, 1, 1));
+        // System.out.println("Value after updating the bit at ith place to 0: " + updateBit(5, 1, 1));
+        System.out.println("Claring the last bits : " + clearBits(15, 2));
+    }
+
+    /// Clearing the last bits of given number
+    public static int clearBits(int n, int i) {
+        return n & ((~0) << i);
     }
 
     /// Updating the ith bit 
