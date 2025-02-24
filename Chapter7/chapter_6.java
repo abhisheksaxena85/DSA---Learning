@@ -11,7 +11,42 @@ public class chapter_6 {
         System.out.println(nameObj.getName1());
         nameObj.setName2("Saxena");
         System.out.println(nameObj.getName2());
+        Car d = new Car();
+        Vehical vh = new Vehical();
 
+        Vehical vehicalCar = new Car();
+
+        Car carVehical = new Vehical();
+    }
+}
+
+// class Animal {
+//     String name;
+//     void eats() {
+//     }
+// }
+class Vehical {
+
+}
+
+class Car extends Vehical {
+
+}
+
+class Dog extends Animal {
+
+    Dog() {
+
+        this.legs = "Abs";
+
+        this.walk();
+    }
+
+    String legs;
+    String ears;
+
+    void walk() {
+        System.out.println("Walks");
     }
 }
 
@@ -21,7 +56,7 @@ class Name {
     private String secondName;
 
     void setName1(String name) {
-        this.firstName = name;
+        System.out.println("First Name called");
     }
 
     String getName1() {
@@ -29,7 +64,7 @@ class Name {
     }
 
     void setName2(String name) {
-        this.secondName = name;
+        System.err.println("Second name called");
     }
 
     String getName2() {
