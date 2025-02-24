@@ -3,7 +3,7 @@
     Start Date - February 22nd, 2025 02:30 AM
  */
 
-public class chapter_6 {
+public class chapter_7 {
 
     public static void main(String args[]) {
         Name nameObj = new Name();
@@ -11,12 +11,11 @@ public class chapter_6 {
         System.out.println(nameObj.getName1());
         nameObj.setName2("Saxena");
         System.out.println(nameObj.getName2());
-        Car d = new Car();
-        Vehical vh = new Vehical();
+        // Car d = new Car();
+        // Vehical vh = new Vehical();
 
-        Vehical vehicalCar = new Car();
-
-        Car carVehical = new Vehical();
+        // Vehical vehicalCar = new Car();
+        // Car carVehical = new Vehical();
     }
 }
 
@@ -25,31 +24,21 @@ public class chapter_6 {
 //     void eats() {
 //     }
 // }
-class Vehical {
-
-}
-
-class Car extends Vehical {
-
-}
-
-class Dog extends Animal {
-
-    Dog() {
-
-        this.legs = "Abs";
-
-        this.walk();
-    }
-
-    String legs;
-    String ears;
-
-    void walk() {
-        System.out.println("Walks");
-    }
-}
-
+// class Vehical {
+// }
+// class Car extends Vehical {
+// }
+// class Dog extends Animal {
+//     Dog() {
+//         this.legs = "Abs";
+//         this.walk();
+//     }
+//     String legs;
+//     String ears;
+//     void walk() {
+//         System.out.println("Walks");
+//     }
+// }
 class Name {
 
     private String firstName;
