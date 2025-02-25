@@ -8,18 +8,30 @@ public class chapter_8 {
     public static void main(String args[]) {
         // System.out.println("Hello World!");
         // printValue(10);
-        printValuesToN(10);
+        // printValuesToN(10);
+
+        /// Finding out the facotrial
+        System.out.println(factorial(6));
     }
 
-    /// Printing values from 1 to n
-    public static void printValuesToN(int n) {
-        if (n == 1) {
-            System.out.println(n);
-            return;
+    // Printing the factorial of number n
+    public static int factorial(int n) {
+        if (n == 0) {
+            return 1;
         }
-        printValuesToN(n - 1);
-        System.out.println(n);
+        return n * factorial(n - 1);
     }
+
+
+/// Printing values from 1 to n
+    // public static void printValuesToN(int n) {
+    //     if (n == 1) {
+    //         System.out.println(n);
+    //         return;
+    //     }
+    //     printValuesToN(n - 1);
+    //     System.out.println(n);
+    // }
 
 
 /// Printing values from 1 to 10 using the recursive functions
