@@ -11,17 +11,27 @@ public class chapter_8 {
         // printValuesToN(10);
 
         /// Finding out the facotrial
-        System.out.println(factorial(6));
+        // System.out.println(factorial(6));
+
+        /// Calculating the sum of n numbers
+        System.out.println(sum(10));
+    }
+
+    // Calculating the sum of first n natural numbers 
+    public static int sum(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        return n + sum(n - 1);
     }
 
     // Printing the factorial of number n
-    public static int factorial(int n) {
-        if (n == 0) {
-            return 1;
-        }
-        return n * factorial(n - 1);
-    }
-
+    // public static int factorial(int n) {
+    //     if (n == 0) {
+    //         return 1;
+    //     }
+    //     return n * factorial(n - 1);
+    // }
 
 /// Printing values from 1 to n
     // public static void printValuesToN(int n) {
