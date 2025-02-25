@@ -8,18 +8,17 @@ public class chapter_8 {
     public static void main(String args[]) {
         // System.out.println("Hello World!");
         // printValue(10);
-        printValuesToN(50, 1);
+        printValuesToN(10);
     }
 
     /// Printing values from 1 to n
-    public static void printValuesToN(int n, int count) {
-        if (count == n) {
+    public static void printValuesToN(int n) {
+        if (n == 1) {
             System.out.println(n);
             return;
         }
-        System.out.println(count);
-        count++;
-        printValuesToN(n, count);
+        printValuesToN(n - 1);
+        System.out.println(n);
     }
 
 
