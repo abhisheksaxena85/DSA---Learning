@@ -20,20 +20,38 @@ public class chapter_8 {
         // System.out.println(fibonacci(48));
         
         /// Finding out if array is sorted or not
+        // int value[] = {1, 2, 3, 23, 5};
+        // System.out.println("Is sorted :" + isSorted(value, 0));
+
+        /// Function to find the first Occurence of element in an array
         int value[] = {1, 2, 3, 23, 5};
-        System.out.println("Is sorted :" + isSorted(value, 0));
+        System.out.println(findIndex(value, 0, 3));
     }
 
-    ///Check if array is sorted or not using the recursion
-    public static boolean isSorted(int data[], int i) {
-        if (i == data.length - 1) {
-            return true;
+    /// Find the first occurence of an element in an array
+    public static int findIndex(int data[], int i, int key) {
+        if (data.length - 1 == i) {
+            return -1;
         }
-        if (data[i] > data[i + 1]) {
-            return false;
+
+        if (data[i] == key) {
+            return i;
         }
-        return isSorted(data, i + 1);
+
+        return findIndex(data, i + 1, key);
     }
+
+
+///Check if array is sorted or not using the recursion
+    // public static boolean isSorted(int data[], int i) {
+    //     if (i == data.length - 1) {
+    //         return true;
+    //     }
+    //     if (data[i] > data[i + 1]) {
+    //         return false;
+    //     }
+    //     return isSorted(data, i + 1);
+    // }
 
     // Calculate the fibonacci of n number
     // public static long fibonacci(long n) {
