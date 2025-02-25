@@ -14,17 +14,30 @@ public class chapter_8 {
         // System.out.println(factorial(6));
 
         /// Calculating the sum of n numbers
-        System.out.println(sum(10));
+        // System.out.println(sum(10));
+
+        /// Calculate the fibonacci of n number
+        System.out.println(fibonacci(8));
     }
 
-    // Calculating the sum of first n natural numbers 
-    public static int sum(int n) {
+    // Calculate the fibonacci of n number
+    public static int fibonacci(int n) {
+        if (n == 0) {
+            return 0;
+        }
         if (n == 1) {
             return 1;
         }
-        return n + sum(n - 1);
+        return fibonacci(n - 1) + fibonacci(n - 2);
     }
 
+    // Calculating the sum of first n natural numbers 
+    // public static int sum(int n) {
+    //     if (n == 1) {
+    //         return 1;
+    //     }
+    //     return n + sum(n - 1);
+    // }
     // Printing the factorial of number n
     // public static int factorial(int n) {
     //     if (n == 0) {
