@@ -17,20 +17,34 @@ public class chapter_8 {
         // System.out.println(sum(10));
 
         /// Calculate the fibonacci of n number
-        System.out.println(fibonacci(8));
+        // System.out.println(fibonacci(48));
+        
+        /// Finding out if array is sorted or not
+        int value[] = {1, 2, 3, 23, 5};
+        System.out.println("Is sorted :" + isSorted(value, 0));
+    }
+
+    ///Check if array is sorted or not using the recursion
+    public static boolean isSorted(int data[], int i) {
+        if (i == data.length - 1) {
+            return true;
+        }
+        if (data[i] > data[i + 1]) {
+            return false;
+        }
+        return isSorted(data, i + 1);
     }
 
     // Calculate the fibonacci of n number
-    public static int fibonacci(int n) {
-        if (n == 0) {
-            return 0;
-        }
-        if (n == 1) {
-            return 1;
-        }
-        return fibonacci(n - 1) + fibonacci(n - 2);
-    }
-
+    // public static long fibonacci(long n) {
+    //     if (n == 0) {
+    //         return 0;
+    //     }
+    //     if (n == 1) {
+    //         return 1;
+    //     }
+    //     return fibonacci(n - 1) + fibonacci(n - 2);
+    // }
     // Calculating the sum of first n natural numbers 
     // public static int sum(int n) {
     //     if (n == 1) {
