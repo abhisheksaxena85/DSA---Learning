@@ -6,18 +6,31 @@
 public class chapter_8 {
 
     public static void main(String args[]) {
-        System.out.println("Hello World!");
-        printValue(10);
+        // System.out.println("Hello World!");
+        // printValue(10);
+        printValuesToN(50, 1);
     }
 
-    /// Printing values from 1 to 10 using the recursive functions
-    public static int printValue(int n) {
-        // Base Case
-        if (n == 1) {
-            System.out.println("1");
-            return 1;
+    /// Printing values from 1 to n
+    public static void printValuesToN(int n, int count) {
+        if (count == n) {
+            System.out.println(n);
+            return;
         }
-        System.out.println(n);
-        return printValue(n - 1);
+        System.out.println(count);
+        count++;
+        printValuesToN(n, count);
     }
+
+
+/// Printing values from 1 to 10 using the recursive functions
+    // public static void printValue(int n) {
+    //     // Base Case
+    //     if (n == 1) {
+    //         System.out.println("1");
+    //         return;
+    //     }
+    //     System.out.println(n);
+    //     printValue(n - 1);
+    // }
 }
