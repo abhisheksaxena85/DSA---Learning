@@ -24,34 +24,46 @@ public class chapter_8 {
         // System.out.println("Is sorted :" + isSorted(value, 0));
 
         /// Function to find the first Occurence of element in an array
-        int value[] = {1, 2, 3, 23, 5, 3, 4, 3, 5, 6, 7, 3};
-        System.out.println(lastIndex(value, 0, 3));
+        // int value[] = {1, 2, 3, 23, 5, 3, 4, 3, 5, 6, 7, 3};
+        // System.out.println(lastIndex(value, 0, 3));
+
+        /// Function to find the power of x^n using the recursion function
+        System.out.println("Value: " + xPowerN(2, 10));
     }
 
-    /// Find the last occurence of element in an array
-    public static int lastIndex(int data[], int i, int key) {
-        // Base Case
-        if (i == data.length) {
-            return -1;
+    /// Find out the x^n using recursion
+    public static int xPowerN(int x, int n) {
+        if (n == 0) {
+            return 1;
         }
-        // Finding logic
-        int foundValue = lastIndex(data, i + 1, key);
-        if (key == data[i] && foundValue == -1) {
-            return i;
-        }
-        return foundValue;
+        return x * xPowerN(x, n - 1);
     }
+
+
+/// Find the last occurence of element in an array
+    // public static int lastIndex(int data[], int i, int key) {
+    //     // Base Case
+    //     if (i == data.length) {
+    //         return -1;
+    //     }
+    //     // Finding logic
+    //     int foundValue = lastIndex(data, i + 1, key);
+    //     if (key == data[i] && foundValue == -1) {
+    //         return i;
+    //     }
+    //     return foundValue;
+    // }
 
     /// Find the first occurence of an element in an array
-    public static int findIndex(int data[], int i, int key) {
-        if (data.length - 1 == i) {
-            return -1;
-        }
-        if (data[i] == key) {
-            return i;
-        }
-        return findIndex(data, i + 1, key);
-    }
+    // public static int findIndex(int data[], int i, int key) {
+    //     if (data.length - 1 == i) {
+    //         return -1;
+    //     }
+    //     if (data[i] == key) {
+    //         return i;
+    //     }
+    //     return findIndex(data, i + 1, key);
+    // }
 
 
 ///Check if array is sorted or not using the recursion
