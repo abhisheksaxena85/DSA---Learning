@@ -31,20 +31,35 @@ public class chapter_8 {
         // System.out.println("Value: " + xPowerN(2, 10));
 
         /// Function to find the power of x^n using the recursion function - Optimized Version
-        System.out.println("Value: " + xPowerNOpt(2, 10));
+        // System.out.println("Value: " + xPowerNOpt(2, 10));
+
+        /// Function to find ways in the tiling problem asked in Amazon
+        System.out.println("The number of ways: " + findWays(4));
     }
 
-    public static int xPowerNOpt(int x, int n) {
-        if (n == 1) { // Base base
-            return x;
+    /// Tiling Problem - `*`[Amazon]
+    /// Find the Number of ways to fit the tiles in the 2*n area, where tile is 2*1
+    /// And tiles can be added either vertically or horizontally
+    public static int findWays(int n) {
+        // Base case
+        if (n == 0 || n == 1) {
+            return 1;
         }
-        if (n % 2 == 0) {
-            return xPowerNOpt(x, n / 2) * xPowerNOpt(x, n / 2);
-        } else {
-            return x * xPowerNOpt(x, (n - 1) / 2) * xPowerNOpt(x, (n - 1) / 2);
-        }
+        // Problem implementation
+        //     Vertical          Horizontal 
+        return findWays(n - 1) + findWays(n - 2);
     }
 
+    // public static int xPowerNOpt(int x, int n) {
+    //     if (n == 1) { // Base base
+    //         return x;
+    //     }
+    //     if (n % 2 == 0) {
+    //         return xPowerNOpt(x, n / 2) * xPowerNOpt(x, n / 2);
+    //     } else {
+    //         return x * xPowerNOpt(x, (n - 1) / 2) * xPowerNOpt(x, (n - 1) / 2);
+    //     }
+    // }
 
 /// Find out the x^n using recursion
     // public static int xPowerN(int x, int n) {
@@ -54,7 +69,7 @@ public class chapter_8 {
     //     return x * xPowerN(x, n - 1);
     // }
 
-
+ 
 /// Find the last occurence of element in an array
     // public static int lastIndex(int data[], int i, int key) {
     //     // Base Case
