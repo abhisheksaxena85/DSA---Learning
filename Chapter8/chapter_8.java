@@ -34,21 +34,45 @@ public class chapter_8 {
         // System.out.println("Value: " + xPowerNOpt(2, 10));
 
         /// Function to find ways in the tiling problem asked in Amazon
-        System.out.println("The number of ways: " + findWays(4));
+        // System.out.println("The number of ways: " + findWays(4));
+
+        /// Function to remove the repeating characters in the string
+        
+        boolean characters[] = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
+        StringBuilder str = new StringBuilder("");
+        System.out.println("New duplicate removed string value: " + deleteDuplicate("apnacollege", 0, characters, str));
     }
 
-    /// Tiling Problem - `*`[Amazon]
+    /// Remove Duplicates - `**`[Microsoft, Google]
+    /// Remove the duplicate characters in a given string 
+    public static StringBuilder deleteDuplicate(String input, int index, boolean characters[], StringBuilder newStr) {
+        // Base Case
+        if (index == input.length()) {
+            return newStr;
+        }
+
+        char charIndex = input.charAt(index);
+        if (characters[charIndex - 'a'] == false) {
+            characters[charIndex - 'a'] = true;
+            return deleteDuplicate(input, index + 1, characters, newStr.append(charIndex));
+        } else {
+            return deleteDuplicate(input, index + 1, characters, newStr);
+        }
+    }
+
+
+/// Tiling Problem - `*`[Amazon]
     /// Find the Number of ways to fit the tiles in the 2*n area, where tile is 2*1
     /// And tiles can be added either vertically or horizontally
-    public static int findWays(int n) {
-        // Base case
-        if (n == 0 || n == 1) {
-            return 1;
-        }
-        // Problem implementation
-        //     Vertical          Horizontal 
-        return findWays(n - 1) + findWays(n - 2);
-    }
+    // public static int findWays(int n) {
+    //     // Base case
+    //     if (n == 0 || n == 1) {
+    //         return 1;
+    //     }
+    //     // Problem implementation
+    //     //     Vertical          Horizontal 
+    //     return findWays(n - 1) + findWays(n - 2);
+    // }
 
     // public static int xPowerNOpt(int x, int n) {
     //     if (n == 1) { // Base base
