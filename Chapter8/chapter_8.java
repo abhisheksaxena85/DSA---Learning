@@ -28,16 +28,31 @@ public class chapter_8 {
         // System.out.println(lastIndex(value, 0, 3));
 
         /// Function to find the power of x^n using the recursion function
-        System.out.println("Value: " + xPowerN(2, 10));
+        // System.out.println("Value: " + xPowerN(2, 10));
+
+        /// Function to find the power of x^n using the recursion function - Optimized Version
+        System.out.println("Value: " + xPowerNOpt(2, 10));
     }
 
-    /// Find out the x^n using recursion
-    public static int xPowerN(int x, int n) {
-        if (n == 0) {
-            return 1;
+    public static int xPowerNOpt(int x, int n) {
+        if (n == 1) { // Base base
+            return x;
         }
-        return x * xPowerN(x, n - 1);
+        if (n % 2 == 0) {
+            return xPowerNOpt(x, n / 2) * xPowerNOpt(x, n / 2);
+        } else {
+            return x * xPowerNOpt(x, (n - 1) / 2) * xPowerNOpt(x, (n - 1) / 2);
+        }
     }
+
+
+/// Find out the x^n using recursion
+    // public static int xPowerN(int x, int n) {
+    //     if (n == 0) {
+    //         return 1;
+    //     }
+    //     return x * xPowerN(x, n - 1);
+    // }
 
 
 /// Find the last occurence of element in an array
