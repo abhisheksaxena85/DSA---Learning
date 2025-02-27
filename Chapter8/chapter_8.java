@@ -38,27 +38,38 @@ public class chapter_8 {
 
         /// Function to remove the repeating characters in the string
         
-        boolean characters[] = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
-        StringBuilder str = new StringBuilder("");
-        System.out.println("New duplicate removed string value: " + deleteDuplicate("apnacollege", 0, characters, str));
+        // System.out.println("New duplicate removed string value: " + deleteDuplicate("apnacollege", 0, new boolean[26], new StringBuilder("")));
+
+        /// Function to findout number of ways to pair up given n friends
+        System.out.println(findWays(5));
     }
 
-    /// Remove Duplicates - `**`[Microsoft, Google]
-    /// Remove the duplicate characters in a given string 
-    public static StringBuilder deleteDuplicate(String input, int index, boolean characters[], StringBuilder newStr) {
-        // Base Case
-        if (index == input.length()) {
-            return newStr;
+    /// Friends Pairing problem - `*` [Goldman Sachs]
+    /// Find the total number of ways in which friends can be paired up or can remain single, 
+    /// Each friend can remain single
+    public static int findWays(int n) {
+        if (n == 2 || n == 1) {
+            return n;
         }
-
-        char charIndex = input.charAt(index);
-        if (characters[charIndex - 'a'] == false) {
-            characters[charIndex - 'a'] = true;
-            return deleteDuplicate(input, index + 1, characters, newStr.append(charIndex));
-        } else {
-            return deleteDuplicate(input, index + 1, characters, newStr);
-        }
+        return findWays(n - 1) + findWays(n - 1) * findWays(n - 2);
     }
+
+
+/// Remove the duplicate characters in a given string 
+    // public static StringBuilder deleteDuplicate(String input, int index, boolean characters[], StringBuilder newStr) {
+    //     // Base Case
+    //     if (index == input.length()) {
+    //         return newStr;
+    //     }
+
+    //     char charIndex = input.charAt(index);
+    //     if (characters[charIndex - 'a'] == false) {
+    //         characters[charIndex - 'a'] = true;
+    //         return deleteDuplicate(input, index + 1, characters, newStr.append(charIndex));
+    //     } else {
+    //         return deleteDuplicate(input, index + 1, characters, newStr);
+    //     }
+    // }
 
 
 /// Tiling Problem - `*`[Amazon]
