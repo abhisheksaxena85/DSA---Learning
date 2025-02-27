@@ -41,18 +41,36 @@ public class chapter_8 {
         // System.out.println("New duplicate removed string value: " + deleteDuplicate("apnacollege", 0, new boolean[26], new StringBuilder("")));
 
         /// Function to findout number of ways to pair up given n friends
-        System.out.println(findWays(5));
+        // System.out.println(findWays(5));
+
+
+        binaryValue(3, 0, "");
     }
 
-    /// Friends Pairing problem - `*` [Goldman Sachs]
+    /// Binary String Problem - `*` [Paytm]
+    /// Print All the binary strings of size N without consecutive ones.
+    public static void binaryValue(int n, int lastIndex, String str) {
+        if (n == 0) {
+            System.out.println(str);
+            return;
+        }
+
+        binaryValue(n - 1, 0, str + "0");
+        if (lastIndex == 0) {
+            binaryValue(n - 1, 1, str + "1");
+        }
+    }
+
+
+/// Friends Pairing problem - `*` [Goldman Sachs]
     /// Find the total number of ways in which friends can be paired up or can remain single, 
     /// Each friend can remain single
-    public static int findWays(int n) {
-        if (n == 2 || n == 1) {
-            return n;
-        }
-        return findWays(n - 1) + findWays(n - 1) * findWays(n - 2);
-    }
+    // public static int findWays(int n) {
+    //     if (n == 2 || n == 1) {
+    //         return n;
+    //     }
+    //     return findWays(n - 1) + findWays(n - 1) * findWays(n - 2);
+    // }
 
 
 /// Remove the duplicate characters in a given string 
