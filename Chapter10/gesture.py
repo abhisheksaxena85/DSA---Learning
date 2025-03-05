@@ -56,6 +56,22 @@ def get_gesture(hand_landmarks):
     elif index_tip.y < index_mcp.y and pinky_tip.y < middle_mcp.y and all(f.y > middle_mcp.y for f in fingers[1:3]):
         return "Rock Sign"
 
+    # Washroom Sign (pinky fingers extended)
+    elif pinky_tip.y < middle_mcp.y and all(f.y > middle_mcp.y for f in fingers[:3]):
+        return "Washroom Sign"
+
+    # Saying "I Love You" in American Sign Language (Index, pinky, and thumb extended) 🤟
+    elif index_tip.y < index_mcp.y and pinky_tip.y < middle_mcp.y and thumb_tip.y < thumb_ip.y and all(f.y > middle_mcp.y for f in fingers[2:]):
+        return "I Love You"    
+
+    # Showing middle finger 🖕
+    elif middle_tip.y < middle_mcp.y and all(f.y > middle_mcp.y for f in [index_tip, ring_tip, pinky_tip]):
+        return "Middle Finger"
+
+    # showing call me sign 🤙 (pinky and thumb extended)
+    elif pinky_tip.y < middle_mcp.y and thumb_tip.y < thumb_ip.y and all(f.y > middle_mcp.y for f in fingers[:3]):    
+        return "Call Me"
+
     # OK Sign 👌 (Thumb and index finger touching)
     elif calculate_distance(thumb_tip, index_tip) < 0.05 and all(tip.y > middle_mcp.y for tip in [middle_tip, ring_tip, pinky_tip]):
         return "OK Sign"
