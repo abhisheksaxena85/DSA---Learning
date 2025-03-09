@@ -7,27 +7,27 @@ public class practice_java {
 
         // isPrimeNumber(13);
         int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        int indexFound = binarySearch(arr, 8, 0, arr.length - 1);
+        int indexFound = binarySearch(arr, 8);
         System.out.println("Index : " + indexFound);
     }
 
     /// Binary Search Algorithm - Practice
-    public static int binarySearch(int arr[], int target, int startIndex, int endIndex) {
-        if (startIndex > endIndex) {
-            return -1;
-        }
-        int mid = (startIndex + endIndex) / 2;
-        // Found on mid
-        if (arr[mid] == target) {
-            return mid;
-        }
+    public static int binarySearch(int arr[], int target) {
+        int startIndex = 0;
+        int endIndex = arr.length - 1;
+        while (startIndex <= endIndex) {
+            int mid = (startIndex + endIndex) / 2; // Mid value
+            if (arr[mid] == target) { // When found on mid
+                return mid;
+            }
 
-        if (arr[mid] > target) {
-            return binarySearch(arr, target, startIndex, mid - 1);
-        } else {
-            return binarySearch(arr, target, mid + 1, endIndex);
+            if (arr[mid] > target) {
+                endIndex = mid - 1;
+            } else {
+                startIndex = mid + 1;
+            }
         }
-
+        return -1;
     }
 
 
