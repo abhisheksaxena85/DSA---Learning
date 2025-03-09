@@ -13,42 +13,79 @@ public class chapter_9 {
         //     System.out.print(" " + arr[i]);
         // }
         /// Quick Sort Algorithm
-        int arr[] = {5, 2, 3, 4, 1, 7};
-        quickSort(arr, 0, arr.length - 1);
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(" " + arr[i]);
-        }
+        // int arr[] = {5, 2, 3, 4, 1, 7};
+        // quickSort(arr, 0, arr.length - 1);
+        // for (int i = 0; i < arr.length; i++) {
+        //     System.out.print(" " + arr[i]);
+        // }
+
+        /// Searching element on sorted & rotated array
+        int arr[] = {6, 7, 8, 9, 0, 1, 3, 4, 5};
+        int target = 9;
+        int value = searchElement(arr, 0, arr.length - 1, target);
+        System.out.println("index of value : " + value);
     }
 
-    /// Quick Sort Algorithm
-    public static void quickSort(int arr[], int startIndex, int endIndex) {
-        if (startIndex >= endIndex) {
-            return;
+    /// Searching element on sorted & rotated array
+    public static int searchElement(int arr[], int startIndex, int endIndex, int target) {
+        /// Base Case
+        if (startIndex > endIndex) {
+            return -1;
         }
 
-        int pvtIn = partition(arr, startIndex, endIndex);
-        quickSort(arr, startIndex, pvtIn - 1); // Left Section
-        quickSort(arr, pvtIn + 1, endIndex); // Right Section
-    }
+        /// Recursion Work
+        int mid = (startIndex + endIndex) / 2;
 
-    public static int partition(int arr[], int startIndex, int endIndex) {
-        int pvtIn = arr[endIndex];
-        int i = startIndex - 1;
+        /// Found on mid
+        if (arr[mid] == target) {
+            return mid;
+        }
 
-        for (int j = startIndex; j < endIndex; j++) {
-            if (arr[j] <= pvtIn) {
-                i++;
-                int temp = arr[j];
-                arr[j] = arr[i];
-                arr[i] = temp;
+        if (arr[startIndex] <= arr[mid]) {
+            if (target >= arr[mid] && target <= arr[startIndex]) {
+                return searchElement(arr, startIndex, mid - 1, target);
+            } else {
+                return searchElement(arr, mid + 1, endIndex, target);
+            }
+        } else {
+            if (target >= arr[mid] && target <= arr[endIndex]) {
+                return searchElement(arr, mid + 1, endIndex, target);
+            } else {
+                return searchElement(arr, startIndex, mid - 1, target);
             }
         }
-        i++;
-        int temp = arr[i];
-        arr[i] = pvtIn;
-        arr[endIndex] = temp;
-        return i;
     }
+
+
+/// Quick Sort Algorithm
+    // public static void quickSort(int arr[], int startIndex, int endIndex) {
+    //     if (startIndex >= endIndex) {
+    //         return;
+    //     }
+
+    //     int pvtIn = partition(arr, startIndex, endIndex);
+    //     quickSort(arr, startIndex, pvtIn - 1); // Left Section
+    //     quickSort(arr, pvtIn + 1, endIndex); // Right Section
+    // }
+
+    // public static int partition(int arr[], int startIndex, int endIndex) {
+    //     int pvtIn = arr[endIndex];
+    //     int i = startIndex - 1;
+
+    //     for (int j = startIndex; j < endIndex; j++) {
+    //         if (arr[j] <= pvtIn) {
+    //             i++;
+    //             int temp = arr[j];
+    //             arr[j] = arr[i];
+    //             arr[i] = temp;
+    //         }
+    //     }
+    //     i++;
+    //     int temp = arr[i];
+    //     arr[i] = pvtIn;
+    //     arr[endIndex] = temp;
+    //     return i;
+    // }
 
 
 /// Merge Sort Algorithm
