@@ -14,11 +14,27 @@ public class leetcode_solution {
     }
 
     public static int romanToInt(String s) {
-        int x = 0;
-        for(int i = 0;i<s.length();i++){
-            x += getValue(s.charAt(i));
+        int v = 0;
+        int c = s.length()-1;
+        int pv = 0;
+
+        while (c >= 0) {
+            // first time execution
+            if (c == s.length() - 1) {
+                v = getValue(s.charAt(c));
+                pv = getValue(s.charAt(c));
+            } else { 
+                if (getValue(s.charAt(c)) >= pv) {
+                    v += getValue(s.charAt(c));
+                    pv = getValue(s.charAt(c));
+                } else {
+                    v -= getValue(s.charAt(c));
+                    pv = getValue(s.charAt(c));
+                }
+            } 
+            c--;
         }
-        return x;
+        return v;
     }
 
 
