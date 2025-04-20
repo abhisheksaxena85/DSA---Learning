@@ -5,6 +5,8 @@
 
 public class chapter_11 {
 
+    static int counter = 0;
+
     public static void main(String args[]) {
         // int arr[] = new int[5];
 
@@ -17,7 +19,7 @@ public class chapter_11 {
         // String str =  "abc";
         // findPermutation(str, "");
         /// N-Queens -- Question
-        char arr[][] = new char[5][5];
+        char arr[][] = new char[4][4];
 
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length; j++) {
@@ -25,12 +27,13 @@ public class chapter_11 {
             }
         }
         nQueens(arr, 0);
+        System.out.println(counter);
     }
 
     /// Placing N-Queens
     public static void nQueens(char[][] arr, int row) {
         if (arr.length == row) {
-            printBoard(arr);
+            counter++;
             return;
         }
 
