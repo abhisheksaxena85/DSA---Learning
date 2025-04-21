@@ -19,68 +19,77 @@ public class chapter_11 {
         // String str =  "abc";
         // findPermutation(str, "");
         /// N-Queens -- Question
-        char arr[][] = new char[4][4];
+        // char arr[][] = new char[4][4];
 
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length; j++) {
-                arr[i][j] = 'x';
-            }
-        }
-        nQueens(arr, 0);
-        System.out.println(counter);
+        // for (int i = 0; i < arr.length; i++) {
+        //     for (int j = 0; j < arr.length; j++) {
+        //         arr[i][j] = 'x';
+        //     }
+        // }
+        // nQueens(arr, 0);
+        // System.out.println(counter);
+        
+
+        /// Find Number of ways to reach (N-1, M-1) from (0,0)
+        int n = 3, m = 3;
+        System.out.println(findWays(0, 0, n, m));
     }
 
-    /// Placing N-Queens
-    public static void nQueens(char[][] arr, int row) {
-        if (arr.length == row) {
-            counter++;
-            return;
+    /// Finding number of ways
+    public static int findWays(int i, int j, int n, int m) {
+        if (i == n - 1 && j == m - 1) {
+            return 1;
+        } else if (i == n || j == m) {
+            return 0;
         }
 
-        for (int i = 0; i < arr.length; i++) {
-            if (isSafe(arr, row, i) == true) {
-                arr[row][i] = 'Q';
-                nQueens(arr, row + 1);
-                arr[row][i] = 'x';
-            }
-        }
+        return findWays(i + 1, j, n, m) + findWays(i, j + 1, n, m);
     }
 
-    public static boolean isSafe(char[][] arr, int row, int col) {
-        /// Upward
-        for (int i = row - 1; i >= 0; i--) {
-            if (arr[i][col] == 'Q') {
-                return false;
-            }
-        }
-
-        /// Left Diagonal
-        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
-            if (arr[i][j] == 'Q') {
-                return false;
-            }
-        }
-
-        /// Right Diagonal
-        for (int i = row - 1, j = col + 1; i >= 0 && j < arr.length; i--, j++) {
-            if (arr[i][j] == 'Q') {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public static void printBoard(char[][] arr) {
-        System.out.println("---- Chess Board ----");
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length; j++) {
-                System.out.print(arr[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
-
+    // /// Placing N-Queens
+    // public static void nQueens(char[][] arr, int row) {
+    //     if (arr.length == row) {
+    //         counter++;
+    //         return;
+    //     }
+    //     for (int i = 0; i < arr.length; i++) {
+    //         if (isSafe(arr, row, i) == true) {
+    //             arr[row][i] = 'Q';
+    //             nQueens(arr, row + 1);
+    //             arr[row][i] = 'x';
+    //         }
+    //     }
+    // }
+    // public static boolean isSafe(char[][] arr, int row, int col) {
+    //     /// Upward
+    //     for (int i = row - 1; i >= 0; i--) {
+    //         if (arr[i][col] == 'Q') {
+    //             return false;
+    //         }
+    //     }
+    //     /// Left Diagonal
+    //     for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+    //         if (arr[i][j] == 'Q') {
+    //             return false;
+    //         }
+    //     }
+    //     /// Right Diagonal
+    //     for (int i = row - 1, j = col + 1; i >= 0 && j < arr.length; i--, j++) {
+    //         if (arr[i][j] == 'Q') {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
+    // public static void printBoard(char[][] arr) {
+    //     System.out.println("---- Chess Board ----");
+    //     for (int i = 0; i < arr.length; i++) {
+    //         for (int j = 0; j < arr.length; j++) {
+    //             System.out.print(arr[i][j] + " ");
+    //         }
+    //         System.out.println();
+    //     }
+    // }
 
 /// N-Queens
     // Place N queens on an N*N chessboard such that no 2 queens can attack each other
