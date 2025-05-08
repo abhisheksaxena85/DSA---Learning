@@ -10,17 +10,31 @@ public class chapter_12 {
         // System.out.println(maxArea(arr));
 
         int arr[] = {1, 2, 3, 4, 5, 6};
-        System.out.println(pairSum(arr, 90));
+        System.out.println(pairSum(arr, 7));
 
     }
 
     /// Pair Sum 1 - Find if any pair in a sorted array has the target sum
     public static boolean pairSum(int arr[], int target) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = i + 1; j < arr.length; j++) {
-                if ((arr[i] + arr[j]) == target) {
-                    return true;
-                }
+        // for (int i = 0; i < arr.length; i++) {
+        //     for (int j = i + 1; j < arr.length; j++) {
+        //         if ((arr[i] + arr[j]) == target) {
+        //             return true;
+        //         }
+        //     }
+        // }
+        // return false;
+        int si = 0;
+        int ei = arr.length - 1;
+        while (si < ei) {
+            if ((arr[si] + arr[ei]) == target) {
+                return true;
+            }
+
+            if ((arr[si] + arr[ei]) < target) {
+                si++;
+            } else {
+                ei--;
             }
         }
         return false;
