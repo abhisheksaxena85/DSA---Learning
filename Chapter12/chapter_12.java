@@ -9,41 +9,50 @@ public class chapter_12 {
         // int arr[] = {1, 8, 6, 2, 5, 4, 8, 3, 7};
         // System.out.println(maxArea(arr));
 
-        int arr[] = {11, 15, 6, 8, 9, 10};
-        System.out.println(pairSum2(arr, 65498));
-
+        // int arr[] = {11, 15, 6, 8, 9, 10};
+        // System.out.println(pairSum2(arr, 65498));
+        String value = "Hello world I am Abhishek Saxena";
+        lengthOfLastWord(value);
     }
 
-    /// Pair Sum 2 - Find if any pair in a rotated and sorted array has the target sum
-    public static boolean pairSum2(int arr[], int target) {
-        int pivot = findPivotPoint(arr);
-        int ei = pivot;
-        int si = pivot + 1;
-        while (si != ei) {
-            int val = arr[si] + arr[ei];
-            if (val == target) {
-                return true;
-            }
-
-            if (val > target) {
-                ei = (arr.length + ei - 1) % arr.length;
-            } else {
-                si = (si + 1) % arr.length;
-            }
-        }
-        return false;
+    /// LeetCode Question - Find the length of last word of string
+    public static int lengthOfLastWord(String s) {
+        String[] ar = s.split(" ");
+        String a = ar[ar.length - 1];
+        return a.length();
     }
+
+
+/// Pair Sum 2 - Find if any pair in a rotated and sorted array has the target sum
+    // public static boolean pairSum2(int arr[], int target) {
+    //     int pivot = findPivotPoint(arr);
+    //     int ei = pivot;
+    //     int si = pivot + 1;
+    //     while (si != ei) {
+    //         int val = arr[si] + arr[ei];
+    //         if (val == target) {
+    //             return true;
+    //         }
+
+    //         if (val > target) {
+    //             ei = (arr.length + ei - 1) % arr.length;
+    //         } else {
+    //             si = (si + 1) % arr.length;
+    //         }
+    //     }
+    //     return false;
+    // }
 
     /// Finding the pivot point of array 
-    public static int findPivotPoint(int arr[]) {
-        for (int i = 0; i < arr.length - 1; i++) {
-            if (arr[i] > arr[i + 1]) {
-                System.out.println(i);
-                return i;
-            }
-        }
-        return -1;
-    }
+    // public static int findPivotPoint(int arr[]) {
+    //     for (int i = 0; i < arr.length - 1; i++) {
+    //         if (arr[i] > arr[i + 1]) {
+    //             System.out.println(i);
+    //             return i;
+    //         }
+    //     }
+    //     return -1;
+    // }
 
 
 /// Pair Sum 1 - Find if any pair in a sorted array has the target sum
