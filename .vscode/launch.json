@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "chapter_13",
+      "request": "launch",
+      "mainClass": "chapter_13",
+      "projectName": "DSA_b556ca2e"
+    },
+    {
+      "type": "java",
       "name": "chapter_12",
       "request": "launch",
       "mainClass": "chapter_12",
