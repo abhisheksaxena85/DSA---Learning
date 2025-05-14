@@ -10,6 +10,7 @@ public class chapter_13 {
         ll.addFirst(1);
         ll.addFirst(2);
         ll.addFirst(3);
+        ll.add(2, 45);
         ll.printLinkedList();
     }
 }
@@ -52,6 +53,21 @@ class LinkedList {
         }
         tail.next = newNode;
         tail = newNode;
+    }
+
+    // Add Function for LinkedList on any Given Index
+    public void add(int index, int data) {
+        Node newNode = new Node(data);
+        int counter = 0;
+        Node temp = head;
+
+        while (counter < index - 1) {
+            counter++;
+            temp = temp.next;
+        }
+
+        newNode.next = temp.next;
+        temp.next = newNode;
     }
 
     // Print Linked List
