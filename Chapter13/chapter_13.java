@@ -12,8 +12,9 @@ public class chapter_13 {
         ll.addFirst(3);
         ll.add(2, 45);
         ll.printLinkedList();
-        ll.remove(2);
-        ll.printLinkedList();
+
+        System.out.println("Searched index Recursively: " + ll.searchRecursively(1));
+        System.out.println("Searched index " + ll.search(1));
     }
 }
 
@@ -93,7 +94,6 @@ class LinkedList {
             System.out.print(temp.data + " -> ");
             temp = temp.next;
         }
-        System.out.println(size);
         System.out.println();
     }
 
@@ -144,14 +144,38 @@ class LinkedList {
         }
 
         Node prev = head;
-        Node next = head.next;
+        Node curr = prev.next;
         for (int i = 0; i < index - 1; i++) {
             prev = prev.next;
-            next = next.next;
+            curr = curr.next;
         }
 
-        prev.next = next.next;
+        prev.next = curr.next;
         size--;
+    }
+
+    public int search(int key) {
+        Node temp = head;
+        for (int i = 0; i < size; i++) {
+            if (temp.data == key) {
+                return i;
+            }
+            temp = temp.next;
+        }
+        return -1;
+    }
+
+    public int searchRecursively(int key) {
+        return seachHelper(key, 0, head);
+    }
+
+    public int seachHelper(int key, int index, Node temp) {
+        if (index == size) {
+            return -1;
+        } else if (temp.data == key) {
+            return index;
+        }
+        return seachHelper(key, index + 1, temp.next);
     }
 
 }
