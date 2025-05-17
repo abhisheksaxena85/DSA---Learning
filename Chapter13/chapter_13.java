@@ -12,9 +12,11 @@ public class chapter_13 {
         ll.addFirst(3);
         ll.add(2, 45);
         ll.printLinkedList();
+        ll.reverse();
+        ll.printLinkedList();
 
-        System.out.println("Searched index Recursively: " + ll.searchRecursively(1));
-        System.out.println("Searched index " + ll.search(1));
+        // System.out.println("Searched index Recursively: " + ll.searchRecursively(1));
+        // System.out.println("Searched index " + ll.search(1));
     }
 }
 
@@ -178,4 +180,17 @@ class LinkedList {
         return seachHelper(key, index + 1, temp.next);
     }
 
+    public void reverse() {
+        Node prev = null;
+        Node curr = head;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
 }
