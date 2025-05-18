@@ -1,5 +1,5 @@
 /*
-    Starting LinkedList
+    Starting Linked-List
     Start Date - May 14, 2025, 1:00 AM
  */
 
@@ -11,12 +11,10 @@ public class chapter_13 {
         ll.addFirst(2);
         ll.addFirst(3);
         ll.add(2, 45);
-        ll.printLinkedList();
-        ll.reverse();
-        ll.printLinkedList();
-
+        ll.tail.next = ll.head;
         // System.out.println("Searched index Recursively: " + ll.searchRecursively(1));
         // System.out.println("Searched index " + ll.search(1));
+        System.out.println(ll.isCycle());
     }
 }
 
@@ -192,5 +190,19 @@ class LinkedList {
             curr = next;
         }
         head = prev;
+    }
+
+    /// Floyd's Cycle Finding Approach
+    public boolean isCycle() {
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
     }
 }
