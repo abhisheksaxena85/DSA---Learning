@@ -15,6 +15,8 @@ public class chapter_13 {
         // System.out.println("Searched index Recursively: " + ll.searchRecursively(1));
         // System.out.println("Searched index " + ll.search(1));
         System.out.println(ll.isCycle());
+        ll.removeCycle();
+        System.out.println(ll.isCycle());
     }
 }
 
@@ -205,4 +207,34 @@ class LinkedList {
         }
         return false;
     }
+
+    public void removeCycle() {
+        Node slow = head;
+        Node fast = head;
+        boolean isCycle = false;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                System.out.println("Cycle Found");
+                isCycle = true;
+                break;
+            }
+        }
+
+        if (isCycle == true) {
+            slow = head;
+            // Corner Case - assign prev = head,
+            // when connecting node is pointing to the head
+            // as next not in the middle of node.
+            Node prev = fast;
+            while (slow != fast) {
+                prev = fast;
+                slow = slow.next;
+                fast = fast.next;
+            }
+            prev.next = null;
+        }
+    }
+
 }
