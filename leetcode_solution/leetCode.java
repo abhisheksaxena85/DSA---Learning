@@ -1,4 +1,5 @@
 
+
 public class leetCode {
 
     public static void main(String args[]) {
@@ -13,16 +14,37 @@ public class leetCode {
         //     System.out.println();
         // }
 
-        ListNode ll = new ListNode(1);
-        ll.addLast(1);
-        ll.addLast(2);
-        ll.addLast(3);
-        // ll.addLast(4);
-        // ll.addLast(5);
-        ll.printLinkedList();
-        removeNthFromEnd(ll.head, 1);
-        ll.printLinkedList();
+        // ListNode ll = new ListNode(1);
+        // ll.addLast(1);
+        // ll.addLast(2);
+        // ll.addLast(3);
+        // // ll.addLast(4);
+        // // ll.addLast(5);
+        // ll.printLinkedList();
+        // removeNthFromEnd(ll.head, 1);
+        // ll.printLinkedList();
+        int arr[] = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        System.out.println(trap(arr));
+    }
 
+    public static int trap(int[] height) {
+        int area = 0;
+        int left = 0;
+        int right = height.length - 1;
+        int leftMax = height[left];
+        int rightMax = height[right];
+        while (left < right) {
+            if (leftMax < rightMax) {
+                left++;
+                leftMax = Math.max(leftMax, height[left]);
+                area += leftMax - height[left];
+            } else {
+                right--;
+                rightMax = Math.max(rightMax, height[right]);
+                area += rightMax - height[right];
+            }
+        }
+        return area;
     }
 
     public static ListNode removeNthFromEnd(ListNode head, int n) {
