@@ -1,5 +1,4 @@
 
-
 public class leetCode {
 
     public static void main(String args[]) {
@@ -23,8 +22,21 @@ public class leetCode {
         // ll.printLinkedList();
         // removeNthFromEnd(ll.head, 1);
         // ll.printLinkedList();
-        int arr[] = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
-        System.out.println(trap(arr));
+        // int arr[] = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        // System.out.println(trap(arr));
+    }
+
+    public static boolean hasCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static int trap(int[] height) {
