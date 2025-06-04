@@ -15,6 +15,24 @@ public class leetcode_solution {
         System.out.println(scoreOfString(str));
     }
 
+    public static int searchInsert(int[] nums, int target) {
+        int si = 0;
+        int ei = nums.length - 1;
+        int mid = 0;
+        while (si <= ei) {
+            mid = (si + ei) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            }
+            if (nums[mid] > target) {
+                ei = mid - 1;
+            } else {
+                si = mid + 1;
+            }
+        }
+        return si;
+    }
+
     public static int scoreOfString(String s) {
         int val = 0;
         for (int i = 1; i < s.length(); i++) {
