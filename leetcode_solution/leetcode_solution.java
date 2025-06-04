@@ -1,4 +1,7 @@
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class leetcode_solution {
 
     public static void main(String[] args) {
@@ -11,8 +14,22 @@ public class leetcode_solution {
 
         // /// Roman to int
         // System.out.println("Roman to int : " + romanToInt("MCMXCIV"));
-        String str = "hello";
-        System.out.println(scoreOfString(str));
+        // String str = "hello";
+        // System.out.println(scoreOfString(str));
+    }
+
+    public static List<Integer> findWordsContaining(String[] words, char x) {
+        List<Integer> ans = new ArrayList<Integer>();
+        for (int i = 0; i < words.length; i++) {
+            char ch[] = words[i].toCharArray();
+            for (int j = 0; j < ch.length; j++) {
+                if (ch[j] == x) {
+                    ans.add(i);
+                    break;
+                }
+            }
+        }
+        return ans;
     }
 
     public int removeElement(int[] nums, int val) {
