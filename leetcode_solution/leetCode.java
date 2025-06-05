@@ -26,6 +26,29 @@ public class leetCode {
         // System.out.println(trap(arr));
     }
 
+    public static ListNode removeElements(ListNode head, int val) {
+        ListNode temp = head;
+        ListNode prev = new ListNode(0);
+        prev.next = head;
+        while (temp != null) {
+            if (head.val == val) {
+                head = head.next;
+            }
+            if (temp.val == val) {
+                prev.next = temp.next;
+                temp = temp.next;
+            } else {
+                prev = temp;
+                temp = temp.next;
+            }
+        }
+        if (prev.val == 0) {
+            return null;
+        } else {
+            return head;
+        }
+    }
+
     public static boolean hasCycle(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
