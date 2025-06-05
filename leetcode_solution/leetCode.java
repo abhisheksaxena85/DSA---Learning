@@ -26,6 +26,24 @@ public class leetCode {
         // System.out.println(trap(arr));
     }
 
+    public ListNode deleteDuplicates(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode j = head;
+        ListNode i = head.next;
+        while (i != null) {
+            if (i.val == j.val) {
+                j.next = i.next;
+                i = i.next;
+            } else {
+                i = i.next;
+                j = j.next;
+            }
+        }
+        return head;
+    }
+
     public static ListNode removeElements(ListNode head, int val) {
         ListNode temp = head;
         ListNode prev = new ListNode(0);
