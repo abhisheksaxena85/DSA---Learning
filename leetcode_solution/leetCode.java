@@ -68,6 +68,47 @@ public class leetCode {
         return matrix;
     }
 
+    public ListNode deleteDuplicates(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode j = head;
+        ListNode i = head.next;
+        while (i != null) {
+            if (i.val == j.val) {
+                j.next = i.next;
+                i = i.next;
+            } else {
+                i = i.next;
+                j = j.next;
+            }
+        }
+        return head;
+    }
+
+    public static ListNode removeElements(ListNode head, int val) {
+        ListNode temp = head;
+        ListNode prev = new ListNode(0);
+        prev.next = head;
+        while (temp != null) {
+            if (head.val == val) {
+                head = head.next;
+            }
+            if (temp.val == val) {
+                prev.next = temp.next;
+                temp = temp.next;
+            } else {
+                prev = temp;
+                temp = temp.next;
+            }
+        }
+        if (prev.val == 0) {
+            return null;
+        } else {
+            return head;
+        }
+    }
+
     public static boolean hasCycle(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
