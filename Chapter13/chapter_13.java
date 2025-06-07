@@ -8,20 +8,27 @@ public class chapter_13 {
     public static void main(String args[]) {
         LinkedList ll = new LinkedList();
         ll.addFirst(1);
-        ll.addFirst(2);
-        ll.addFirst(3);
-        ll.addFirst(4);
-        ll.addFirst(5);
-        ll.addFirst(6);
+        ll.addLast(2);
+        ll.addLast(3);
+        ll.addLast(4);
+        ll.addLast(5);
+        ll.addLast(6);
+        ll.addLast(7);
+        ll.printLinkedList();
+        ll.zigzag(ll.head);
+        ll.printLinkedList();
 
         // System.out.println("Searched index Recursively: " + ll.searchRecursively(1));
         // System.out.println("Searched index " + ll.search(1));
         // System.out.println(ll.isCycle());
         // ll.removeCycle();
         // System.out.println(ll.isCycle());
-        /// Applying Merge Sort to unsorted linkedlist 
-        ll.printLinkedList();
-        ll.mergeSort(ll.head);
+    
+
+
+/// Applying Merge Sort to unsorted linkedlist 
+    // ll.printLinkedList();
+    // ll.mergeSort(ll.head);
     }
 }
 
@@ -283,5 +290,35 @@ class LinkedList {
             temp = temp.next;
         }
         return mergedLL.next;
+    }
+
+    public void zigzag(Node head) {
+        Node mid = getMid(head);
+        /// Reverse the right linkedlist
+        Node prev = null;
+        Node curr = mid.next;
+        mid.next = null;
+        Node next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node rh = prev;
+        Node lh = head;
+        Node nl, rl;
+        /// Merge in zigzag order
+        while (lh != null && rh != null) {
+            nl = lh.next;
+            rl = rh.next;
+            lh.next = rh;
+            rh.next = nl;
+
+            /// Update the value
+            lh = nl;
+            rh = rl;
+        }
+
     }
 }
