@@ -2,6 +2,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "chapter_14",
+      "request": "launch",
+      "mainClass": "chapter_14",
+      "projectName": "DSA---Learning_8d82759d"
+    },
+    {
+      "type": "java",
+      "name": "chapter_14",
+      "request": "launch",
+      "mainClass": "Chapter14.chapter_14",
+      "projectName": "DSA---Learning_8d82759d"
+    },
+    {
+      "type": "java",
       "name": "chapter_13",
       "request": "launch",
       "mainClass": "chapter_13",
