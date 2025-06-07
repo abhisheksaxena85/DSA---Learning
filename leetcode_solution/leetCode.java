@@ -26,6 +26,48 @@ public class leetCode {
         // System.out.println(trap(arr));
     }
 
+    public static int[][] generateMatrix(int n) {
+        int matrix[][] = new int[n][n];
+        int counter = 1;
+        int startRow = 0;
+        int startCol = 0;
+        int endRow = matrix[0].length - 1;
+        int endCol = matrix[0].length - 1;
+
+        while (startRow <= endRow && startCol <= endCol) {
+            // Start Row 
+            for (int i = startCol; i <= endCol; i++) {
+                matrix[startRow][i] = counter;
+                counter++;
+            }
+
+            // End Column
+            for (int i = startRow + 1; i <= endRow; i++) {
+                matrix[i][endCol] = counter;
+                counter++;
+            }
+
+            // End Row
+            for (int i = endCol - 1; i >= startCol; i--) {
+                matrix[endRow][i] = counter;
+                counter++;
+            }
+
+            // Start Col
+            for (int i = endRow - 1; i >= startRow + 1; i--) {
+                matrix[i][startCol] = counter;
+                counter++;
+            }
+
+            // Increase values
+            startRow++;
+            startCol++;
+            endRow--;
+            endCol--;
+        }
+        return matrix;
+    }
+
     public static boolean hasCycle(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
