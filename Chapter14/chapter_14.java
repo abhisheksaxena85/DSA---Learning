@@ -8,21 +8,36 @@ import java.util.Stack;
 public class chapter_14 {
 
     public static void main(String[] args) {
-        Stack<Integer> s = new Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3);
-        s.push(4);
-        s.push(5);
+        // Stack<Integer> s = new Stack<>();
+        // s.push(1);
+        // s.push(2);
+        // s.push(3);
+        // s.push(4);
+        // s.push(5);
 
-        pushToBottom(s, 15);
+        // pushToBottom(s, 15);
+        // System.out.println("The stack is empty: " + s.isEmpty());
+        // while (!s.isEmpty()) {
+        //     System.out.println(s.peek());
+        //     s.pop();
+        // }
+        // System.out.println("The stack is empty: " + s.isEmpty());
+        String a = "Hello World";
+        System.out.println(reverseString(a));
+    }
 
-        System.out.println("The stack is empty: " + s.isEmpty());
-        while (!s.isEmpty()) {
-            System.out.println(s.peek());
-            s.pop();
+    public static String reverseString(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            stack.push(str.charAt(i));
         }
-        System.out.println("The stack is empty: " + s.isEmpty());
+
+        String result = "";
+        while (!stack.isEmpty()) {
+            result += stack.peek();
+            stack.pop();
+        }
+        return result;
     }
 
     public static void pushToBottom(Stack<Integer> stack, int data) {
