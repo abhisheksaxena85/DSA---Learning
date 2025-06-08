@@ -8,26 +8,51 @@ import java.util.Stack;
 public class chapter_14 {
 
     public static void main(String[] args) {
-        Stack<Integer> s = new Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3);
-        s.push(4);
-        s.push(5);
+        // Stack<Integer> s = new Stack<>();
+        // s.push(1);
+        // s.push(2);
+        // s.push(3);
+        // s.push(4);
+        // s.push(5);
 
-        reverseStack(s);
-        while (!s.isEmpty()) {
-            System.out.println(s.peek());
-            s.pop();
-        }
-        System.out.println("The stack is empty: " + s.isEmpty());
-        while (!s.isEmpty()) {
-            System.out.println(s.peek());
-            s.pop();
-        }
+        // reverseStack(s);
+        // while (!s.isEmpty()) {
+        //     System.out.println(s.peek());
+        //     s.pop();
+        // }
+        // System.out.println("The stack is empty: " + s.isEmpty());
+        // while (!s.isEmpty()) {
+        //     System.out.println(s.peek());
+        //     s.pop();
+        // }
         // System.out.println("The stack is empty: " + s.isEmpty());
         // String a = "Hello World";
         // System.out.println(reverseString(a));
+        int stocks[] = {100, 80, 60, 70, 60, 85, 100};
+        int span[] = new int[stocks.length];
+        stockSpan(stocks, span);
+
+        for (int i = 0; i < span.length; i++) {
+            System.out.println(span[i] + " ");
+        }
+    }
+
+    public static void stockSpan(int stocks[], int span[]) {
+        Stack<Integer> stack = new Stack<>();
+        span[0] = 1;
+        stack.push(0);
+
+        for (int i = 1; i < stocks.length; i++) {
+            while (!stack.isEmpty() && stocks[i] > stocks[stack.peek()]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                span[i] = i + 1;
+            } else {
+                span[i] = i - stack.peek();
+            }
+            stack.push(i);
+        }
     }
 
     public static void reverseStack(Stack<Integer> stack) {
