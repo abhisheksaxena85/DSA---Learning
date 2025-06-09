@@ -28,13 +28,36 @@ public class chapter_14 {
         // System.out.println("The stack is empty: " + s.isEmpty());
         // String a = "Hello World";
         // System.out.println(reverseString(a));
-        int stocks[] = {100, 80, 60, 70, 60, 85, 100};
-        int span[] = new int[stocks.length];
-        stockSpan(stocks, span);
-
-        for (int i = 0; i < span.length; i++) {
-            System.out.println(span[i] + " ");
+        // int stocks[] = {100, 80, 60, 70, 60, 85, 100};
+        // int span[] = new int[stocks.length];
+        // stockSpan(stocks, span);
+        // for (int i = 0; i < span.length; i++) {
+        //     System.out.println(span[i] + " ");
+        // }
+        int arr[] = {6, 8, 0, 1, 3};
+        int result[] = nextGreater(arr);
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + " ");
         }
+    }
+
+    /// Next Greater number Problem
+    public static int[] nextGreater(int arr[]) {
+        int result[] = new int[arr.length];
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && arr[i] >= arr[stack.peek()]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                result[i] = -1;
+            } else {
+                result[i] = arr[stack.peek()];
+            }
+            stack.push(i);
+        }
+        return result;
     }
 
     public static void stockSpan(int stocks[], int span[]) {
