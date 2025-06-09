@@ -34,11 +34,36 @@ public class chapter_14 {
         // for (int i = 0; i < span.length; i++) {
         //     System.out.println(span[i] + " ");
         // }
-        int arr[] = {6, 8, 0, 1, 3};
-        int result[] = nextGreater(arr);
-        for (int i = 0; i < result.length; i++) {
-            System.out.print(result[i] + " ");
+        // int arr[] = {6, 8, 0, 1, 3};
+        // int result[] = nextGreater(arr);
+        // for (int i = 0; i < result.length; i++) {
+        //     System.out.print(result[i] + " ");
+        // }
+        String str = "((()){[]})]]][]][]";
+        System.out.println(validParanthesis(str));
+    }
+
+    /// Valid Paranthesis Problem
+    public static boolean validParanthesis(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '(' || str.charAt(i) == '{' || str.charAt(i) == '[') {
+                stack.push(str.charAt(i));
+            } else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                if ((str.charAt(i) == ')' && stack.peek() == '(')
+                        || str.charAt(i) == ']' && stack.peek() == '['
+                        || str.charAt(i) == '}' && stack.peek() == '{') {
+                    stack.pop();
+                } else {
+                    return false;
+                }
+            }
         }
+
+        return stack.isEmpty();
     }
 
     /// Next Greater number Problem
