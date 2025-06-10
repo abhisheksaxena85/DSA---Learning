@@ -39,8 +39,38 @@ public class chapter_14 {
         // for (int i = 0; i < result.length; i++) {
         //     System.out.print(result[i] + " ");
         // }
-        String str = "((()){[]})]]][]][]";
-        System.out.println(validParanthesis(str));
+        // String str = "((()){[]})]]][]][]";
+        // System.out.println(validParanthesis(str));
+        String str = "((a+b)+(a+b))";
+
+        System.out.println(isDuplicateParanthesis(str));
+    }
+
+    /// Duplicate Paranthesis - Google Microsoft
+    public static boolean isDuplicateParanthesis(String str) {
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch == 'a' || ch == 'b'
+                    || ch == 'c' || ch == 'd'
+                    || ch == '+' || ch == '-'
+                    || ch == '*' || ch == '(') {
+                stack.push(ch);
+            } else {
+                int count = 0;
+                while (stack.peek() != '(') {
+                    stack.pop();
+                    count++;
+                }
+                if (count < 1) {
+                    return true;
+                } else {
+                    stack.pop();
+                }
+            }
+        }
+        return false;
     }
 
     /// Valid Paranthesis Problem
