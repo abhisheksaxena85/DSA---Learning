@@ -41,9 +41,62 @@ public class chapter_14 {
         // }
         // String str = "((()){[]})]]][]][]";
         // System.out.println(validParanthesis(str));
-        String str = "((a+b)+(a+b))";
+        // String str = "((a+b)+(a+b))";
+        // System.out.println(isDuplicateParanthesis(str));
+        int arr[] = {2, 1, 5, 6, 2, 3};
+        System.out.println(maxArea(arr));
 
-        System.out.println(isDuplicateParanthesis(str));
+    }
+
+    /// Max Area in Histogram - Microsoft, Paytm, Facebook
+    public static int maxArea(int[] arr) {
+        int maxArea = 0;
+        int rightSmaller[] = smallerRight(arr);
+        int leftSmaller[] = smallerLeft(arr);
+
+        for (int i = 0; i < arr.length; i++) {
+            int width = rightSmaller[i] - leftSmaller[i] - 1;
+            int area = width * arr[i];
+            if (area > maxArea) {
+                maxArea = area;
+            }
+        }
+        return maxArea;
+    }
+
+    public static int[] smallerLeft(int[] arr) {
+        int result[] = new int[arr.length];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < arr.length; i++) {
+            while (!stack.isEmpty() && arr[i] <= arr[stack.peek()]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                result[i] = -1;
+            } else {
+                result[i] = stack.peek();
+            }
+            stack.push(i);
+        }
+        return result;
+    }
+
+    public static int[] smallerRight(int[] arr) {
+        int result[] = new int[arr.length];
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && arr[i] <= arr[stack.peek()]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                result[i] = arr.length;
+            } else {
+                result[i] = stack.peek();
+            }
+            stack.push(i);
+        }
+        return result;
     }
 
     /// Duplicate Paranthesis - Google Microsoft
