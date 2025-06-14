@@ -17,10 +17,10 @@ public class chapter_15 {
 
         System.out.println("Peek Value " + queue.peek());
 
-        while (!queue.isEmpty()) {
-            System.out.println(queue.remove());
-        }
-
+        // while (!queue.isEmpty()) {
+        //     System.out.println(queue.remove());
+        // }
+        queue.remove();
         System.out.println("Peek Value " + queue.peek());
         // System.out.println("Size of queue " + queue.size());
     }
@@ -44,9 +44,37 @@ public class chapter_15 {
 
         public void add(int data) {
             if (!q1.isEmpty()) {
+                while (!q1.isEmpty()) {
+                    q2.add(q1.remove());
+                    if (q1.isEmpty()) {
+                        break;
+                    }
+                }
+
                 q1.add(data);
+
+                while (!q2.isEmpty()) {
+                    q1.add(q2.remove());
+                    if (q2.isEmpty()) {
+                        break;
+                    }
+                }
             } else {
+                while (!q2.isEmpty()) {
+                    q1.add(q2.remove());
+                    if (q2.isEmpty()) {
+                        break;
+                    }
+                }
+
                 q2.add(data);
+
+                while (!q1.isEmpty()) {
+                    q2.add(q1.remove());
+                    if (q1.isEmpty()) {
+                        break;
+                    }
+                }
             }
         }
 
@@ -54,46 +82,23 @@ public class chapter_15 {
             if (isEmpty()) {
                 return -1;
             }
-            int top = -1;
 
             if (!q1.isEmpty()) {
-                while (!q1.isEmpty()) {
-                    top = q1.remove();
-                    if (q1.isEmpty()) {
-                        break;
-                    }
-                    q2.add(top);
-                }
+                return q1.remove();
             } else {
-                while (!q2.isEmpty()) {
-                    top = q2.remove();
-                    if (q2.isEmpty()) {
-                        break;
-                    }
-                    q1.add(top);
-                }
+                return q2.remove();
             }
-            return top;
         }
 
         public int peek() {
             if (isEmpty()) {
                 return -1;
             }
-            int top = -1;
             if (!q1.isEmpty()) {
-                while (!q1.isEmpty()) {
-                    top = q1.remove();
-                    q2.add(top);
-                }
+                return q1.peek();
             } else {
-                while (!q2.isEmpty()) {
-                    top = q2.remove();
-                    q1.add(top);
-                }
+                return q2.peek();
             }
-
-            return top;
         }
     }
     // static class Queue {
