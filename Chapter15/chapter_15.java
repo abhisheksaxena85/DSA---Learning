@@ -5,9 +5,9 @@
 
 public class chapter_15 {
 
+    @SuppressWarnings("static-access")
     public static void main(String[] args) {
         Queue queue = new Queue(4);
-        queue.add(5);
         queue.add(1);
         queue.add(2);
         queue.add(3);
@@ -29,26 +29,36 @@ public class chapter_15 {
         static int size; // size of queue
         int arr[];
         static int rear;
+        static int front;
 
         public Queue(int n) {
             arr = new int[n];
             size = n;
             rear = -1;
+            front = -1;
         }
 
         // Check if queue is empty
         public boolean isEmpty() {
-            return rear == -1;
+            return rear == -1 && front == -1;
         }
 
         // Add new element in rear of queue
         public void add(int data) {
-            if (rear == size - 1) {
+            if (isFull()) {
                 System.out.println("Queue is filled!");
                 return;
             }
-            rear++;
+            if (front == -1) {
+                front = 0;
+            }
+            rear = (rear + 1) % size;
             arr[rear] = data;
+        }
+
+        // Check if queue is full 
+        public boolean isFull() {
+            return (rear + 1) % size == front;
         }
 
         // Remove the front element from queue
@@ -57,11 +67,12 @@ public class chapter_15 {
                 System.out.println("Queue is empty");
                 return -1;
             }
-            int frontVal = arr[0];
-            for (int i = 0; i < rear; i++) {
-                arr[i] = arr[i + 1];
+            int frontVal = arr[front];
+            if (front == rear) {
+                front = rear = -1;
+            } else {
+                front = (front + 1) % size;
             }
-            rear--;
             return frontVal;
         }
 
@@ -71,7 +82,7 @@ public class chapter_15 {
                 System.out.println("Queue is empty");
                 return -1;
             }
-            return arr[0];
+            return arr[front];
         }
     }
 }
