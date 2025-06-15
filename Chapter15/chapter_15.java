@@ -9,22 +9,45 @@ import java.util.Queue;
 public class chapter_15 {
 
     public static void main(String[] args) {
-        Stack queue = new Stack();
-        queue.add(1);
-        queue.add(2);
-        queue.add(3);
-        queue.add(4);
+        // Stack queue = new Stack();
+        // queue.add(1);
+        // queue.add(2);
+        // queue.add(3);
+        // queue.add(4);
 
-        System.out.println("Peek Value " + queue.peek());
-
+        // System.out.println("Peek Value " + queue.peek());
         // while (!queue.isEmpty()) {
         //     System.out.println(queue.remove());
         // }
-        queue.remove();
-        System.out.println("Peek Value " + queue.peek());
+        // queue.remove();
+        // System.out.println("Peek Value " + queue.peek());
         // System.out.println("Size of queue " + queue.size());
+        String str = "aabccxb";
+        firstNonRepeatingChar(str);
     }
 
+    public static void firstNonRepeatingChar(String str) {
+        Queue<Character> queue = new LinkedList<>();
+        int arr[] = new int[26];
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            int charIndex = ch - 'a';
+            arr[charIndex] += 1;
+            queue.add(ch);
+            while (!queue.isEmpty()) {
+                if (arr[queue.peek() - 'a'] > 1) {
+                    queue.remove();
+                } else {
+                    System.out.print(queue.peek() + " ");
+                    break;
+                }
+            }
+
+            if (queue.isEmpty()) {
+                System.out.print(-1 + " ");
+            }
+        }
+    }
     // static class Node {
     //     int data;
     //     Node next;
@@ -33,76 +56,65 @@ public class chapter_15 {
     //         this.next = null;
     //     }
     // }
-    static class Stack {
-
-        static Queue<Integer> q1 = new LinkedList<>();
-        static Queue<Integer> q2 = new LinkedList<>();
-
-        public boolean isEmpty() {
-            return q1.isEmpty() && q2.isEmpty();
-        }
-
-        public void add(int data) {
-            if (!q1.isEmpty()) {
-                while (!q1.isEmpty()) {
-                    q2.add(q1.remove());
-                    if (q1.isEmpty()) {
-                        break;
-                    }
-                }
-
-                q1.add(data);
-
-                while (!q2.isEmpty()) {
-                    q1.add(q2.remove());
-                    if (q2.isEmpty()) {
-                        break;
-                    }
-                }
-            } else {
-                while (!q2.isEmpty()) {
-                    q1.add(q2.remove());
-                    if (q2.isEmpty()) {
-                        break;
-                    }
-                }
-
-                q2.add(data);
-
-                while (!q1.isEmpty()) {
-                    q2.add(q1.remove());
-                    if (q1.isEmpty()) {
-                        break;
-                    }
-                }
-            }
-        }
-
-        public int remove() {
-            if (isEmpty()) {
-                return -1;
-            }
-
-            if (!q1.isEmpty()) {
-                return q1.remove();
-            } else {
-                return q2.remove();
-            }
-        }
-
-        public int peek() {
-            if (isEmpty()) {
-                return -1;
-            }
-            if (!q1.isEmpty()) {
-                return q1.peek();
-            } else {
-                return q2.peek();
-            }
-        }
-    }
+    // static class Stack {
+    //     static Queue<Integer> q1 = new LinkedList<>();
+    //     static Queue<Integer> q2 = new LinkedList<>();
+    //     public boolean isEmpty() {
+    //         return q1.isEmpty() && q2.isEmpty();
+    //     }
+    //     public void add(int data) {
+    //         if (!q1.isEmpty()) {
+    //             while (!q1.isEmpty()) {
+    //                 q2.add(q1.remove());
+    //                 if (q1.isEmpty()) {
+    //                     break;
+    //                 }
+    //             }
+    //             q1.add(data);
+    //             while (!q2.isEmpty()) {
+    //                 q1.add(q2.remove());
+    //                 if (q2.isEmpty()) {
+    //                     break;
+    //                 }
+    //             }
+    //         } else {
+    //             while (!q2.isEmpty()) {
+    //                 q1.add(q2.remove());
+    //                 if (q2.isEmpty()) {
+    //                     break;
+    //                 }
+    //             }
+    //             q2.add(data);
+    //             while (!q1.isEmpty()) {
+    //                 q2.add(q1.remove());
+    //                 if (q1.isEmpty()) {
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     public int remove() {
+    //         if (isEmpty()) {
+    //             return -1;
+    //         }
+    //         if (!q1.isEmpty()) {
+    //             return q1.remove();
+    //         } else {
+    //             return q2.remove();
+    //         }
+    //     }
+    //     public int peek() {
+    //         if (isEmpty()) {
+    //             return -1;
+    //         }
+    //         if (!q1.isEmpty()) {
+    //             return q1.peek();
+    //         } else {
+    //             return q2.peek();
+    //         }
+    //     }
+    // }
     // static class Queue {
-
     //     Stack<Integer> s1 = new Stack<>();
     //     Stack<Integer> s2 = new Stack<>();
     //     public boolean isEmpty() {
