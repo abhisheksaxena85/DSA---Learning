@@ -22,8 +22,43 @@ public class chapter_15 {
         // queue.remove();
         // System.out.println("Peek Value " + queue.peek());
         // System.out.println("Size of queue " + queue.size());
-        String str = "aabccxb";
-        firstNonRepeatingChar(str);
+        // String str = "aabccxb";
+        // firstNonRepeatingChar(str);
+        Queue<Integer> q = new LinkedList<>();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        q.add(4);
+        q.add(5);
+        // q.add(6);
+        // q.add(7);
+        // q.add(8);
+        // q.add(9);
+        // q.add(10);
+
+        interLeave(q);
+    }
+
+    /// Interleave tow halves of a queue
+    public static void interLeave(Queue<Integer> q) {
+        int halfSize = q.size() / 2;
+        Queue<Integer> q1 = new LinkedList<>();
+        Queue<Integer> result = new LinkedList<>();
+
+        while (halfSize > 0) {
+            q1.add(q.remove());
+            halfSize--;
+        }
+
+        while (!q1.isEmpty() && !q.isEmpty()) {
+            result.add(q1.remove());
+            result.add(q.remove());
+        }
+
+        while (!result.isEmpty()) {
+            System.out.println(result.remove());
+        }
+
     }
 
     public static void firstNonRepeatingChar(String str) {
