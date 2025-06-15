@@ -1,6 +1,7 @@
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /*
     Starting Queue
@@ -30,13 +31,29 @@ public class chapter_15 {
         q.add(3);
         q.add(4);
         q.add(5);
-        // q.add(6);
-        // q.add(7);
-        // q.add(8);
-        // q.add(9);
-        // q.add(10);
+        q.add(6);
+        q.add(7);
+        q.add(8);
+        q.add(9);
+        q.add(10);
 
-        interLeave(q);
+        reverseQueue(q);
+    }
+
+    /// Reversing the queue
+    public static void reverseQueue(Queue<Integer> q) {
+        Stack<Integer> stack = new Stack<>();
+        while (!q.isEmpty()) {
+            stack.add(q.remove());
+        }
+
+        while (!stack.isEmpty()) {
+            q.add(stack.pop());
+        }
+
+        while (!q.isEmpty()) {
+            System.out.println(q.remove());
+        }
     }
 
     /// Interleave tow halves of a queue
