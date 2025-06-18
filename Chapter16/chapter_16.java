@@ -1,23 +1,42 @@
+
+import java.util.Arrays;
+import java.util.Comparator;
+
 /*
     Starting Greedy Algorithm
     Start Date - June 16, 2025, 01:55 AM
  */
-
 public class chapter_16 {
 
     public static void main(String[] ar) {
-        int startTime[] = {1, 3, 0, 5, 8, 5};
-        int endTime[] = {2, 4, 6, 7, 9, 9};
+        int startTime[] = {0, 1, 3, 5, 5, 8};
+        int endTime[] = {6, 2, 4, 7, 9, 9};
         System.out.println(activities(startTime, endTime));
     }
 
     public static int activities(int[] startTime, int[] endTime) {
+        int arr[][] = new int[endTime.length][3];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i][0] = i;
+            arr[i][1] = startTime[i];
+            arr[i][2] = endTime[i];
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("Index - " + arr[i][0] + " Start - " + arr[i][1] + " End - " + arr[i][2]);
+        }
+        Arrays.sort(arr, Comparator.comparing(val -> val[2]));
+        System.out.println();
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("Index - " + arr[i][0] + " Start - " + arr[i][1] + " End - " + arr[i][2]);
+        }
+
         int maxAct = 1;
-        int last = endTime[0];
+        int last = arr[0][2];
         for (int i = 1; i < endTime.length; i++) {
-            if (startTime[i] >= last) {
+            if (arr[i][1] >= last) {
                 maxAct++;
-                last = endTime[i];
+                last = arr[i][2];
             }
         }
 
