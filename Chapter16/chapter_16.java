@@ -9,9 +9,39 @@ import java.util.Comparator;
 public class chapter_16 {
 
     public static void main(String[] ar) {
-        int startTime[] = {0, 1, 3, 5, 5, 8};
-        int endTime[] = {6, 2, 4, 7, 9, 9};
-        System.out.println(activities(startTime, endTime));
+        // int startTime[] = {0, 1, 3, 5, 5, 8};
+        // int endTime[] = {6, 2, 4, 7, 9, 9};
+        // System.out.println(activities(startTime, endTime));
+        fractionalKnapSack();
+    }
+
+    // Fractional Knapsack Problem
+    public static void fractionalKnapSack() {
+        int weight[] = {10, 20, 30};
+        int value[] = {60, 100, 120};
+        int W = 60;
+
+        double ratio[][] = new double[weight.length][2];
+        for (int i = 0; i < weight.length; i++) {
+            ratio[i][0] = i;
+            ratio[i][1] = value[i] / weight[i];
+        }
+        Arrays.sort(ratio, Comparator.comparing(O -> O[1]));
+
+        double capacity = W;
+        double totalValue = 0;
+        for (int i = ratio.length - 1; i >= 0; i--) {
+            int idx = (int) ratio[i][0];
+            if (capacity >= weight[idx]) {
+                totalValue += value[idx];
+                capacity -= weight[idx];
+            } else {
+                totalValue += ratio[i][1] * capacity;
+                capacity = 0;
+                break;
+            }
+        }
+        System.out.println(totalValue);
     }
 
     public static int activities(int[] startTime, int[] endTime) {
