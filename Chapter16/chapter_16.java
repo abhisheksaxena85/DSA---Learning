@@ -13,7 +13,30 @@ public class chapter_16 {
         // int endTime[] = {6, 2, 4, 7, 9, 9};
         // System.out.println(activities(startTime, endTime));
         // fractionalKnapSack();
-        minAbsoluteDifferencePair();
+        // minAbsoluteDifferencePair();
+        maxLength();
+    }
+
+    // Max Length, Chain of Pairs
+    public static void maxLength() {
+        int arr[][] = {
+            {5, 24},
+            {39, 60},
+            {5, 28},
+            {27, 40},
+            {50, 90}
+        };
+
+        Arrays.sort(arr, Comparator.comparing(a -> a[1]));
+        int total = 1;
+        int last = arr[0][1];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i][0] >= last) {
+                last = arr[i][1];
+                total++;
+            }
+        }
+        System.out.println(total);
     }
 
     // Minimum Absolute Difference Pair
