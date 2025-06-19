@@ -12,7 +12,25 @@ public class chapter_16 {
         // int startTime[] = {0, 1, 3, 5, 5, 8};
         // int endTime[] = {6, 2, 4, 7, 9, 9};
         // System.out.println(activities(startTime, endTime));
-        fractionalKnapSack();
+        // fractionalKnapSack();
+        minAbsoluteDifferencePair();
+    }
+
+    // Minimum Absolute Difference Pair
+    public static void minAbsoluteDifferencePair() {
+        int a[] = {4, 1, 8, 7};
+        int b[] = {2, 3, 6, 5};
+        Arrays.sort(a);
+        Arrays.sort(b);
+        int total = 0;
+        for (int i = 0; i < a.length; i++) {
+            int pairDiff = a[i] - b[i];
+            if (pairDiff < 0) {
+                pairDiff *= -1;
+            }
+            total += pairDiff;
+        }
+        System.out.println(total);
     }
 
     // Fractional Knapsack Problem
