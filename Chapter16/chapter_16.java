@@ -14,7 +14,25 @@ public class chapter_16 {
         // System.out.println(activities(startTime, endTime));
         // fractionalKnapSack();
         // minAbsoluteDifferencePair();
-        maxLength();
+        // maxLength();
+
+        int inCurr[] = {1, 2, 5, 10, 20, 50, 100, 500, 1000};
+        minCoins(inCurr, 590);
+    }
+
+    /// Indian Coin or Canonical Coin System Problem
+    public static void minCoins(int[] arr, int value) {
+        int count = 0;
+        int val = value;
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (arr[i] <= val) {
+                while (arr[i] <= val) {
+                    val = val - arr[i];
+                    count++;
+                }
+            }
+        }
+        System.out.println(count);
     }
 
     // Max Length, Chain of Pairs
