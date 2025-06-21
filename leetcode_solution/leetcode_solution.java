@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 public class leetcode_solution {
 
@@ -16,6 +18,24 @@ public class leetcode_solution {
         // System.out.println("Roman to int : " + romanToInt("MCMXCIV"));
         // String str = "hello";
         // System.out.println(scoreOfString(str));
+    }
+
+    public static String reversePrefix(String word, char ch) {
+        int index = 0;
+        Stack<Character> stack = new Stack<>();
+        String sbStr = word.substring(0, word.indexOf(ch) + 1);
+        String leftStr = word.substring(word.indexOf(ch) + 1, word.length());
+        while (index < sbStr.length()) {
+            stack.push(sbStr.charAt(index));
+            index++;
+        }
+
+        String result = "";
+        while (!stack.isEmpty()) {
+            result += stack.pop();
+        }
+        result += leftStr;
+        return result;
     }
 
     public static List<Integer> findWordsContaining(String[] words, char x) {
