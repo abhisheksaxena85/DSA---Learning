@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -16,8 +17,26 @@ public class chapter_16 {
         // minAbsoluteDifferencePair();
         // maxLength();
 
-        int inCurr[] = {1, 2, 5, 10, 20, 50, 100, 500, 1000};
-        minCoins(inCurr, 590);
+        // int inCurr[] = {1, 2, 5, 10, 20, 50, 100, 500, 1000};
+        // minCoins(inCurr, 590);
+        jobSequencing();
+    }
+
+    /// Job Sequencing Problem
+    public static void jobSequencing() {
+        ArrayList<Integer> result = new ArrayList<>();
+        int jobs[][] = {{4, 20}, {1, 10}, {1, 40}, {1, 30}};
+        Arrays.sort(jobs, Comparator.comparing(O -> O[1]));
+
+        int time = 0;
+        for (int i = jobs.length - 1; i >= 0; i--) {
+            if (jobs[i][0] > time) {
+                result.add(jobs[i][1]);
+                time++;
+            }
+        }
+
+        System.out.println("Total Number of jobs which could be performed " + result.size());
     }
 
     /// Indian Coin or Canonical Coin System Problem
