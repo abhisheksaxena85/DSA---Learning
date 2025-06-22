@@ -19,7 +19,47 @@ public class chapter_16 {
 
         // int inCurr[] = {1, 2, 5, 10, 20, 50, 100, 500, 1000};
         // minCoins(inCurr, 590);
-        jobSequencing();
+        // jobSequencing();
+        System.out.println(chocolaProblem());
+    }
+
+    /// Chocola Problem or Dividing box into pieces problem
+    public static int chocolaProblem() {
+        Integer horizontal[] = {4, 1, 2};
+        Integer vertical[] = {2, 1, 3, 1, 4};
+
+        Arrays.sort(horizontal, Comparator.reverseOrder());
+        Arrays.sort(vertical, Comparator.reverseOrder());
+
+        int h_ptr = 0, v_ptr = 0;
+        int h_pices = 1, v_pices = 1;
+        int size = 0;
+
+        while (h_ptr < horizontal.length && v_ptr < vertical.length) {
+            if (horizontal[h_ptr] >= vertical[v_ptr]) { // Horizontal Cut
+                size += (horizontal[h_ptr] * v_pices);
+                h_ptr++;
+                h_pices++;
+            } else {
+                size += (vertical[v_ptr] * h_pices);
+                v_pices++;
+                v_ptr++;
+            }
+        }
+
+        while (h_ptr < horizontal.length) {
+            size += (horizontal[h_ptr] * v_pices);
+            h_ptr++;
+            h_pices++;
+        }
+
+        while (v_ptr < vertical.length) {
+            size += (vertical[v_ptr] * h_pices);
+            v_ptr++;
+            v_pices++;
+        }
+        return size;
+
     }
 
     /// Job Sequencing Problem
