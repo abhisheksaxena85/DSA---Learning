@@ -26,6 +26,65 @@ public class leetCode {
         // System.out.println(trap(arr));
     }
 
+    public static ListNode insertGreatestCommonDivisors(ListNode head) {
+        ListNode t = head.next;
+        ListNode prev = head;
+        if (head == null && head.next == null) {
+            return head;
+        }
+        while (t != null) {
+            int divisor = findDivisor(prev.val, t.val);
+            ListNode newNode = new ListNode(divisor);
+            prev.next = newNode;
+            newNode.next = t;
+            t = t.next;
+            prev = prev.next.next;
+        }
+        return head;
+    }
+
+    public static int findDivisor(int a, int b) {
+        int val = a;
+        int val2 = b;
+        int divisor = 0;
+        if (a < b) {
+            val = b;
+            val2 = a;
+        }
+
+        for (int i = 1; i <= val2; i++) {
+            if (val % i == 0 && val2 % i == 0) {
+                divisor = i;
+            }
+        }
+
+        return divisor;
+    }
+
+    public static int[] plusOne(int[] digits) {
+        digits[digits.length - 1] = digits[digits.length - 1] + 1;
+
+        for (int i = digits.length - 1; i > 0; i--) {
+            if (digits[i] == 10) {
+                digits[i] = 0;
+                digits[i - 1] = digits[i - 1] + 1;
+            }
+        }
+
+        if (digits[0] == 10) {
+            int arr[] = new int[digits.length + 1];
+            arr[0] = 1;
+            arr[1] = 0;
+            for (int i = 2; i < digits.length; i++) {
+                arr[i] = digits[i];
+            }
+            return arr;
+        } else {
+            return digits;
+        }
+
+    }
+
     public static int[][] generateMatrix(int n) {
         int matrix[][] = new int[n][n];
         int counter = 1;

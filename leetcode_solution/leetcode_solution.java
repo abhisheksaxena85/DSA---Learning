@@ -1,6 +1,10 @@
 
+import java.security.interfaces.RSAKey;
+import java.sql.Struct;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 public class leetcode_solution {
 
@@ -16,6 +20,58 @@ public class leetcode_solution {
         // System.out.println("Roman to int : " + romanToInt("MCMXCIV"));
         // String str = "hello";
         // System.out.println(scoreOfString(str));
+        String s = "ctoyjrwtngqwt";
+        int k = 8;
+        char fill = 'n';
+        String arr[] = divideString(s, k, fill);
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i] + " ");
+        }
+    }
+
+    public static String[] divideString(String s, int k, char fill) {
+        int resultLength = s.length() % k == 0 ? s.length() / k : (s.length() / k) + 1;
+        String result[] = new String[resultLength];
+
+        String sbStr = "";
+        String leftStr = s;
+
+        for (int i = 0; i < result.length; i++) {
+            if (leftStr.length() < k) {
+                sbStr = leftStr;
+                for (int j = sbStr.length(); j < k; j++) {
+                    sbStr += fill;
+                }
+            } else {
+                sbStr = leftStr.substring(0, k);
+                leftStr = leftStr.substring(k, leftStr.length());
+            }
+            result[i] = sbStr;
+            System.out.println("Sub String " + sbStr);
+            System.out.println("Left Str " + leftStr);
+            System.out.println();
+        }
+
+        return result;
+    }
+
+    public static String reversePrefix(String word, char ch) {
+        int index = 0;
+        Stack<Character> stack = new Stack<>();
+        String sbStr = word.substring(0, word.indexOf(ch) + 1);
+        String leftStr = word.substring(word.indexOf(ch) + 1, word.length());
+        while (index < sbStr.length()) {
+            stack.push(sbStr.charAt(index));
+            index++;
+        }
+
+        String result = "";
+        while (!stack.isEmpty()) {
+            result += stack.pop();
+        }
+        result += leftStr;
+        return result;
     }
 
     public static List<Integer> findWordsContaining(String[] words, char x) {
