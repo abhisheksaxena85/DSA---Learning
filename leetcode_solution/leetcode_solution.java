@@ -1,8 +1,5 @@
 
-import java.security.interfaces.RSAKey;
-import java.sql.Struct;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -20,14 +17,78 @@ public class leetcode_solution {
         // System.out.println("Roman to int : " + romanToInt("MCMXCIV"));
         // String str = "hello";
         // System.out.println(scoreOfString(str));
-        String s = "ctoyjrwtngqwt";
-        int k = 8;
-        char fill = 'n';
-        String arr[] = divideString(s, k, fill);
+        // String s = "ctoyjrwtngqwt";
+        // int k = 8;
+        // char fill = 'n';
+        // String arr[] = divideString(s, k, fill);
+        // for (int i = 0; i < arr.length; i++) {
+        //     System.out.println(arr[i] + " ");
+        // }
+        // for (int i = 0; i < nums.length; i++) {
+        //     System.out.print(nums[i] + " ");
+        // }
+    }
 
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i] + " ");
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode list = new ListNode(0);
+        ListNode t = list;
+        int carry = 0;
+
+        while (l1 != null && l2 != null) {
+            int sum = l1.val + l2.val + carry;
+            if (sum > 9) {
+                int lastDigit = sum % 10;
+                ListNode newNode = new ListNode(lastDigit);
+                t.next = newNode;
+                carry = 1;
+            } else {
+                ListNode newNode = new ListNode(sum);
+                t.next = newNode;
+                carry = 0;
+            }
+            t = t.next;
+            l1 = l1.next;
+            l2 = l2.next;
         }
+
+        while (l1 != null) {
+            int sum = l1.val + carry;
+            if (sum > 9) {
+                int lastDig = sum % 10;
+                carry = 1;
+                ListNode newNode = new ListNode(lastDig);
+                t.next = newNode;
+            } else {
+                ListNode newNode = new ListNode(sum);
+                t.next = newNode;
+                carry = 0;
+            }
+            t = t.next;
+            l1 = l1.next;
+        }
+
+        while (l2 != null) {
+            int sum = l2.val + carry;
+            if (sum > 9) {
+                int lastDig = sum % 10;
+                ListNode newNode = new ListNode(lastDig);
+                t.next = newNode;
+            } else {
+                ListNode newNode = new ListNode(sum);
+                t.next = newNode;
+                carry = 0;
+            }
+            t = t.next;
+            l2 = l2.next;
+        }
+
+        if (carry != 0) {
+            ListNode newNode = new ListNode(1);
+            t.next = newNode;
+            t = t.next;
+        }
+
+        return list.next;
     }
 
     public static String[] divideString(String s, int k, char fill) {
