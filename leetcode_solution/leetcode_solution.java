@@ -29,6 +29,20 @@ public class leetcode_solution {
         // }
     }
 
+    public static void deleteNode(ListNode node) {
+        ListNode temp = node;
+        ListNode prev = null;
+        while (temp.next != null) {
+            temp.val = temp.next.val;
+            prev = temp;
+            temp = temp.next;
+        }
+
+        if (temp.next == null) {
+            prev.next = null;
+        }
+    }
+
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode list = new ListNode(0);
         ListNode t = list;
