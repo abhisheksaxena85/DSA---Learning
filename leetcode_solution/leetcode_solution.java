@@ -29,6 +29,29 @@ public class leetcode_solution {
         // }
     }
 
+    public static ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
+        ListNode list1_temp = list1;
+        ListNode list1_next = list1.next;
+
+        for (int i = 1; i < a; i++) {
+            list1_temp = list1_temp.next;
+            list1_next = list1_temp.next;
+        }
+
+        list1_temp.next = list2;
+
+        for (int i = 0; i < (b + 1 - a); i++) {
+            list1_next = list1_next.next;
+        }
+        ListNode list2_temp = list2;
+        while (list2_temp.next != null) {
+            list2_temp = list2_temp.next;
+        }
+        list2_temp.next = list1_next;
+
+        return list1;
+    }
+
     public static void deleteNode(ListNode node) {
         ListNode temp = node;
         ListNode prev = null;
