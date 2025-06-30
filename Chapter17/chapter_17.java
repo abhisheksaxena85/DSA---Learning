@@ -3,12 +3,41 @@
     Start Date - June 23, 2025, 12:04 AM
  */
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 class chapter_17 {
 
     public static void main(String[] args) {
         int arr[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
         Node result = buildTree(arr);
-        postorder(result);
+        levelOrder(result);
+    }
+
+    public static void levelOrder(Node root) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null);
+
+        while (!queue.isEmpty()) {
+            Node val = queue.remove();
+            if (val == null) {
+                System.out.println();
+                if (queue.isEmpty()) {
+                    break;
+                } else {
+                    queue.add(null);
+                }
+            } else {
+                System.out.print(val.data);
+                if (val.left != null) {
+                    queue.add(val.left);
+                }
+                if (val.right != null) {
+                    queue.add(val.right);
+                }
+            }
+        }
     }
 
     public static void postorder(Node root) {
