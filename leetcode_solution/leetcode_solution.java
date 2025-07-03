@@ -27,6 +27,37 @@ public class leetcode_solution {
         // for (int i = 0; i < nums.length; i++) {
         //     System.out.print(nums[i] + " ");
         // }
+        String str = "IceCreAm";
+        System.out.println(reverseVowels(str));
+    }
+
+    public static String reverseVowels(String s) {
+        char arr[] = s.toCharArray();
+        int pt1 = 0;
+        int pt2 = arr.length - 1;
+
+        while (pt1 < pt2) {
+            if (isVowel(arr[pt1]) == false) {
+                pt1++;
+            } else {
+                if (isVowel(arr[pt2]) == true) {
+                    char t = arr[pt2];
+                    arr[pt2] = arr[pt1];
+                    arr[pt1] = t;
+                    pt1++;
+                    pt2--;
+                } else {
+                    pt2--;
+                }
+            }
+        }
+
+        return new String(arr);
+    }
+
+    public static boolean isVowel(char ch) {
+        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u'
+                || ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U';
     }
 
     public static ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
