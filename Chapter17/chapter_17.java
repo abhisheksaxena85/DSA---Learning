@@ -18,15 +18,15 @@ class chapter_17 {
         root.left.right = new Node(5);
         root.right.left = new Node(6);
         root.right.right = new Node(7);
-        System.out.println(countNodes(root, 0));
+        System.out.println(countNodes(root));
     }
 
-    public static int countNodes(Node root, int count) {
+    public static int countNodes(Node root) {
         if (root == null) {
-            return count;
+            return 0;
         }
-        int left = countNodes(root.left, count);
-        int right = countNodes(root.right, count);
+        int left = countNodes(root.left);
+        int right = countNodes(root.right);
         return left + right + 1;
     }
 
