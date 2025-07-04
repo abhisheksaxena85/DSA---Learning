@@ -27,8 +27,39 @@ public class leetcode_solution {
         // for (int i = 0; i < nums.length; i++) {
         //     System.out.print(nums[i] + " ");
         // }
-        String str = "IceCreAm";
-        System.out.println(reverseVowels(str));
+        // String str = "IceCreAm";
+        // System.out.println(reverseVowels(str));
+        String str = "a good   example";
+        System.out.print(reverseWords(str));
+    }
+
+    public static String reverseWords(String s) {
+        String arr[] = s.split(" ");
+        int pt1 = 0;
+        int pt2 = arr.length - 1;
+        while (pt1 < pt2) {
+            if (arr[pt1] == "") {
+                pt1++;
+            } else if (arr[pt2] == "") {
+                pt2--;
+            } else {
+                String t = arr[pt1];
+                arr[pt1] = arr[pt2];
+                arr[pt2] = t;
+                pt1++;
+                pt2--;
+            }
+        }
+        String result = "";
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != "") {
+                result += arr[i];
+                if (i != arr.length - 1) {
+                    result += " ";
+                }
+            }
+        }
+        return result;
     }
 
     public static String reverseVowels(String s) {
