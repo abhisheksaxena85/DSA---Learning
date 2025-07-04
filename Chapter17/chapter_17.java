@@ -9,9 +9,25 @@ import java.util.Queue;
 class chapter_17 {
 
     public static void main(String[] args) {
-        int arr[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
-        Node result = buildTree(arr);
-        System.out.println(treeHeight(result));
+        // int arr[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+        // Node result = buildTree(arr);
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
+        System.out.println(countNodes(root, 0));
+    }
+
+    public static int countNodes(Node root, int count) {
+        if (root == null) {
+            return count;
+        }
+        int left = countNodes(root.left, count);
+        int right = countNodes(root.right, count);
+        return left + right + 1;
     }
 
     public static int treeHeight(Node root) {
