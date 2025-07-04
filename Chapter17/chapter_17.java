@@ -18,7 +18,16 @@ class chapter_17 {
         root.left.right = new Node(5);
         root.right.left = new Node(6);
         root.right.right = new Node(7);
-        System.out.println(countNodes(root));
+        System.out.println(totalSum(root));
+    }
+
+    public static int totalSum(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = totalSum(root.left);
+        int right = totalSum(root.right);
+        return left + right + root.data;
     }
 
     public static int countNodes(Node root) {
