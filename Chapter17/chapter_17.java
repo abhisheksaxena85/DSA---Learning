@@ -18,7 +18,32 @@ class chapter_17 {
         root.left.right = new Node(5);
         root.right.left = new Node(6);
         root.right.right = new Node(7);
-        System.out.println(findDiameter(root));
+        System.out.println(diameter(root).diameter);
+    }
+
+    static class Data {
+
+        int diameter;
+        int height;
+
+        public Data(int diameter, int height) {
+            this.diameter = diameter;
+            this.height = height;
+        }
+    }
+
+    public static Data diameter(Node root) {
+        if (root == null) {
+            return new Data(0, 0);
+        }
+
+        Data left = diameter(root.left);
+        Data right = diameter(root.right);
+
+        int height = Math.max(left.height, right.height) + 1;
+        int diam = Math.max(Math.max(left.diameter, right.diameter), left.height + right.height + 1);
+
+        return new Data(diam, height);
     }
 
     public static int findDiameter(Node root) {
