@@ -18,7 +18,18 @@ class chapter_17 {
         root.left.right = new Node(5);
         root.right.left = new Node(6);
         root.right.right = new Node(7);
-        System.out.println(totalSum(root));
+        System.out.println(findDiameter(root));
+    }
+
+    public static int findDiameter(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = findDiameter(root.left);
+        int right = findDiameter(root.right);
+        int max = treeHeight(root.left) + treeHeight(root.right) + 1;
+        return Math.max(Math.max(right, left), max);
     }
 
     public static int totalSum(Node root) {
