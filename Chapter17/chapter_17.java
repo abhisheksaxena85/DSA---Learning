@@ -18,7 +18,39 @@ class chapter_17 {
         root.left.right = new Node(5);
         root.right.left = new Node(6);
         root.right.right = new Node(7);
-        System.out.println(diameter(root).diameter);
+
+        Node node = new Node(2);
+        node.left = new Node(4);
+        node.right = new Node(5);
+
+        System.out.println(isSubtreeFound(root, node));
+    }
+
+    public static boolean isSubtreeFound(Node root, Node node) {
+        if (root == null) {
+            return false;
+        } else if (root.data == node.data) {
+            if (isIdentical(root, node)) {
+                return true;
+            }
+        }
+
+        boolean left = isSubtreeFound(root.left, node);
+        boolean right = isSubtreeFound(root.right, node);
+        return left || right;
+    }
+
+    public static boolean isIdentical(Node root, Node node) {
+        if (root == null && node == null) {
+            return true;
+        } else if (root == null || node == null || root.data != node.data) {
+            return false;
+        } else if (!isIdentical(root.left, node.left)) {
+            return false;
+        } else if (!isIdentical(root.right, node.right)) {
+            return false;
+        }
+        return true;
     }
 
     static class Data {
