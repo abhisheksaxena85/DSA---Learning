@@ -33,6 +33,37 @@ public class leetcode_solution {
         System.out.print(reverseWords(str));
     }
 
+    public static ListNode swapPairs(ListNode head) {
+        // Edge Cases 
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ArrayList<Integer> arr = new ArrayList<>();
+        ListNode t = head;
+        while (t != null) {
+            arr.add(t.val);
+            t = t.next;
+        }
+
+        ListNode listNode = new ListNode(0);
+        ListNode temp = listNode;
+        for (int i = 1; i < arr.size(); i++) {
+            ListNode newNode = new ListNode(arr.get(i - 1));
+            ListNode newNode1 = new ListNode(arr.get(i));
+            temp.next = newNode1;
+            temp.next.next = newNode;
+            temp = temp.next.next;
+            i++;
+        }
+
+        if (arr.size() % 2 != 0) {
+            ListNode newNode = new ListNode(arr.remove(arr.size() - 1));
+            temp.next = newNode;
+        }
+        return listNode.next;
+    }
+
     public static String reverseWords(String s) {
         String arr[] = s.split(" ");
         int pt1 = 0;
