@@ -20,7 +20,7 @@ class chapter_17 {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        topView(root);
+        findKthLevelNodes(root, 1, 1);
 
         // Node node = new Node(2);
         // node.left = new Node(4);
@@ -228,6 +228,21 @@ class chapter_17 {
             }
         }
     }
+
+    public static void findKthLevelNodes(Node root, int k, int level) {
+        if (root == null) {
+            return;
+        }
+
+        if (k == level) {
+            System.out.println(root.data + " ");
+        }
+
+        findKthLevelNodes(root.left, k, level + 1);
+        findKthLevelNodes(root.right, k, level + 1);
+    }
+
+    // public static void findLevel(N){}
 
     static class Node {
 
