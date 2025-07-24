@@ -3,6 +3,7 @@
     Start Date - June 23, 2025, 12:04 AM
  */
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -19,11 +20,13 @@ class chapter_17 {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        Node node = new Node(2);
-        node.left = new Node(4);
-        node.right = new Node(5);
+        topView(root);
 
-        System.out.println(isSubtreeFound(root, node));
+        // Node node = new Node(2);
+        // node.left = new Node(4);
+        // node.right = new Node(5);
+
+        // System.out.println(isSubtreeFound(root, node));
     }
 
     public static boolean isSubtreeFound(Node root, Node node) {
@@ -184,6 +187,46 @@ class chapter_17 {
         newNode.left = buildTree(arr);
         newNode.right = buildTree(arr);
         return newNode;
+    }
+
+    static class Info {
+        int horizontalDistance;
+        Node node;
+
+        Info(int horizontalDistance, Node node) {
+            this.horizontalDistance = horizontalDistance;
+            this.node = node;
+        }
+    }
+
+    public static void topView(Node node) {
+        Queue<Info> q = new LinkedList<>();
+        HashMap<Integer, Node> map = new HashMap<>();
+        q.add(new Info(0, node));
+        q.add(null);
+
+        while (!q.isEmpty()) {
+            Info val = q.remove();
+            if (val == null) {
+                if (q.isEmpty()) {
+                    break;
+                } else {
+                    q.add(null);
+                }
+            } else {
+                if (!map.containsKey(val.horizontalDistance)) {
+                    map.put(val.horizontalDistance, val.node);
+                    System.out.println(val.node.data);
+                }
+                if (val.node.left != null) {
+                    q.add(new Info(val.horizontalDistance - 1, val.node.left));
+                }
+                if (val.node.right != null) {
+                    q.add(new Info(val.horizontalDistance + 1, val.node.right));
+
+                }
+            }
+        }
     }
 
     static class Node {
