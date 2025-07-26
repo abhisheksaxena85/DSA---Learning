@@ -3,6 +3,7 @@
     Start Date - June 23, 2025, 12:04 AM
  */
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -20,7 +21,7 @@ class chapter_17 {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        findKthLevelNodes(root, 1, 1);
+        lowestCommonAncestor(root, 4, 7);
 
         // Node node = new Node(2);
         // node.left = new Node(4);
@@ -240,6 +241,44 @@ class chapter_17 {
 
         findKthLevelNodes(root.left, k, level + 1);
         findKthLevelNodes(root.right, k, level + 1);
+    }
+
+    public static void lowestCommonAncestor(Node root, int node1, int node2) {
+        ArrayList<Integer> arr1 = new ArrayList<>();
+        ArrayList<Integer> arr2 = new ArrayList<>();
+        if (root == null) {
+            return;
+        }
+
+        getPath(root, node1, arr1);
+        getPath(root, node2, arr2);
+
+        for (int i = 0; i < arr1.size() && i < arr2.size(); i++) {
+            if (arr1.get(i) != arr2.get(i)) {
+                System.out.println("Lowest Common Ancestor is " + arr1.get(i - 1));
+                return;
+            }
+        }
+    }
+
+    public static boolean getPath(Node root, int node, ArrayList<Integer> arr) {
+        if (root == null) {
+            return false;
+        }
+
+        arr.add(root.data);
+
+        if (root.data == node) {
+            return true;
+        }
+
+        boolean left = getPath(root.left, node, arr);
+        boolean right = getPath(root.right, node, arr);
+        if (left || right) {
+            return true;
+        }
+        arr.remove(arr.size() - 1);
+        return false;
     }
 
     // public static void findLevel(N){}
