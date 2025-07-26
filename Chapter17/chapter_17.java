@@ -21,7 +21,7 @@ class chapter_17 {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        System.out.println(leastCommonAncestor2(root, 4, 5).data);
+        System.out.println(minDistance(root, 4, 7));
 
         // Node node = new Node(2);
         // node.left = new Node(4);
@@ -298,6 +298,34 @@ class chapter_17 {
         }
 
         return root;
+    }
+
+    public static int minDistance(Node root, int n1, int n2) {
+        Node lca = leastCommonAncestor2(root, n1, n2);
+
+        int leftDis = lcaDistance(lca, n1);
+        int rightDis = lcaDistance(lca, n2);
+        return leftDis + rightDis;
+    }
+
+    public static int lcaDistance(Node lca, int n) {
+        if (lca == null) {
+            return -1;
+        } else if (lca.data == n) {
+            return 0;
+        }
+
+        int left = lcaDistance(lca.left, n);
+        int right = lcaDistance(lca.right, n);
+        if (left == -1 && right == -1) {
+            return -1;
+        } else {
+            if (left > -1) {
+                return left + 1;
+            } else {
+                return right + 1;
+            }
+        }
     }
 
     // public static void findLevel(N){}
