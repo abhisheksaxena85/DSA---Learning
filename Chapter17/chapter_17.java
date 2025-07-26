@@ -21,7 +21,7 @@ class chapter_17 {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        lowestCommonAncestor(root, 4, 7);
+        System.out.println(leastCommonAncestor2(root, 4, 5).data);
 
         // Node node = new Node(2);
         // node.left = new Node(4);
@@ -279,6 +279,25 @@ class chapter_17 {
         }
         arr.remove(arr.size() - 1);
         return false;
+    }
+
+    public static Node leastCommonAncestor2(Node root, int n1, int n2) {
+        if (root == null || root.data == n1 || root.data == n2) {
+            return root;
+        }
+
+        Node left = leastCommonAncestor2(root.left, n1, n2);
+        Node right = leastCommonAncestor2(root.right, n1, n2);
+
+        if (left == null) {
+            return right;
+        }
+
+        if (right == null) {
+            return left;
+        }
+
+        return root;
     }
 
     // public static void findLevel(N){}
