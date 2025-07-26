@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import javax.swing.tree.TreeNode;
+
 public class leetcode_solution {
 
     public static void main(String[] args) {
@@ -22,10 +24,10 @@ public class leetcode_solution {
         // char fill = 'n';
         // String arr[] = divideString(s, k, fill);
         // for (int i = 0; i < arr.length; i++) {
-        //     System.out.println(arr[i] + " ");
+        // System.out.println(arr[i] + " ");
         // }
         // for (int i = 0; i < nums.length; i++) {
-        //     System.out.print(nums[i] + " ");
+        // System.out.print(nums[i] + " ");
         // }
         // String str = "IceCreAm";
         // System.out.println(reverseVowels(str));
@@ -33,8 +35,48 @@ public class leetcode_solution {
         System.out.print(reverseWords(str));
     }
 
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return root;
+        }
+
+        ArrayList<TreeNode> arr1 = new ArrayList<>();
+        ArrayList<TreeNode> arr2 = new ArrayList<>();
+
+        getPath(root, p, arr1);
+        getPath(root, q, arr2);
+        int i = 0;
+        for (; i < arr1.size() && i < arr2.size(); i++) {
+            if (arr1.get(i).val != arr2.get(i).val) {
+                break;
+            }
+        }
+
+        return arr1.get(i - 1);
+    }
+
+    public static boolean getPath(TreeNode root, TreeNode node, ArrayList<TreeNode> arr) {
+        if (root == null) {
+            return false;
+        }
+
+        arr.add(root);
+
+        if (root.val == node.val) {
+            return true;
+        }
+
+        boolean left = getPath(root.left, node, arr);
+        boolean right = getPath(root.right, node, arr);
+        if (left || right) {
+            return true;
+        }
+        arr.remove(arr.size() - 1);
+        return false;
+    }
+
     public static ListNode swapPairs(ListNode head) {
-        // Edge Cases 
+        // Edge Cases
         if (head == null || head.next == null) {
             return head;
         }
@@ -366,55 +408,57 @@ public class leetcode_solution {
     }
 
     // public static int strStr(String haystack, String needle) {
-    //     for (int i = 0; i < haystack.length(); i++) {
-    //         if (haystack.charAt(i) == needle.charAt(i)) {
-    //             return 0;
-    //         }
-    //     }
-    //     return 0;
+    // for (int i = 0; i < haystack.length(); i++) {
+    // if (haystack.charAt(i) == needle.charAt(i)) {
+    // return 0;
+    // }
+    // }
+    // return 0;
     // }
 
-/// Reverse the input int value only in 32bit signed integer, If it crosses 32bit limit then return 0;
+    /// Reverse the input int value only in 32bit signed integer, If it crosses
+    /// 32bit limit then return 0;
     // public static int reverseNumber(int x) {
-    //     int a = x;
-    //     long r = 0;
-    //     if(x>0){
-    //         while (a > 0) {
-    //             int l = a % 10;
-    //             a = a / 10;
-    //             r = (r * 10) + l;
-    //         }
-    //     }else{
-    //         while (a < 0) {
-    //             int l = a % 10;
-    //             a = a / 10;
-    //             r = (r * 10) + l;
-    //         }
-    //     }
-    //     if (r < 2147483648L && r > -2147483649L) {
-    //         return (int) r;
-    //     } else {
-    //         return 0;
-    //     }
+    // int a = x;
+    // long r = 0;
+    // if(x>0){
+    // while (a > 0) {
+    // int l = a % 10;
+    // a = a / 10;
+    // r = (r * 10) + l;
+    // }
+    // }else{
+    // while (a < 0) {
+    // int l = a % 10;
+    // a = a / 10;
+    // r = (r * 10) + l;
+    // }
+    // }
+    // if (r < 2147483648L && r > -2147483649L) {
+    // return (int) r;
+    // } else {
+    // return 0;
+    // }
     // }
 
     // public static boolean isPalindrome(Integer x) {
-    //     int a = x;
-    //     int r = 0;
-    //     while (x > 0) {
-    //         int l = x % 10;
-    //         x = x / 10;
-    //         r = (r * 10) + l;
-    //     }
-    //     if (a == r) {
-    //         return true;
-    //     }
-    //     return false;
+    // int a = x;
+    // int r = 0;
+    // while (x > 0) {
+    // int l = x % 10;
+    // x = x / 10;
+    // r = (r * 10) + l;
+    // }
+    // if (a == r) {
+    // return true;
+    // }
+    // return false;
     // for(int i = 0; i<value.toString().length();i++){
-    //     if(value.toString().charAt(i) != value.toString().charAt(value.toString().length()-1-i)){
-    //         System.out.println("It is not palindrom");
-    //         return false;
-    //     }
+    // if(value.toString().charAt(i) !=
+    // value.toString().charAt(value.toString().length()-1-i)){
+    // System.out.println("It is not palindrom");
+    // return false;
+    // }
     // }
     // System.out.println("It is palindrome");
     // return true;
