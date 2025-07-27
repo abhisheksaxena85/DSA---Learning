@@ -21,7 +21,7 @@ class chapter_17 {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        System.out.println(minDistance(root, 4, 7));
+        System.out.println(kthAncestor(root, 5, 2));
 
         // Node node = new Node(2);
         // node.left = new Node(4);
@@ -328,7 +328,23 @@ class chapter_17 {
         }
     }
 
-    // public static void findLevel(N){}
+    public static int kthAncestor(Node root, int n, int k) {
+        if (root == null) {
+            return -1;
+        }
+        if (root.data == n) {
+            return 0;
+        }
+
+        int left = kthAncestor(root.left, n, k);
+        int right = kthAncestor(root.right, n, k);
+
+        if (left == -1 && right == -1) {
+            return -1;
+        }
+        int max = Math.max(left, right);
+        return max + 1;
+    }
 
     static class Node {
 
