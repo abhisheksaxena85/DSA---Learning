@@ -21,7 +21,9 @@ class chapter_17 {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        System.out.println(kthAncestor(root, 5, 2));
+        transformTree(root);
+
+        preorder(root);
 
         // Node node = new Node(2);
         // node.left = new Node(4);
@@ -344,6 +346,25 @@ class chapter_17 {
         }
         int max = Math.max(left, right);
         return max + 1;
+    }
+
+    public static int transformTree(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = transformTree(root.left);
+        int right = transformTree(root.right);
+        int data = root.data;
+        int val = 0;
+        if (root.left != null) {
+            val += root.left.data;
+        }
+        if (root.right != null) {
+            val += root.right.data;
+        }
+        root.data = left + right + val;
+        return data;
     }
 
     static class Node {
