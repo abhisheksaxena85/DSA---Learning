@@ -3,6 +3,8 @@
     Start Date - June 23, 2025, 12:04 AM
  */
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -19,11 +21,15 @@ class chapter_17 {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        Node node = new Node(2);
-        node.left = new Node(4);
-        node.right = new Node(5);
+        transformTree(root);
 
-        System.out.println(isSubtreeFound(root, node));
+        preorder(root);
+
+        // Node node = new Node(2);
+        // node.left = new Node(4);
+        // node.right = new Node(5);
+
+        // System.out.println(isSubtreeFound(root, node));
     }
 
     public static boolean isSubtreeFound(Node root, Node node) {
@@ -184,6 +190,181 @@ class chapter_17 {
         newNode.left = buildTree(arr);
         newNode.right = buildTree(arr);
         return newNode;
+    }
+
+    static class Info {
+        int horizontalDistance;
+        Node node;
+
+        Info(int horizontalDistance, Node node) {
+            this.horizontalDistance = horizontalDistance;
+            this.node = node;
+        }
+    }
+
+    public static void topView(Node node) {
+        Queue<Info> q = new LinkedList<>();
+        HashMap<Integer, Node> map = new HashMap<>();
+        q.add(new Info(0, node));
+        q.add(null);
+
+        while (!q.isEmpty()) {
+            Info val = q.remove();
+            if (val == null) {
+                if (q.isEmpty()) {
+                    break;
+                } else {
+                    q.add(null);
+                }
+            } else {
+                if (!map.containsKey(val.horizontalDistance)) {
+                    map.put(val.horizontalDistance, val.node);
+                    System.out.println(val.node.data);
+                }
+                if (val.node.left != null) {
+                    q.add(new Info(val.horizontalDistance - 1, val.node.left));
+                }
+                if (val.node.right != null) {
+                    q.add(new Info(val.horizontalDistance + 1, val.node.right));
+
+                }
+            }
+        }
+    }
+
+    public static void findKthLevelNodes(Node root, int k, int level) {
+        if (root == null) {
+            return;
+        }
+
+        if (k == level) {
+            System.out.println(root.data + " ");
+        }
+
+        findKthLevelNodes(root.left, k, level + 1);
+        findKthLevelNodes(root.right, k, level + 1);
+    }
+
+    public static void lowestCommonAncestor(Node root, int node1, int node2) {
+        ArrayList<Integer> arr1 = new ArrayList<>();
+        ArrayList<Integer> arr2 = new ArrayList<>();
+        if (root == null) {
+            return;
+        }
+
+        getPath(root, node1, arr1);
+        getPath(root, node2, arr2);
+
+        for (int i = 0; i < arr1.size() && i < arr2.size(); i++) {
+            if (arr1.get(i) != arr2.get(i)) {
+                System.out.println("Lowest Common Ancestor is " + arr1.get(i - 1));
+                return;
+            }
+        }
+    }
+
+    public static boolean getPath(Node root, int node, ArrayList<Integer> arr) {
+        if (root == null) {
+            return false;
+        }
+
+        arr.add(root.data);
+
+        if (root.data == node) {
+            return true;
+        }
+
+        boolean left = getPath(root.left, node, arr);
+        boolean right = getPath(root.right, node, arr);
+        if (left || right) {
+            return true;
+        }
+        arr.remove(arr.size() - 1);
+        return false;
+    }
+
+    public static Node leastCommonAncestor2(Node root, int n1, int n2) {
+        if (root == null || root.data == n1 || root.data == n2) {
+            return root;
+        }
+
+        Node left = leastCommonAncestor2(root.left, n1, n2);
+        Node right = leastCommonAncestor2(root.right, n1, n2);
+
+        if (left == null) {
+            return right;
+        }
+
+        if (right == null) {
+            return left;
+        }
+
+        return root;
+    }
+
+    public static int minDistance(Node root, int n1, int n2) {
+        Node lca = leastCommonAncestor2(root, n1, n2);
+
+        int leftDis = lcaDistance(lca, n1);
+        int rightDis = lcaDistance(lca, n2);
+        return leftDis + rightDis;
+    }
+
+    public static int lcaDistance(Node lca, int n) {
+        if (lca == null) {
+            return -1;
+        } else if (lca.data == n) {
+            return 0;
+        }
+
+        int left = lcaDistance(lca.left, n);
+        int right = lcaDistance(lca.right, n);
+        if (left == -1 && right == -1) {
+            return -1;
+        } else {
+            if (left > -1) {
+                return left + 1;
+            } else {
+                return right + 1;
+            }
+        }
+    }
+
+    public static int kthAncestor(Node root, int n, int k) {
+        if (root == null) {
+            return -1;
+        }
+        if (root.data == n) {
+            return 0;
+        }
+
+        int left = kthAncestor(root.left, n, k);
+        int right = kthAncestor(root.right, n, k);
+
+        if (left == -1 && right == -1) {
+            return -1;
+        }
+        int max = Math.max(left, right);
+        return max + 1;
+    }
+
+    public static int transformTree(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = transformTree(root.left);
+        int right = transformTree(root.right);
+        int data = root.data;
+        int val = 0;
+        if (root.left != null) {
+            val += root.left.data;
+        }
+        if (root.right != null) {
+            val += root.right.data;
+        }
+        root.data = left + right + val;
+        return data;
     }
 
     static class Node {
