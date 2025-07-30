@@ -5,9 +5,35 @@
 
 public class chapter_18 {
     public static void main(String args[]) {
-        int arr[] = { 5, 1, 3, 4, 2, 7 };
-        TreeNode t = buildTree(arr);
-        inorderTraversal(t);
+        // int arr[] = { 5, 1, 3, 4, 2, 7 };
+        // TreeNode t = buildTree(arr);
+        // inorderTraversal(t);
+
+        TreeNode root = new TreeNode(8);
+        root.left = new TreeNode(5);
+        root.right = new TreeNode(10);
+        root.left.left = new TreeNode(3);
+        root.left.right = new TreeNode(6);
+        root.left.left.left = new TreeNode(1);
+        root.left.left.right = new TreeNode(4);
+        root.right.right = new TreeNode(11);
+        root.right.right.right = new TreeNode(14);
+
+        System.out.println(searchNode(root, 121));
+    }
+
+    public static boolean searchNode(TreeNode root, int key) {
+        if (root == null) {
+            return false;
+        } else if (root.val == key) {
+            return true;
+        }
+
+        if (root.val > key) {// left
+            return searchNode(root.left, key);
+        } else {// right
+            return searchNode(root.right, key);
+        }
     }
 
     public static TreeNode buildTree(int[] arr) {
