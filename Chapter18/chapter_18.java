@@ -3,6 +3,8 @@
     Start Date - Jul 29, 2025, 02:23 AM
  */
 
+import java.util.*;
+
 public class chapter_18 {
 
     public static void main(String args[]) {
@@ -23,29 +25,49 @@ public class chapter_18 {
         // System.out.println(searchNode(root, 121));
         // levelOrderPrint(t);
         // System.out.println();
-        printInRange(t, 4, 12);
+        rootToLeaf(t);
         // levelOrderPrint(t);
         // System.out.println();
     }
+    static ArrayList<Integer> path = new ArrayList<>();
 
-    public static void printInRange(TreeNode root, int k1, int k2){ // K1 is min & K2 is max
-	if(root==null){
-	   return;
-	}
-	
-	// When range is in both subtrees
-	if(root.val>= k1 && root.val<=k2){
-	   printInRange(root.left, k1, k2);
-	   System.out.print(root.val+" ");
-	   printInRange(root.right, k1, k2);
+    public static void rootToLeaf(TreeNode root) {
+        if (root == null) {
+            return;
+        }
 
-	}else if(root.val > k2){ // When range is in left subtree
-	   printInRange(root.left, k1, k2);
-	}else if(root.val < k1){ // When range is in right subtree
-	   printInRange(root.right, k1, k2);
-	}else {
-	   System.out.print(root.val+" ");
-	}
+        path.add(root.val);
+
+        if (root.left == null && root.right == null) {
+            for (int i = 0; i < path.size(); i++) {
+                System.out.print(path.get(i) + " ");
+            }
+            System.out.println();
+        }
+
+        rootToLeaf(root.left);
+        rootToLeaf(root.right);
+        path.remove(path.size() - 1);
+    }
+
+    public static void printInRange(TreeNode root, int k1, int k2) { // K1 is min & K2 is max
+        if (root == null) {
+            return;
+        }
+
+        // When range is in both subtrees
+        if (root.val >= k1 && root.val <= k2) {
+            printInRange(root.left, k1, k2);
+            System.out.print(root.val + " ");
+            printInRange(root.right, k1, k2);
+
+        } else if (root.val > k2) { // When range is in left subtree
+            printInRange(root.left, k1, k2);
+        } else if (root.val < k1) { // When range is in right subtree
+            printInRange(root.right, k1, k2);
+        } else {
+            System.out.print(root.val + " ");
+        }
     }
 
     public static TreeNode delete(TreeNode root, int val) {
