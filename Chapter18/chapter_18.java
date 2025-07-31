@@ -4,22 +4,73 @@
  */
 
 public class chapter_18 {
+
     public static void main(String args[]) {
-        // int arr[] = { 5, 1, 3, 4, 2, 7 };
-        // TreeNode t = buildTree(arr);
-        // inorderTraversal(t);
+        int arr[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
+        TreeNode t = buildTree(arr);
+        inorderTraversal(t);
+        System.out.println();
 
-        TreeNode root = new TreeNode(8);
-        root.left = new TreeNode(5);
-        root.right = new TreeNode(10);
-        root.left.left = new TreeNode(3);
-        root.left.right = new TreeNode(6);
-        root.left.left.left = new TreeNode(1);
-        root.left.left.right = new TreeNode(4);
-        root.right.right = new TreeNode(11);
-        root.right.right.right = new TreeNode(14);
+        // TreeNode root = new TreeNode(8);
+        // root.left = new TreeNode(5);
+        // root.right = new TreeNode(10);
+        // root.left.left = new TreeNode(3);
+        // root.left.right = new TreeNode(6);
+        // root.left.left.left = new TreeNode(1);
+        // root.left.left.right = new TreeNode(4);
+        // root.right.right = new TreeNode(11);
+        // root.right.right.right = new TreeNode(14);
+        // System.out.println(searchNode(root, 121));
+        levelOrderPrint(t);
+        System.out.println();
+        delete(t, 5);
+        levelOrderPrint(t);
+        System.out.println();
+    }
 
-        System.out.println(searchNode(root, 121));
+    public static TreeNode delete(TreeNode root, int val) {
+        if (root == null) {
+            return root;
+        } else if (root.val > val) {
+            root.left = delete(root.left, val);
+        } else if (root.val < val) {
+            root.right = delete(root.right, val);
+        } else {
+            // When node is leaf node
+            if (root.left == null && root.right == null) {
+                return null;
+            } else if (root.left == null) { // Node with single child
+                return root.right;
+            } else if (root.right == null) { // Node with single child
+                return root.left;
+            } else { // Node with two childs
+                // find inorder successor
+                TreeNode IS = inorderSuccessor(root.right);
+                // replace root's data with inorder successor's data
+                root.val = IS.val;
+
+                // delete the inorder successor
+                root.right = delete(root.right, IS.val);
+            }
+        }
+        return root;
+    }
+
+    public static TreeNode inorderSuccessor(TreeNode root) {
+        while (root.left != null) {
+            root = root.left;
+        }
+        return root;
+    }
+
+    public static void levelOrderPrint(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        levelOrderPrint(root.left);
+        System.out.print(root.val + " - ");
+        levelOrderPrint(root.right);
     }
 
     public static boolean searchNode(TreeNode root, int key) {
@@ -67,6 +118,7 @@ public class chapter_18 {
     }
 
     static class TreeNode {
+
         int val;
         TreeNode left;
         TreeNode right;
