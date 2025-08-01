@@ -8,27 +8,46 @@ import java.util.*;
 public class chapter_18 {
 
     public static void main(String args[]) {
-        int arr[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
-        TreeNode t = buildTree(arr);
-        inorderTraversal(t);
-        System.out.println();
+        // int arr[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
+        // TreeNode t = buildTree(arr);
+        // inorderTraversal(t);
+        // System.out.println();
 
-        // TreeNode root = new TreeNode(8);
-        // root.left = new TreeNode(5);
-        // root.right = new TreeNode(10);
-        // root.left.left = new TreeNode(3);
-        // root.left.right = new TreeNode(6);
-        // root.left.left.left = new TreeNode(1);
-        // root.left.left.right = new TreeNode(4);
-        // root.right.right = new TreeNode(11);
-        // root.right.right.right = new TreeNode(14);
+        TreeNode root = new TreeNode(8);
+        root.left = new TreeNode(5);
+        root.right = new TreeNode(10);
+        root.left.left = new TreeNode(3);
+        root.left.right = new TreeNode(6);
+        root.left.left.left = new TreeNode(1);
+        root.left.left.right = new TreeNode(4);
+        root.right.right = new TreeNode(1);
+        root.right.right.right = new TreeNode(14);
         // System.out.println(searchNode(root, 121));
         // levelOrderPrint(t);
         // System.out.println();
-        rootToLeaf(t);
+        // rootToLeaf(t);
+
+        System.out.println(isValidBST(root, null, null));
         // levelOrderPrint(t);
         // System.out.println();
     }
+
+    public static boolean isValidBST(TreeNode root, TreeNode min, TreeNode max) {
+        if (root == null) {
+            return true;
+        }
+        if (min != null && root.val <= min.val) {
+            return false;
+        }
+
+        if (max != null && root.val >= max.val) {
+            return false;
+        }
+
+        return isValidBST(root.left, min, root)
+                && isValidBST(root.right, root, max);
+    }
+
     static ArrayList<Integer> path = new ArrayList<>();
 
     public static void rootToLeaf(TreeNode root) {
