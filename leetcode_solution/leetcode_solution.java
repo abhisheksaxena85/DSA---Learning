@@ -35,6 +35,19 @@ public class leetcode_solution {
         System.out.print(reverseWords(str));
     }
 
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        if (root == null) {
+            return new TreeNode(val);
+        }
+
+        if (root.val < val) { // Right side traversal
+            root.right = insertIntoBST(root.right, val);
+        } else if (root.val > val) { // Left side traversal
+            root.left = insertIntoBST(root.left, val);
+        }
+        return root;
+    }
+
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return root;
@@ -416,7 +429,7 @@ public class leetcode_solution {
     // return 0;
     // }
 
-    /// Reverse the input int value only in 32bit signed integer, If it crosses
+/// Reverse the input int value only in 32bit signed integer, If it crosses
     /// 32bit limit then return 0;
     // public static int reverseNumber(int x) {
     // int a = x;
