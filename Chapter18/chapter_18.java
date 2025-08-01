@@ -8,28 +8,44 @@ import java.util.*;
 public class chapter_18 {
 
     public static void main(String args[]) {
-        // int arr[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
-        // TreeNode t = buildTree(arr);
+        int arr[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
+        TreeNode t = buildTree(arr);
         // inorderTraversal(t);
         // System.out.println();
 
-        TreeNode root = new TreeNode(8);
-        root.left = new TreeNode(5);
-        root.right = new TreeNode(10);
-        root.left.left = new TreeNode(3);
-        root.left.right = new TreeNode(6);
-        root.left.left.left = new TreeNode(1);
-        root.left.left.right = new TreeNode(4);
-        root.right.right = new TreeNode(1);
-        root.right.right.right = new TreeNode(14);
+        // TreeNode root = new TreeNode(8);
+        // root.left = new TreeNode(5);
+        // root.right = new TreeNode(10);
+        // root.left.left = new TreeNode(3);
+        // root.left.right = new TreeNode(6);
+        // root.left.left.left = new TreeNode(1);
+        // root.left.left.right = new TreeNode(4);
+        // root.right.right = new TreeNode(11);
+        // root.right.right.right = new TreeNode(14);
         // System.out.println(searchNode(root, 121));
-        // levelOrderPrint(t);
-        // System.out.println();
+        levelOrderPrint(t);
+        System.out.println();
         // rootToLeaf(t);
-
-        System.out.println(isValidBST(root, null, null));
+        // System.out.println(isValidBST(t, null, null));
         // levelOrderPrint(t);
         // System.out.println();
+
+        mirrorEffect(t);
+
+        levelOrderPrint(t);
+    }
+
+    public static TreeNode mirrorEffect(TreeNode root) {
+        if (root == null) {
+            return root;
+        }
+
+        TreeNode left = mirrorEffect(root.left);
+        TreeNode right = mirrorEffect(root.right);
+
+        root.left = right;
+        root.right = left;
+        return root;
     }
 
     public static boolean isValidBST(TreeNode root, TreeNode min, TreeNode max) {
