@@ -5,7 +5,7 @@
 
 import java.util.*;
 
-public class chapter_18 {
+class chapter_18 {
 
     public static void main(String args[]) {
         int arr[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
@@ -33,6 +33,17 @@ public class chapter_18 {
         mirrorEffect(t);
 
         levelOrderPrint(t);
+    }
+
+    public static TreeNode buildTree(int si, int ei, int[] nums) {
+        if (si > ei) {
+            return null;
+        }
+        int mid = (si + ei) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = buildTree(si, mid - 1, nums);
+        root.right = buildTree(mid + 1, ei, nums);
+        return root;
     }
 
     public static TreeNode mirrorEffect(TreeNode root) {
