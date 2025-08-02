@@ -35,6 +35,34 @@ public class leetcode_solution {
         System.out.print(reverseWords(str));
     }
 
+    ArrayList<Integer> arr = new ArrayList<>();
+
+    public TreeNode balanceBST(TreeNode root) {
+        inorder(root);
+        return buildTree(0, arr.size() - 1);
+    }
+
+    public TreeNode buildTree(int si, int ei) {
+        if (si > ei) {
+            return null;
+        }
+        int mid = (si + ei) / 2;
+
+        TreeNode root = new TreeNode(arr.get(mid));
+        root.left = buildTree(si, mid - 1);
+        root.right = buildTree(mid + 1, ei);
+        return root;
+    }
+
+    public void inorder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left);
+        arr.add(root.val);
+        inorder(root.right);
+    }
+
     public TreeNode insertIntoBST(TreeNode root, int val) {
         if (root == null) {
             return new TreeNode(val);
