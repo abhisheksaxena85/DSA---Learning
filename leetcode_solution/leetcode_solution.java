@@ -3,8 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import javax.swing.tree.TreeNode;
-
 public class leetcode_solution {
 
     public static void main(String[] args) {
@@ -33,6 +31,24 @@ public class leetcode_solution {
         // System.out.println(reverseVowels(str));
         String str = "a good   example";
         System.out.print(reverseWords(str));
+    }
+
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        if (root1 == null && root2 == null) {
+            return null;
+        }
+        if (root1 == null || root2 == null) {
+            if (root1 == null) {
+                return root2;
+            } else {
+                return root1;
+            }
+        }
+
+        root1.val = root1.val + root2.val;
+        root1.left = mergeTrees(root1.left, root2.left);
+        root1.right = mergeTrees(root1.right, root2.right);
+        return root1;
     }
 
     ArrayList<Integer> arr = new ArrayList<>();
@@ -114,6 +130,17 @@ public class leetcode_solution {
         }
         arr.remove(arr.size() - 1);
         return false;
+    }
+
+    static class TreeNode {
+
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        public TreeNode(int val) {
+            this.val = val;
+        }
     }
 
     public static ListNode swapPairs(ListNode head) {
