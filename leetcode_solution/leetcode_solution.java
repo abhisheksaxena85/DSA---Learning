@@ -32,6 +32,18 @@ public class leetcode_solution {
         String str = "a good   example";
         System.out.print(reverseWords(str));
     }
+    static int total = 0;
+
+    public static TreeNode bstToGst(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        bstToGst(root.right);
+        total += root.val;
+        root.val = total;
+        bstToGst(root.left);
+        return root;
+    }
 
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
         if (root1 == null && root2 == null) {
