@@ -23,16 +23,68 @@ class chapter_18 {
         // root.right.right = new TreeNode(11);
         // root.right.right.right = new TreeNode(14);
         // System.out.println(searchNode(root, 121));
-        levelOrderPrint(t);
-        System.out.println();
+        // levelOrderPrint(t);
+        // System.out.println();
         // rootToLeaf(t);
         // System.out.println(isValidBST(t, null, null));
         // levelOrderPrint(t);
         // System.out.println();
+        // mirrorEffect(t);
+        // levelOrderPrint(t);
+        TreeNode root = new TreeNode(50);
+        root.left = new TreeNode(30);
+        root.left.left = new TreeNode(5);
+        root.left.right = new TreeNode(20);
 
-        mirrorEffect(t);
+        root.right = new TreeNode(60);
+        root.right.left = new TreeNode(45);
+        root.right.right = new TreeNode(70);
+        root.right.right.left = new TreeNode(65);
+        root.right.right.right = new TreeNode(80);
+        boolean val = getLargestBST(root).isValidBST;
+        System.out.println(val);
+        System.out.println("Largest valid BST - " + maxLengthOfRoot);
+    }
 
-        levelOrderPrint(t);
+    static class Info {
+
+        boolean isValidBST;
+        int max;
+        int min;
+        int size;
+
+        Info(boolean isValidBST, int max, int min, int size) {
+            this.isValidBST = isValidBST;
+            this.max = max;
+            this.min = min;
+            this.size = size;
+        }
+    }
+    static int maxLengthOfRoot = 0;
+
+    public static Info getLargestBST(TreeNode root) {
+        if (root == null) {
+            return new Info(true, Integer.MIN_VALUE, Integer.MAX_VALUE, 0);
+        }
+        Info left = getLargestBST(root.left);
+        Info right = getLargestBST(root.right);
+
+        int max = Math.max(root.val, Math.max(left.max, right.max));
+        int min = Math.min(root.val, Math.min(left.min, right.min));
+        int size = left.size + right.size + 1;
+
+        // when BST is not valid
+        if (root.val <= left.max || root.val >= right.min) {
+            return new Info(false, max, min, size);
+        }
+
+        // if Left or right is invalid BST then current root also be invalid
+        if (left.isValidBST && right.isValidBST) {
+            maxLengthOfRoot = Math.max(maxLengthOfRoot, size);
+            return new Info(true, max, min, size);
+        }
+
+        return new Info(false, max, min, size);
     }
 
     public static TreeNode buildTree(int si, int ei, int[] nums) {
