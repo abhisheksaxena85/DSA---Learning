@@ -32,6 +32,28 @@ public class leetcode_solution {
         String str = "a good   example";
         System.out.print(reverseWords(str));
     }
+
+    public static boolean hasPathSum(TreeNode root, int targetSum) {
+        if (root == null) {
+            return false;
+        }
+        return path(root, targetSum, 0);
+    }
+
+    public static boolean path(TreeNode root, int target, int sum) {
+        if (root == null) {
+            return false;
+        }
+        sum += root.val;
+        if (sum == target && root.left == null && root.right == null) {
+            return true;
+        }
+        boolean left = path(root.left, target, sum);
+        boolean right = path(root.right, target, sum);
+
+        return left || right;
+    }
+
     static int total = 0;
 
     public static TreeNode bstToGst(TreeNode root) {
@@ -496,7 +518,7 @@ public class leetcode_solution {
     // return 0;
     // }
 
-/// Reverse the input int value only in 32bit signed integer, If it crosses
+    /// Reverse the input int value only in 32bit signed integer, If it crosses
     /// 32bit limit then return 0;
     // public static int reverseNumber(int x) {
     // int a = x;
