@@ -9,7 +9,7 @@ class chapter_18 {
 
     public static void main(String args[]) {
         int arr[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
-        TreeNode t = buildTree(arr);
+        // TreeNode t = buildTree(arr);
         // inorderTraversal(t);
         // System.out.println();
 
@@ -31,19 +31,84 @@ class chapter_18 {
         // System.out.println();
         // mirrorEffect(t);
         // levelOrderPrint(t);
-        TreeNode root = new TreeNode(50);
-        root.left = new TreeNode(30);
-        root.left.left = new TreeNode(5);
-        root.left.right = new TreeNode(20);
+        TreeNode root1 = new TreeNode(8);
+        root1.left = new TreeNode(4);
+        root1.right = new TreeNode(17);
 
-        root.right = new TreeNode(60);
-        root.right.left = new TreeNode(45);
-        root.right.right = new TreeNode(70);
-        root.right.right.left = new TreeNode(65);
-        root.right.right.right = new TreeNode(80);
-        boolean val = getLargestBST(root).isValidBST;
-        System.out.println(val);
-        System.out.println("Largest valid BST - " + maxLengthOfRoot);
+        TreeNode root2 = new TreeNode(2);
+        root2.left = new TreeNode(1);
+        root2.right = new TreeNode(3);
+
+        TreeNode root = mergeBST(root1, root2);
+        inorderTraversal(root);
+    }
+
+    public static TreeNode mergeBST(TreeNode root1, TreeNode root2) {
+        if (root1 == null && root2 == null) {
+            return null;
+        }
+
+        // Step 1 - Get both BST to sorted lists
+        ArrayList<Integer> arr1 = new ArrayList<>();
+        ArrayList<Integer> arr2 = new ArrayList<>();
+        inorder(root1, arr1);
+        inorder(root2, arr2);
+
+        // Step 2 - Merge both sorted lists into one
+        ArrayList<Integer> mergedList = mergeList(arr1, arr2);
+
+        // Step 3 - Build a BST from merged list with balanced height
+        return buildTree(mergedList, 0, mergedList.size() - 1);
+    }
+
+    // Building BST with sorted list
+    public static TreeNode buildTree(ArrayList<Integer> list, int si, int ei) {
+        if (si > ei) {
+            return null;
+        }
+
+        int mid = (si + ei) / 2;
+        TreeNode root = new TreeNode(list.get(mid));
+        root.left = buildTree(list, si, mid - 1);
+        root.right = buildTree(list, mid + 1, ei);
+        return root;
+    }
+
+    // Merge two soretd lists
+    public static ArrayList<Integer> mergeList(ArrayList<Integer> list1, ArrayList<Integer> list2) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int i = 0, j = 0;
+        while (i < list1.size() && j < list2.size()) {
+            if (list1.get(i) < list2.get(j)) {
+                list.add(list1.get(i));
+                i++;
+            } else {
+                list.add(list2.get(j));
+                j++;
+            }
+        }
+
+        while (i < list1.size()) {
+            list.add(list1.get(i));
+            i++;
+        }
+        while (j < list2.size()) {
+            list.add(list2.get(j));
+            j++;
+        }
+
+        return list;
+    }
+
+    // Get values to list from BST
+    public static void inorder(TreeNode root, ArrayList<Integer> list) {
+        if (root == null) {
+            return;
+        }
+
+        inorder(root.left, list);
+        list.add(root.val);
+        inorder(root.right, list);
     }
 
     static class Info {
@@ -227,14 +292,13 @@ class chapter_18 {
         }
     }
 
-    public static TreeNode buildTree(int[] arr) {
-        TreeNode root = null;
-        for (int i = 0; i < arr.length; i++) {
-            root = insert(root, arr[i]);
-        }
-        return root;
-    }
-
+    // public static TreeNode buildTree(int[] arr) {
+    //     TreeNode root = null;
+    //     for (int i = 0; i < arr.length; i++) {
+    //         root = insert(root, arr[i]);
+    //     }
+    //     return root;
+    // }
     public static TreeNode insert(TreeNode root, int val) {
         if (root == null) {
             return new TreeNode(val);
