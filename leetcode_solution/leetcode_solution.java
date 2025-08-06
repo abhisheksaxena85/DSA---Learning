@@ -33,6 +33,19 @@ public class leetcode_solution {
         System.out.print(reverseWords(str));
     }
 
+    public static String removeStars(String s) {
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (ch != '*') {
+                str.append(ch);
+            } else {
+                str.deleteCharAt(str.length() - 1);
+            }
+        }
+        return str.toString();
+    }
+
     public static boolean hasPathSum(TreeNode root, int targetSum) {
         if (root == null) {
             return false;
@@ -518,7 +531,7 @@ public class leetcode_solution {
     // return 0;
     // }
 
-    /// Reverse the input int value only in 32bit signed integer, If it crosses
+/// Reverse the input int value only in 32bit signed integer, If it crosses
     /// 32bit limit then return 0;
     // public static int reverseNumber(int x) {
     // int a = x;
