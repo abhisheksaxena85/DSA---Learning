@@ -69,21 +69,22 @@ class chapter_19 {
         private void heapify(int rootIndex) {
             int left = (2 * rootIndex) + 1;
             int right = (2 * rootIndex) + 2;
+            int index = rootIndex;
 
             if (left < arr.size() && arr.get(rootIndex) > arr.get(left)) {
-                int temp = arr.get(rootIndex);
-                arr.set(rootIndex, arr.get(left));
-                arr.set(left, temp);
-                heapify(left);
+                index = left;
             }
 
             if (right < arr.size() && arr.get(rootIndex) > arr.get(right)) {
-                int temp = arr.get(rootIndex);
-                arr.set(rootIndex, arr.get(right));
-                arr.set(right, temp);
-                heapify(right);
+                index = right;
             }
 
+            if (index != rootIndex) {
+                int temp = arr.get(rootIndex);
+                arr.set(rootIndex, arr.get(index));
+                arr.set(index, temp);
+                heapify(index);
+            }
         }
     }
 
