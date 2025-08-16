@@ -21,7 +21,10 @@ class chapter_19 {
         h.add(1);
         h.add(0);
 
-        System.out.println(h.peek());
+        while (!h.isEmpty()) {
+            System.out.println(h.peek());
+            h.delete();
+        }
     }
 
     static class Heap {
@@ -44,6 +47,43 @@ class chapter_19 {
 
         public int peek() {
             return arr.get(0);
+        }
+
+        public void delete() {
+            // step - 1 : swap root node with last in arr
+            // int temp = arr.get(arr.size() - 1);
+            // arr.set(arr.size() - 1, arr.get(0));
+            // arr.set(0, temp);
+
+            // step - 2 : Delete the last node
+            arr.remove(0);
+
+            // call the heapify to fix the CBT
+            heapify(0);
+        }
+
+        public boolean isEmpty() {
+            return arr.isEmpty();
+        }
+
+        private void heapify(int rootIndex) {
+            int left = (2 * rootIndex) + 1;
+            int right = (2 * rootIndex) + 2;
+
+            if (left < arr.size() && arr.get(rootIndex) > arr.get(left)) {
+                int temp = arr.get(rootIndex);
+                arr.set(rootIndex, arr.get(left));
+                arr.set(left, temp);
+                heapify(left);
+            }
+
+            if (right < arr.size() && arr.get(rootIndex) > arr.get(right)) {
+                int temp = arr.get(rootIndex);
+                arr.set(rootIndex, arr.get(right));
+                arr.set(right, temp);
+                heapify(right);
+            }
+
         }
     }
 
