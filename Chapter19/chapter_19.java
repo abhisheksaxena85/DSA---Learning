@@ -27,19 +27,37 @@ class chapter_19 {
         // }
 
         /// Heap Sort Algorithm
-        int arr[] = { 2, 4, 1, 7, 3, 5 };
-        heapSort(arr);
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+        // int arr[] = { 2, 4, 1, 7, 3, 5 };
+        // heapSort(arr);
+        // for (int i = 0; i < arr.length; i++) {
+        // System.out.println(arr[i]);
+        // }
+
+        /// Finding Nearest points from origin with Priority Queues
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        int points[][] = {
+                { 3, 3 },
+                { 5, -1 },
+                { -2, 4 }
+        };
+        int k = 2;
+
+        for (int i = 0; i < points.length; i++) {
+            pq.add(
+                    points[i][0] * points[i][0] + points[i][1] * points[i][1]);
+        }
+
+        while (k > 0) {
+            System.out.println(pq.peek());
+            pq.remove();
+            k--;
         }
     }
 
     public static void heapSort(int arr[]) {
-
         for (int i = arr.length / 2; i >= 0; i--) {
             heapify(arr, i, arr.length);
         }
-
         int i = arr.length - 1;
         while (i > 0) {
             int t = arr[i];
@@ -54,11 +72,9 @@ class chapter_19 {
         int left = 2 * i + 1;
         int right = 2 * i + 2;
         int maxIndex = i;
-
         if (left < size && arr[left] < arr[maxIndex]) {
             maxIndex = left;
         }
-
         if (right < size && arr[right] < arr[maxIndex]) {
             maxIndex = right;
         }
