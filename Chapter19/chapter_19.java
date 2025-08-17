@@ -14,16 +14,60 @@ class chapter_19 {
         // pq.add(new Student("D", 2));
         // System.out.println(pq.peek().name + " -- " + pq.peek().rank);
 
-        Heap h = new Heap();
-        h.add(4);
-        h.add(2);
-        h.add(5);
-        h.add(1);
-        h.add(0);
+        // Heap h = new Heap();
+        // h.add(4);
+        // h.add(2);
+        // h.add(5);
+        // h.add(1);
+        // h.add(0);
 
-        while (!h.isEmpty()) {
-            System.out.println(h.peek());
-            h.delete();
+        // while (!h.isEmpty()) {
+        // System.out.println(h.peek());
+        // h.delete();
+        // }
+
+        /// Heap Sort Algorithm
+        int arr[] = { 2, 4, 1, 7, 3, 5 };
+        heapSort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+    }
+
+    public static void heapSort(int arr[]) {
+
+        for (int i = arr.length / 2; i >= 0; i--) {
+            heapify(arr, i, arr.length);
+        }
+
+        int i = arr.length - 1;
+        while (i > 0) {
+            int t = arr[i];
+            arr[i] = arr[0];
+            arr[0] = t;
+            heapify(arr, 0, i);
+            i--;
+        }
+    }
+
+    public static void heapify(int arr[], int i, int size) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int maxIndex = i;
+
+        if (left < size && arr[left] < arr[maxIndex]) {
+            maxIndex = left;
+        }
+
+        if (right < size && arr[right] < arr[maxIndex]) {
+            maxIndex = right;
+        }
+
+        if (maxIndex != i) {
+            int t = arr[i];
+            arr[i] = arr[maxIndex];
+            arr[maxIndex] = t;
+            heapify(arr, maxIndex, size);
         }
     }
 
@@ -71,11 +115,11 @@ class chapter_19 {
             int right = (2 * rootIndex) + 2;
             int index = rootIndex;
 
-            if (left < arr.size() && arr.get(rootIndex) > arr.get(left)) {
+            if (left < arr.size() && arr.get(index) > arr.get(left)) {
                 index = left;
             }
 
-            if (right < arr.size() && arr.get(rootIndex) > arr.get(right)) {
+            if (right < arr.size() && arr.get(index) > arr.get(right)) {
                 index = right;
             }
 
