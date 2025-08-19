@@ -7,10 +7,10 @@ public class leetCode {
         // int image[][] = {{1, 1, 0, 0}, {1, 0, 0, 1}, {0, 1, 1, 1}, {1, 0, 1, 0}};
         // flipAndInvertImage(image);
         // for (int row = 0; row < image.length; row++) {
-        //     for (int col = 0; col < image.length; col++) {
-        //         System.out.print(image[row][col] + " ");
-        //     }
-        //     System.out.println();
+        // for (int col = 0; col < image.length; col++) {
+        // System.out.print(image[row][col] + " ");
+        // }
+        // System.out.println();
         // }
 
         // ListNode ll = new ListNode(1);
@@ -24,6 +24,51 @@ public class leetCode {
         // ll.printLinkedList();
         // int arr[] = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
         // System.out.println(trap(arr));
+    }
+
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int arr[] = new int[nums1.length + nums2.length];
+        merge(nums1, nums2, arr);
+
+        double result = 0.0;
+        if (arr.length % 2 != 0) {
+            return (double) arr[arr.length / 2];
+        } else {
+            int mid = arr.length / 2;
+            int median = arr[mid] + arr[mid - 1];
+            return (double) median / 2;
+        }
+    }
+
+    public int[] merge(int[] arr1, int[] arr2, int[] result) {
+        int ptr1 = 0;
+        int ptr2 = 0;
+        int index = 0;
+
+        while (ptr1 < arr1.length && ptr2 < arr2.length) {
+            if (arr1[ptr1] < arr2[ptr2]) {
+                result[index] = arr1[ptr1];
+                ptr1++;
+            } else {
+                result[index] = arr2[ptr2];
+                ptr2++;
+            }
+            index++;
+        }
+
+        while (ptr1 < arr1.length) {
+            result[index] = arr1[ptr1];
+            index++;
+            ptr1++;
+        }
+
+        while (ptr2 < arr2.length) {
+            result[index] = arr2[ptr2];
+            index++;
+            ptr2++;
+        }
+
+        return result;
     }
 
     public static ListNode insertGreatestCommonDivisors(ListNode head) {
@@ -94,7 +139,7 @@ public class leetCode {
         int endCol = matrix[0].length - 1;
 
         while (startRow <= endRow && startCol <= endCol) {
-            // Start Row 
+            // Start Row
             for (int i = startCol; i <= endCol; i++) {
                 matrix[startRow][i] = counter;
                 counter++;
