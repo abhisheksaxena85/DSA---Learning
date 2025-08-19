@@ -34,24 +34,42 @@ class chapter_19 {
         // }
 
         /// Finding Nearest points from origin with Priority Queues
+        // PriorityQueue<Integer> pq = new PriorityQueue<>();
+        // int points[][] = {
+        // { 3, 3 },
+        // { 5, -1 },
+        // { -2, 4 }
+        // };
+        // int k = 2;
+
+        // for (int i = 0; i < points.length; i++) {
+        // pq.add(
+        // points[i][0] * points[i][0] + points[i][1] * points[i][1]);
+        // }
+
+        // while (k > 0) {
+        // System.out.println(pq.peek());
+        // pq.remove();
+        // k--;
+        // }
+
+        /// Connecting Ropes Problem
+        int arr[] = { 2, 3, 3, 4, 6 };
+        int totalSum = 0;
         PriorityQueue<Integer> pq = new PriorityQueue<>();
-        int points[][] = {
-                { 3, 3 },
-                { 5, -1 },
-                { -2, 4 }
-        };
-        int k = 2;
-
-        for (int i = 0; i < points.length; i++) {
-            pq.add(
-                    points[i][0] * points[i][0] + points[i][1] * points[i][1]);
+        for (int i = 0; i < arr.length; i++) {
+            pq.add(arr[i]);
         }
 
-        while (k > 0) {
-            System.out.println(pq.peek());
-            pq.remove();
-            k--;
+        while (pq.size() > 1) {
+            int val1 = pq.remove();
+            int val2 = pq.remove();
+
+            pq.add(val1 + val2);
+            totalSum += (val1 + val2);
         }
+        System.out.println(totalSum);
+
     }
 
     public static void heapSort(int arr[]) {
