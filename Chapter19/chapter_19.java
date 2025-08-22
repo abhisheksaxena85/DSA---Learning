@@ -70,26 +70,80 @@ class chapter_19 {
         // }
         // System.out.println(totalSum);
 
-        int arm[][] = {
-                { 1, 0, 0, 0 },
-                { 1, 1, 1, 1 },
-                { 1, 0, 0, 0 },
-                { 1, 0, 0, 0 }
-        };
-        PriorityQueue<Row> pq = new PriorityQueue<>();
-        for (int i = 0; i < arm.length; i++) {
-            int totalSol = 0;
-            for (int j = 0; j < arm[i].length; j++) {
-                if (arm[i][j] == 1) {
-                    totalSol++;
-                }
-            }
-            pq.add(new Row(i, totalSol));
+        // int arm[][] = {
+        // { 1, 0, 0, 0 },
+        // { 1, 1, 1, 1 },
+        // { 1, 0, 0, 0 },
+        // { 1, 0, 0, 0 }
+        // };
+        // PriorityQueue<Row> pq = new PriorityQueue<>();
+        // for (int i = 0; i < arm.length; i++) {
+        // int totalSol = 0;
+        // for (int j = 0; j < arm[i].length; j++) {
+        // if (arm[i][j] == 1) {
+        // totalSol++;
+        // }
+        // }
+        // pq.add(new Row(i, totalSol));
+        // }
+
+        // System.out.println(pq.remove().index);
+        // System.out.println(pq.remove().index);
+
+        int nums[] = { 1, 3, -1, -3, 5, 3, 6, 7 };
+        int result[] = maxSlidingWindow(nums, 3);
+        for (int i = 0; i < result.length; i++) {
+            System.out.println(result[i]);
         }
 
-        System.out.println(pq.remove().index);
-        System.out.println(pq.remove().index);
+    }
 
+    public static int[] maxSlidingWindow(int[] nums, int k) {
+        if (k == 1 || k == 0) {
+            return nums;
+        }
+        int arr[] = new int[nums.length - (k - 1)];
+        PriorityQueue<PQ> pq = new PriorityQueue<>();
+        int si = 0;
+        int ei = k - 1;
+        int index = 0;
+
+        for (int i = 0; i < k; i++) {
+            pq.add(new PQ(i, nums[i]));
+        }
+        arr[index] = pq.peek().value;
+        index++;
+        si++;
+        ei++;
+
+        while (!pq.isEmpty() && ei < nums.length) {
+            if (pq.peek().index < si) {
+                pq.remove();
+            } else {
+                pq.add(new PQ(ei, nums[ei]));
+                arr[index] = pq.peek().value;
+                si++;
+                ei++;
+                index++;
+            }
+        }
+
+        return arr;
+    }
+
+    static class PQ implements Comparable<PQ> {
+        int index;
+        int value;
+
+        PQ(int index, int value) {
+            this.index = index;
+            this.value = value;
+        }
+
+        @Override
+        public int compareTo(PQ pq) {
+            return pq.value - value;
+        }
     }
 
     static class Row implements Comparable<Row> {
