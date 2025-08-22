@@ -54,22 +54,61 @@ class chapter_19 {
         // }
 
         /// Connecting Ropes Problem
-        int arr[] = { 2, 3, 3, 4, 6 };
-        int totalSum = 0;
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        for (int i = 0; i < arr.length; i++) {
-            pq.add(arr[i]);
+        // int arr[] = { 2, 3, 3, 4, 6 };
+        // int totalSum = 0;
+        // PriorityQueue<Integer> pq = new PriorityQueue<>();
+        // for (int i = 0; i < arr.length; i++) {
+        // pq.add(arr[i]);
+        // }
+
+        // while (pq.size() > 1) {
+        // int val1 = pq.remove();
+        // int val2 = pq.remove();
+
+        // pq.add(val1 + val2);
+        // totalSum += (val1 + val2);
+        // }
+        // System.out.println(totalSum);
+
+        int arm[][] = {
+                { 1, 0, 0, 0 },
+                { 1, 1, 1, 1 },
+                { 1, 0, 0, 0 },
+                { 1, 0, 0, 0 }
+        };
+        PriorityQueue<Row> pq = new PriorityQueue<>();
+        for (int i = 0; i < arm.length; i++) {
+            int totalSol = 0;
+            for (int j = 0; j < arm[i].length; j++) {
+                if (arm[i][j] == 1) {
+                    totalSol++;
+                }
+            }
+            pq.add(new Row(i, totalSol));
         }
 
-        while (pq.size() > 1) {
-            int val1 = pq.remove();
-            int val2 = pq.remove();
+        System.out.println(pq.remove().index);
+        System.out.println(pq.remove().index);
 
-            pq.add(val1 + val2);
-            totalSum += (val1 + val2);
+    }
+
+    static class Row implements Comparable<Row> {
+        int index;
+        int soldierCount;
+
+        Row(int index, int soldierCount) {
+            this.index = index;
+            this.soldierCount = soldierCount;
         }
-        System.out.println(totalSum);
 
+        @Override
+        public int compareTo(Row r) {
+            if (soldierCount != r.soldierCount) {
+                return soldierCount - r.soldierCount;
+            } else {
+                return index - r.index;
+            }
+        }
     }
 
     public static void heapSort(int arr[]) {
