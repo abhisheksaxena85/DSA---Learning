@@ -3,24 +3,40 @@
     Start Date - Aug 22 2025, 09:35 PM
  */
 
-import java.util.TreeMap;
+import java.util.HashMap;
 
 public class chapter_20 {
 
     public static void main(String[] args) {
-        TreeMap<String, Integer> map = new TreeMap<>();
-        map.put("india", 120);
-        map.put("china", 140);
+        // TreeMap<String, Integer> map = new TreeMap<>();
+        // map.put("india", 120);
+        // map.put("china", 140);
 
-        map.put("a1", 5689);
-        map.put("a2", 5689);
-        map.put("asdfghjk3", 5689);
-        map.put("asdfghjk4", 5689);
-        map.put("asdfghjk5", 5689);
-        map.put("asdfghjk6", 5689);
-        map.put("asdfghjk7", 5689);
-        map.put("asdfghjk9", 5689);
-        System.out.println(map);
+        // map.put("a1", 5689);
+        // map.put("a2", 5689);
+        // map.put("asdfghjk3", 5689);
+        // map.put("asdfghjk4", 5689);
+        // map.put("asdfghjk5", 5689);
+        // map.put("asdfghjk6", 5689);
+        // map.put("asdfghjk7", 5689);
+        // map.put("asdfghjk9", 5689);
+        // System.out.println(map);
+
+        int arr[] = { 1, 2 };
+        int n = arr.length / 3;
+        HashMap<Integer, Integer> hash = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (hash.containsKey(arr[i])) {
+                hash.put(arr[i], hash.get(arr[i]) + 1);
+            } else {
+                hash.put(arr[i], 1);
+            }
+        }
+        for (Integer key : hash.keySet()) {
+            if (hash.get(key) >= n) {
+                System.out.println(key);
+            }
+        }
     }
 }
 
