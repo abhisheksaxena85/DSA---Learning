@@ -41,29 +41,40 @@ public class chapter_20 {
         // }
         // }
 
-        String s1 = "tulip";
-        String s2 = "lipid";
-        HashMap<Character, Integer> s1Hash = new HashMap<>();
-        HashMap<Character, Integer> s2Hash = new HashMap<>();
+        // String s1 = "tulip";
+        // String s2 = "lipid";
+        // HashMap<Character, Integer> s1Hash = new HashMap<>();
+        // HashMap<Character, Integer> s2Hash = new HashMap<>();
 
-        for (int i = 0; i < s1.length() && i < s2.length(); i++) {
-            s1Hash.put(s1.charAt(i), s1Hash.getOrDefault(s1.charAt(i), 0) + 1);
-            s2Hash.put(s2.charAt(i), s2Hash.getOrDefault(s2.charAt(i), 0) + 1);
-        }
+        // for (int i = 0; i < s1.length() && i < s2.length(); i++) {
+        // s1Hash.put(s1.charAt(i), s1Hash.getOrDefault(s1.charAt(i), 0) + 1);
+        // s2Hash.put(s2.charAt(i), s2Hash.getOrDefault(s2.charAt(i), 0) + 1);
+        // }
 
-        Character set1[] = s1Hash.keySet().toArray(new Character[0]);
-        Character set2[] = s1Hash.keySet().toArray(new Character[0]);
+        // Character set1[] = s1Hash.keySet().toArray(new Character[0]);
+        // Character set2[] = s1Hash.keySet().toArray(new Character[0]);
 
-        for (int i = 0; i < set1.length && i < set2.length; i++) {
-            Character c1 = set1[i];
-            Character c2 = set2[i];
+        // for (int i = 0; i < set1.length && i < set2.length; i++) {
+        // Character c1 = set1[i];
+        // Character c2 = set2[i];
 
-            if (s2Hash.get(c1) != s1Hash.get(c1)) {
-                System.out.println(false);
-                return;
-            }
-        }
-        System.out.println(true);
+        // if (s2Hash.get(c1) != s1Hash.get(c1)) {
+        // System.out.println(false);
+        // return;
+        // }
+        // }
+        // System.out.println(true);
+
+        HashSet<Integer> hashSet = new HashSet<>();
+        hashSet.add(2);
+        hashSet.add(1);
+        hashSet.add(4);
+        hashSet.add(5);
+        hashSet.add(5);
+        hashSet.add(5);
+        hashSet.add(5);
+        hashSet.remove(1);
+        System.out.println(hashSet);
     }
 }
 
