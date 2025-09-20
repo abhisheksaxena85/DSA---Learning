@@ -4,6 +4,9 @@
  */
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.*;
+// import java.util.HashMap;
 
 public class chapter_20 {
 
@@ -22,21 +25,45 @@ public class chapter_20 {
         // map.put("asdfghjk9", 5689);
         // System.out.println(map);
 
-        int arr[] = { 1, 2 };
-        int n = arr.length / 3;
-        HashMap<Integer, Integer> hash = new HashMap<>();
-        for (int i = 0; i < arr.length; i++) {
-            if (hash.containsKey(arr[i])) {
-                hash.put(arr[i], hash.get(arr[i]) + 1);
-            } else {
-                hash.put(arr[i], 1);
+        // int arr[] = { 1, 2 };
+        // int n = arr.length / 3;
+        // HashMap<Integer, Integer> hash = new HashMap<>();
+        // for (int i = 0; i < arr.length; i++) {
+        // if (hash.containsKey(arr[i])) {
+        // hash.put(arr[i], hash.get(arr[i]) + 1);
+        // } else {
+        // hash.put(arr[i], 1);
+        // }
+        // }
+        // for (Integer key : hash.keySet()) {
+        // if (hash.get(key) >= n) {
+        // System.out.println(key);
+        // }
+        // }
+
+        String s1 = "tulip";
+        String s2 = "lipid";
+        HashMap<Character, Integer> s1Hash = new HashMap<>();
+        HashMap<Character, Integer> s2Hash = new HashMap<>();
+
+        for (int i = 0; i < s1.length() && i < s2.length(); i++) {
+            s1Hash.put(s1.charAt(i), s1Hash.getOrDefault(s1.charAt(i), 0) + 1);
+            s2Hash.put(s2.charAt(i), s2Hash.getOrDefault(s2.charAt(i), 0) + 1);
+        }
+
+        Character set1[] = s1Hash.keySet().toArray(new Character[0]);
+        Character set2[] = s1Hash.keySet().toArray(new Character[0]);
+
+        for (int i = 0; i < set1.length && i < set2.length; i++) {
+            Character c1 = set1[i];
+            Character c2 = set2[i];
+
+            if (s2Hash.get(c1) != s1Hash.get(c1)) {
+                System.out.println(false);
+                return;
             }
         }
-        for (Integer key : hash.keySet()) {
-            if (hash.get(key) >= n) {
-                System.out.println(key);
-            }
-        }
+        System.out.println(true);
     }
 }
 
