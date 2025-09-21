@@ -26,6 +26,17 @@ public class leetCode {
         // System.out.println(trap(arr));
     }
 
+    public static int evenNumberBitwiseORs(int[] nums) {
+        int result = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 0) {
+                result = nums[i] | result;
+            }
+        }
+        System.out.println(result);
+        return result;
+    }
+
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int arr[] = new int[nums1.length + nums2.length];
         merge(nums1, nums2, arr);
