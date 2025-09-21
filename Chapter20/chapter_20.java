@@ -65,16 +65,24 @@ public class chapter_20 {
         // }
         // System.out.println(true);
 
-        HashSet<Integer> hashSet = new HashSet<>();
-        hashSet.add(2);
-        hashSet.add(1);
-        hashSet.add(4);
-        hashSet.add(5);
-        hashSet.add(5);
-        hashSet.add(5);
-        hashSet.add(5);
-        hashSet.remove(1);
-        System.out.println(hashSet);
+        // TreeSet<Integer> hashSet = new TreeSet<>();
+        // hashSet.add(2);
+        // hashSet.add(1);
+        // hashSet.add(4);
+        // hashSet.add(5);
+        // System.out.println(hashSet);
+        // while (hashSet.iterator().hasNext()) {
+        // System.out.println(hashSet.iterator().next());
+        // hashSet.remove(hashSet.iterator().next());
+        // }
+
+        int arr[] = { 4, 3, 2, 5, 6, 7, 3, 4, 2, 1 };
+        HashSet<Integer> hash = new HashSet<>();
+        for (int i = 0; i < arr.length; i++) {
+            hash.add(arr[i]);
+        }
+
+        System.out.println(hash.size());
     }
 }
 
