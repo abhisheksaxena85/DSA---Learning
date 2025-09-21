@@ -3,8 +3,6 @@
     Start Date - Aug 22 2025, 09:35 PM
  */
 
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.*;
 // import java.util.HashMap;
 
@@ -84,29 +82,56 @@ public class chapter_20 {
 
         // System.out.println(hash.size());
 
-        int set1[] = { 7, 3, 9 };
-        int set2[] = { 6, 3, 9, 2, 9, 4 };
+        // int set1[] = { 7, 3, 9 };
+        // int set2[] = { 6, 3, 9, 2, 9, 4 };
 
-        /// Union of two sets
-        HashSet<Integer> hashUnion = new HashSet<>();
-        for (int i = 0; i < set1.length; i++) {
-            hashUnion.add(set1[i]);
-        }
-        for (int i = 0; i < set2.length; i++) {
-            hashUnion.add(set2[i]);
-        }
-        // System.out.println(hashUnion);
+        // /// Union of two sets
+        // HashSet<Integer> hashUnion = new HashSet<>();
+        // for (int i = 0; i < set1.length; i++) {
+        // hashUnion.add(set1[i]);
+        // }
+        // for (int i = 0; i < set2.length; i++) {
+        // hashUnion.add(set2[i]);
+        // }
+        // // System.out.println(hashUnion);
 
-        HashSet<Integer> hash = new HashSet<>();
-        for (int i = 0; i < set1.length; i++) {
-            hash.add(set1[i]);
+        // HashSet<Integer> hash = new HashSet<>();
+        // for (int i = 0; i < set1.length; i++) {
+        // hash.add(set1[i]);
+        // }
+        // for (int i = 0; i < set2.length; i++) {
+        // if (hash.contains(set2[i])) {
+        // hash.remove(set1[i]);
+        // System.out.println(set2[i]);
+        // }
+        // }
+
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("Chennai", "Bengaluru");
+        hashMap.put("Mumbai", "Delhi");
+        hashMap.put("Goa", "Chennai");
+        hashMap.put("Delhi", "Goa");
+
+        String starting = getStart(hashMap);
+
+        for (int i = 0; i < hashMap.size() + 1; i++) {
+            System.out.print(starting + " -> ");
+            starting = hashMap.get(starting);
         }
-        for (int i = 0; i < set2.length; i++) {
-            if (hash.contains(set2[i])) {
-                hash.remove(set1[i]);
-                System.out.println(set2[i]);
+    }
+
+    public static String getStart(HashMap<String, String> hashMap) {
+        HashMap<String, String> reversedHash = new HashMap<>();
+        for (String key : hashMap.keySet()) {
+            reversedHash.put(hashMap.get(key), key);
+        }
+
+        for (String key : hashMap.keySet()) {
+            if (!reversedHash.containsKey(key)) {
+                return key;
             }
         }
+        return null;
     }
 }
 
