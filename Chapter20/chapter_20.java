@@ -76,13 +76,37 @@ public class chapter_20 {
         // hashSet.remove(hashSet.iterator().next());
         // }
 
-        int arr[] = { 4, 3, 2, 5, 6, 7, 3, 4, 2, 1 };
-        HashSet<Integer> hash = new HashSet<>();
-        for (int i = 0; i < arr.length; i++) {
-            hash.add(arr[i]);
-        }
+        // int arr[] = { 4, 3, 2, 5, 6, 7, 3, 4, 2, 1 };
+        // HashSet<Integer> hash = new HashSet<>();
+        // for (int i = 0; i < arr.length; i++) {
+        // hash.add(arr[i]);
+        // }
 
-        System.out.println(hash.size());
+        // System.out.println(hash.size());
+
+        int set1[] = { 7, 3, 9 };
+        int set2[] = { 6, 3, 9, 2, 9, 4 };
+
+        /// Union of two sets
+        HashSet<Integer> hashUnion = new HashSet<>();
+        for (int i = 0; i < set1.length; i++) {
+            hashUnion.add(set1[i]);
+        }
+        for (int i = 0; i < set2.length; i++) {
+            hashUnion.add(set2[i]);
+        }
+        // System.out.println(hashUnion);
+
+        HashSet<Integer> hash = new HashSet<>();
+        for (int i = 0; i < set1.length; i++) {
+            hash.add(set1[i]);
+        }
+        for (int i = 0; i < set2.length; i++) {
+            if (hash.contains(set2[i])) {
+                hash.remove(set1[i]);
+                System.out.println(set2[i]);
+            }
+        }
     }
 }
 
