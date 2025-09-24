@@ -41,7 +41,7 @@ public class leetCode {
         int arr[] = new int[nums1.length + nums2.length];
         merge(nums1, nums2, arr);
 
-        double result = 0.0;
+        // double result = 0.0;/
         if (arr.length % 2 != 0) {
             return (double) arr[arr.length / 2];
         } else {
@@ -85,9 +85,9 @@ public class leetCode {
     public static ListNode insertGreatestCommonDivisors(ListNode head) {
         ListNode t = head.next;
         ListNode prev = head;
-        if (head == null && head.next == null) {
-            return head;
-        }
+        // if (head == null && head.next == null) {
+        // return head;
+        // }
         while (t != null) {
             int divisor = findDivisor(prev.val, t.val);
             ListNode newNode = new ListNode(divisor);

@@ -15,7 +15,7 @@ public class chapter_13 {
         ll.addLast(6);
         ll.addLast(7);
         ll.printLinkedList();
-        ll.zigzag(ll.head);
+        // ll.zigzag(ll.head);
         ll.printLinkedList();
 
         // System.out.println("Searched index Recursively: " + ll.searchRecursively(1));
@@ -23,12 +23,10 @@ public class chapter_13 {
         // System.out.println(ll.isCycle());
         // ll.removeCycle();
         // System.out.println(ll.isCycle());
-    
 
-
-/// Applying Merge Sort to unsorted linkedlist 
-    // ll.printLinkedList();
-    // ll.mergeSort(ll.head);
+        /// Applying Merge Sort to unsorted linkedlist
+        // ll.printLinkedList();
+        // ll.mergeSort(ll.head);
     }
 }
 
@@ -51,7 +49,7 @@ class LinkedList {
     }
 
     // Addition in LinkedList is tow types - AddFirst, AddLast
-    // - AddFirst 
+    // - AddFirst
     public void addFirst(int data) {
         Node newNode = new Node(data);
         if (head == null) {
@@ -108,8 +106,8 @@ class LinkedList {
         System.out.println();
     }
 
-    /// Removing the Node out of list - 
-    // Remove First - 
+    /// Removing the Node out of list -
+    // Remove First -
     public void removeFirst() {
         if (size == 0) {
             System.out.println("Linked List is Empty");
@@ -123,7 +121,7 @@ class LinkedList {
         size--;
     }
 
-    // Remove Last - 
+    // Remove Last -
     public void removeLast() {
         if (size == 0) {
             System.out.println("Linked List is empty");

@@ -8,7 +8,7 @@ import java.util.*;
 class chapter_18 {
 
     public static void main(String args[]) {
-        int arr[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
+        // int arr[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
         // TreeNode t = buildTree(arr);
         // inorderTraversal(t);
         // System.out.println();
@@ -125,6 +125,7 @@ class chapter_18 {
             this.size = size;
         }
     }
+
     static int maxLengthOfRoot = 0;
 
     public static Info getLargestBST(TreeNode root) {
@@ -293,11 +294,11 @@ class chapter_18 {
     }
 
     // public static TreeNode buildTree(int[] arr) {
-    //     TreeNode root = null;
-    //     for (int i = 0; i < arr.length; i++) {
-    //         root = insert(root, arr[i]);
-    //     }
-    //     return root;
+    // TreeNode root = null;
+    // for (int i = 0; i < arr.length; i++) {
+    // root = insert(root, arr[i]);
+    // }
+    // return root;
     // }
     public static TreeNode insert(TreeNode root, int val) {
         if (root == null) {
