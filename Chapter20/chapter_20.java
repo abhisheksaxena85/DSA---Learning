@@ -93,7 +93,7 @@ public class chapter_20 {
         // for (int i = 0; i < set2.length; i++) {
         // hashUnion.add(set2[i]);
         // }
-        // // System.out.println(hashUnion);
+        // System.out.println(123);
 
         // HashSet<Integer> hash = new HashSet<>();
         // for (int i = 0; i < set1.length; i++) {
@@ -106,33 +106,54 @@ public class chapter_20 {
         // }
         // }
 
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("Chennai", "Bengaluru");
-        hashMap.put("Mumbai", "Delhi");
-        hashMap.put("Goa", "Chennai");
-        hashMap.put("Delhi", "Goa");
+        // HashMap<String, String> hashMap = new HashMap<>();
+        // hashMap.put("Chennai", "Bengaluru");
+        // hashMap.put("Mumbai", "Delhi");
+        // hashMap.put("Goa", "Chennai");
+        // hashMap.put("Delhi", "Goa");
 
-        String starting = getStart(hashMap);
+        // String starting = getStart(hashMap);
 
-        for (int i = 0; i < hashMap.size() + 1; i++) {
-            System.out.print(starting + " -> ");
-            starting = hashMap.get(starting);
-        }
+        // for (int i = 0; i < hashMap.size() + 1; i++) {
+        // System.out.print(starting + " -> ");
+        // starting = hashMap.get(starting);
+        // }
+
+        int arr[] = { 15, -2, 2, -8, 1, 7, 10 };
+        System.out.println(findSubArr(arr));
     }
 
-    public static String getStart(HashMap<String, String> hashMap) {
-        HashMap<String, String> reversedHash = new HashMap<>();
-        for (String key : hashMap.keySet()) {
-            reversedHash.put(hashMap.get(key), key);
-        }
-
-        for (String key : hashMap.keySet()) {
-            if (!reversedHash.containsKey(key)) {
-                return key;
+    public static int findSubArr(int arr[]) {
+        HashMap<Integer, Integer> hash = new HashMap<>();
+        int length = 0;
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+            if (hash.containsKey(sum)) {
+                if (length < (i - hash.get(sum))) {
+                    length = i - hash.get(sum);
+                }
+            } else {
+                hash.put(sum, i);
             }
         }
-        return null;
+        System.out.println(hash);
+        return length;
     }
+
+    // public static String getStart(HashMap<String, String> hashMap) {
+    // HashMap<String, String> reversedHash = new HashMap<>();
+    // for (String key : hashMap.keySet()) {
+    // reversedHash.put(hashMap.get(key), key);
+    // }
+
+    // for (String key : hashMap.keySet()) {
+    // if (!reversedHash.containsKey(key)) {
+    // return key;
+    // }
+    // }
+    // return null;
+    // }
 }
 
 // class HashMap<K, V> {
