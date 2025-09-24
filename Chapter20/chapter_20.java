@@ -119,26 +119,25 @@ public class chapter_20 {
         // starting = hashMap.get(starting);
         // }
 
-        int arr[] = { 15, -2, 2, -8, 1, 7, 10 };
-        System.out.println(findSubArr(arr));
+        int arr[] = { 1, 2, 3 };
+        System.out.println(findSubArr(arr, 3));
     }
 
-    public static int findSubArr(int arr[]) {
+    public static int findSubArr(int arr[], int k) {
         HashMap<Integer, Integer> hash = new HashMap<>();
-        int length = 0;
+        hash.put(0, 1);
+        int count = 0;
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
-            if (hash.containsKey(sum)) {
-                if (length < (i - hash.get(sum))) {
-                    length = i - hash.get(sum);
-                }
+            if (hash.containsKey(sum - k)) {
+                count += hash.get(sum - k);
+                hash.put(sum - k, count);
             } else {
-                hash.put(sum, i);
+                hash.put(sum, count);
             }
         }
-        System.out.println(hash);
-        return length;
+        return count;
     }
 
     // public static String getStart(HashMap<String, String> hashMap) {
