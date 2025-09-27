@@ -3,17 +3,41 @@
     Start Date - Sep 25 2025, 03:37 AM
  */
 
+import java.util.List;
+
 class chapter_21 {
     public static void main(String args[]) {
 
-        String arr[] = { "the", "a", "there", "their", "any", "thee" };
+        // String arr[] = { "the", "a", "there", "their", "any", "thee" };
+
+        // for (int i = 0; i < arr.length; i++) {
+        // insert(arr[i]);
+        // }
+
+        // System.out.println(search("asdf"));
+
+        String arr[] = { "i", "like", "sam",
+                "samsung",
+                "mobile", "ice" };
+        String key = "ilikesamsung";
 
         for (int i = 0; i < arr.length; i++) {
             insert(arr[i]);
         }
+        System.out.println(wordBreak(key));
 
-        System.out.println(search("asdf"));
+    }
 
+    public static boolean wordBreak(String str) {
+        if (str.length() == 0) {
+            return true;
+        }
+        for (int i = 1; i <= str.length(); i++) {
+            if (search(str.substring(0, i)) == true && wordBreak(str.substring(i)) == true) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean search(String strValue) {
