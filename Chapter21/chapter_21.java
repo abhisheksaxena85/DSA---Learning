@@ -26,31 +26,51 @@ class chapter_21 {
         // }
         // System.out.println(wordBreak(key));
 
-        String arr[] = { "zebra", "dog", "duck", "dove" };
+        // String arr[] = { "zebra", "dog", "duck", "dove" };
 
-        for (int i = 0; i < arr.length; i++) {
-            insert(arr[i]);
+        // for (int i = 0; i < arr.length; i++) {
+        // insert(arr[i]);
+        // }
+        // root.freq = -1;
+
+        // findPref(root, "");
+
+        String str = "ababa";
+
+        for (int i = 0; i < str.length(); i++) {
+            insert(str.substring(i));
         }
-        root.freq = -1;
 
-        findPref(root, "");
-
+        System.out.println(countNodes(root));
     }
 
-    public static void findPref(Node node, String ans) {
-        if (node == null) {
-            return;
+    public static int countNodes(Node root) {
+        if (root == null) {
+            return 0;
         }
-        if (node.freq == 1) {
-            System.out.println(ans);
-            return;
-        }
-        for (int i = 0; i < node.children.length; i++) {
-            if (node.children[i] != null) {
-                findPref(node.children[i], ans + (char) (i + 'a'));
+        int count = 0;
+        for (int i = 0; i < 26; i++) {
+            if (root.children[i] != null) {
+                count += countNodes(root.children[i]);
             }
         }
+        return count + 1;
     }
+
+    // public static void findPref(Node node, String ans) {
+    // if (node == null) {
+    // return;
+    // }
+    // if (node.freq == 1) {
+    // System.out.println(ans);
+    // return;
+    // }
+    // for (int i = 0; i < node.children.length; i++) {
+    // if (node.children[i] != null) {
+    // findPref(node.children[i], ans + (char) (i + 'a'));
+    // }
+    // }
+    // }
 
     // public static boolean wordBreak(String str) {
     // if (str.length() == 0) {
@@ -65,17 +85,17 @@ class chapter_21 {
     // return false;
     // }
 
-    // public static boolean search(String strValue) {
-    // Node curr = root;
-    // for (int i = 0; i < strValue.length(); i++) {
-    // int idx = strValue.charAt(i) - 'a';
-    // if (curr.children[idx] == null) {
-    // return false;
-    // }
-    // curr = curr.children[idx];
-    // }
-    // return curr.endOfWord == true;
-    // }
+    public static boolean search(String strValue) {
+        Node curr = root;
+        for (int i = 0; i < strValue.length(); i++) {
+            int idx = strValue.charAt(i) - 'a';
+            if (curr.children[idx] == null) {
+                return false;
+            }
+            curr = curr.children[idx];
+        }
+        return curr.endOfWord == true;
+    }
 
     public static void insert(String str) {
         Node curr = root;
@@ -83,8 +103,6 @@ class chapter_21 {
             int idx = str.charAt(j) - 'a';
             if (curr.children[idx] == null) {
                 curr.children[idx] = new Node();
-            } else {
-                curr.children[idx].freq++;
             }
             curr = curr.children[idx];
         }
@@ -96,13 +114,11 @@ class chapter_21 {
     static class Node {
         Node children[] = new Node[26];
         boolean endOfWord = false;
-        int freq;
 
         Node() {
             for (int i = 0; i < children.length; i++) {
                 children[i] = null;
             }
-            freq = 1;
         }
     }
 }
