@@ -53,7 +53,22 @@ class chapter_22 {
         // }
         // }
 
-        dfs(adjList, 0, new boolean[7]);
+        System.out.println(hasPath(adjList, 0, 12, new boolean[7]));
+    }
+
+    public static boolean hasPath(ArrayList<Edge> arr[], int src, int dst, boolean visited[]) {
+        if (src == dst) {
+            return true;
+        }
+        visited[src] = true;
+        for (int i = 0; i < arr[src].size(); i++) {
+            Edge e = arr[src].get(i);
+            if (!visited[e.destination] && hasPath(arr, e.destination, dst, visited)) {
+                return true;
+            }
+        }
+        return false;
+
     }
 
     /// Depth First Search - Graph Traversal
