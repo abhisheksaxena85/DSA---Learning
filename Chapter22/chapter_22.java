@@ -33,25 +33,39 @@ class chapter_22 {
 
         adjList[5].add(new Edge(5, 3, 1));
         adjList[5].add(new Edge(5, 4, 1));
+        adjList[5].add(new Edge(5, 6, 1));
 
-        adjList[6].add(new Edge(5, 6, 1));
+        adjList[6].add(new Edge(6, 5, 1));
 
-        Queue<Integer> q = new LinkedList<>();
-        boolean visited[] = new boolean[adjList.length];
+        // Queue<Integer> q = new LinkedList<>();
+        // boolean visited[] = new boolean[adjList.length];
 
-        q.add(0);
+        // q.add(0);
 
-        while (!q.isEmpty()) {
-            int val = q.remove();
-            if (visited[val] == false) {
-                System.out.println(val);
-                for (int i = 0; i < adjList[val].size(); i++) {
-                    q.add(adjList[val].get(i).destination);
-                }
-                visited[val] = true;
+        // while (!q.isEmpty()) {
+        // int val = q.remove();
+        // if (visited[val] == false) {
+        // System.out.println(val);
+        // for (int i = 0; i < adjList[val].size(); i++) {
+        // q.add(adjList[val].get(i).destination);
+        // }
+        // visited[val] = true;
+        // }
+        // }
+
+        dfs(adjList, 0, new boolean[7]);
+    }
+
+    /// Depth First Search - Graph Traversal
+    public static void dfs(ArrayList<Edge>[] arr, int curr, boolean visited[]) {
+        System.out.println(curr);
+        visited[curr] = true;
+        for (int i = 0; i < arr[curr].size(); i++) {
+            Edge e = arr[curr].get(i);
+            if (!visited[e.destination]) {
+                dfs(arr, e.destination, visited);
             }
         }
-
     }
 
     static class Edge {
