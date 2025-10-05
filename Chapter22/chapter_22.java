@@ -17,49 +17,54 @@ class chapter_22 {
 
         adjList[0].add(new Edge(0, 1, 1));
         adjList[0].add(new Edge(0, 2, 1));
-        adjList[1].add(new Edge(1, 0, 1));
-        adjList[1].add(new Edge(1, 3, 1));
+        // adjList[1].add(new Edge(1, 0, 1));
+        // adjList[1].add(new Edge(1, 3, 1));
 
-        adjList[2].add(new Edge(2, 0, 1));
+        // adjList[2].add(new Edge(2, 0, 1));
         adjList[2].add(new Edge(2, 4, 1));
+        adjList[2].add(new Edge(2, 3, 1));
 
-        adjList[3].add(new Edge(3, 1, 1));
-        adjList[3].add(new Edge(3, 4, 1));
+        // adjList[3].add(new Edge(3, 1, 1));
         adjList[3].add(new Edge(3, 5, 1));
+        adjList[3].add(new Edge(3, 6, 1));
 
-        adjList[4].add(new Edge(4, 2, 1));
-        adjList[4].add(new Edge(4, 3, 1));
-        adjList[4].add(new Edge(4, 5, 1));
+        // adjList[4].add(new Edge(4, 2, 1));
+        // adjList[4].add(new Edge(4, 3, 1));
+        // adjList[4].add(new Edge(4, 5, 1));
 
-        adjList[5].add(new Edge(5, 3, 1));
-        adjList[5].add(new Edge(5, 4, 1));
-        adjList[5].add(new Edge(5, 6, 1));
+        // adjList[5].add(new Edge(5, 3, 1));
+        // adjList[5].add(new Edge(5, 4, 1));
+        // adjList[5].add(new Edge(5, 6, 1));
 
-        adjList[6].add(new Edge(6, 5, 1));
+        // adjList[6].add(new Edge(6, 5, 1));
 
-        // Queue<Integer> q = new LinkedList<>();
+        // System.out.println(hasPath(adjList, 0, 12, new boolean[7]));
         // boolean visited[] = new boolean[adjList.length];
-
-        // q.add(0);
-
-        // while (!q.isEmpty()) {
-        // int val = q.remove();
-        // if (visited[val] == false) {
-        // System.out.println(val);
-        // for (int i = 0; i < adjList[val].size(); i++) {
-        // q.add(adjList[val].get(i).destination);
-        // }
-        // visited[val] = true;
+        // for (int i = 0; i < adjList.length; i++) {
+        // if (!visited[i]) {
+        // bfs(adjList, visited, i);
         // }
         // }
 
-        System.out.println(hasPath(adjList, 0, 12, new boolean[7]));
+        System.out.println(hasCycle(adjList));
+    }
+
+    public static boolean hasCycle(ArrayList<Edge>[] adjList) {
+        boolean visited[] = new boolean[adjList.length];
+        for (int i = 0; i < adjList.length; i++) {
+            if (!visited[i]) {
+                if (hashCycleUtil(adjList, i, -1, visited)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static boolean hasPath(ArrayList<Edge> arr[], int src, int dst, boolean visited[]) {
-        if (src == dst) {
+        if (src == dst)
             return true;
-        }
+
         visited[src] = true;
         for (int i = 0; i < arr[src].size(); i++) {
             Edge e = arr[src].get(i);
@@ -72,13 +77,35 @@ class chapter_22 {
     }
 
     /// Depth First Search - Graph Traversal
-    public static void dfs(ArrayList<Edge>[] arr, int curr, boolean visited[]) {
-        System.out.println(curr);
+    public static boolean hashCycleUtil(ArrayList<Edge>[] arr, int curr, int par, boolean visited[]) {
         visited[curr] = true;
+
         for (int i = 0; i < arr[curr].size(); i++) {
             Edge e = arr[curr].get(i);
-            if (!visited[e.destination]) {
-                dfs(arr, e.destination, visited);
+
+            if (visited[e.destination] && curr != par) {
+                return true;
+            } else if (!visited[e.destination]) {
+                if (hashCycleUtil(arr, e.destination, curr, visited)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void bfs(ArrayList<Edge>[] adjList, boolean[] visited, int start) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(start);
+
+        while (!q.isEmpty()) {
+            int val = q.remove();
+            if (visited[val] == false) {
+                System.out.println(val);
+                for (int i = 0; i < adjList[val].size(); i++) {
+                    q.add(adjList[val].get(i).destination);
+                }
+                visited[val] = true;
             }
         }
     }
