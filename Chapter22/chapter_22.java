@@ -9,24 +9,24 @@ import java.util.LinkedList;
 
 class chapter_22 {
     public static void main(String a[]) {
-        @SuppressWarnings("unchecked")
-        ArrayList<Edge> adjList[] = new ArrayList[7];
-        for (int i = 0; i < adjList.length; i++) {
-            adjList[i] = new ArrayList<>();
-        }
+        // @SuppressWarnings("unchecked")
+        // ArrayList<Edge> adjList[] = new ArrayList[7];
+        // for (int i = 0; i < adjList.length; i++) {
+        // adjList[i] = new ArrayList<>();
+        // }
 
-        adjList[0].add(new Edge(0, 1, 1));
-        adjList[0].add(new Edge(0, 2, 1));
+        // adjList[0].add(new Edge(0, 1, 1));
+        // adjList[0].add(new Edge(0, 2, 1));
         // adjList[1].add(new Edge(1, 0, 1));
         // adjList[1].add(new Edge(1, 3, 1));
 
         // adjList[2].add(new Edge(2, 0, 1));
-        adjList[2].add(new Edge(2, 4, 1));
-        adjList[2].add(new Edge(2, 3, 1));
+        // adjList[2].add(new Edge(2, 4, 1));
+        // adjList[2].add(new Edge(2, 3, 1));
 
         // adjList[3].add(new Edge(3, 1, 1));
-        adjList[3].add(new Edge(3, 5, 1));
-        adjList[3].add(new Edge(3, 6, 1));
+        // adjList[3].add(new Edge(3, 5, 1));
+        // adjList[3].add(new Edge(3, 6, 1));
 
         // adjList[4].add(new Edge(4, 2, 1));
         // adjList[4].add(new Edge(4, 3, 1));
@@ -46,7 +46,68 @@ class chapter_22 {
         // }
         // }
 
-        System.out.println(hasCycle(adjList));
+        // System.out.println(hasCycle(adjList));
+
+        ArrayList<Edge> graph[] = new ArrayList[5];
+
+        for (int i = 0; i < graph.length; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        // Add edges for an undirected graph (example)
+        graph[0].add(new Edge(0, 1, 1));
+        graph[0].add(new Edge(0, 2, 1));
+
+        graph[1].add(new Edge(1, 0, 1));
+        graph[1].add(new Edge(1, 3, 1));
+
+        graph[2].add(new Edge(2, 0, 1));
+        graph[2].add(new Edge(2, 4, 1));
+
+        graph[3].add(new Edge(3, 1, 1));
+        graph[3].add(new Edge(3, 4, 1));
+
+        graph[4].add(new Edge(4, 2, 1));
+        graph[4].add(new Edge(4, 3, 1));
+
+        int col[] = new int[graph.length];
+
+        for (int i = 0; i < col.length; i++) {
+            col[i] = -1;
+        }
+
+        System.out.println(biPart(graph, col));
+    }
+
+    public static boolean biPart(ArrayList<Edge> graph[], int col[]) {
+        for (int i = 0; i < graph.length; i++) {
+            if (col[i] == -1) {
+                if (!isBiPartite(graph, col, i)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static boolean isBiPartite(ArrayList<Edge> graph[], int col[], int vertex) {
+        Queue<Integer> q = new LinkedList<>();
+        col[vertex] = 0;
+        q.add(vertex);
+        while (!q.isEmpty()) {
+            int val = q.remove();
+
+            for (int i = 0; i < graph[val].size(); i++) {
+                Edge e = graph[val].get(i);
+                if (col[e.destination] == -1) {
+                    col[e.destination] = col[val] == 0 ? 1 : 0;
+                    q.add(e.destination);
+                } else if (col[e.destination] == col[val]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public static boolean hasCycle(ArrayList<Edge>[] adjList) {
