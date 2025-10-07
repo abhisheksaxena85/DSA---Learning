@@ -48,17 +48,20 @@ class chapter_22 {
 
         // System.out.println(hasCycle(adjList));
 
-        ArrayList<Edge> graph[] = new ArrayList[5];
+        ArrayList<Edge> graph[] = new ArrayList[6];
 
         for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
         }
 
         // Add edges for an undirected graph (example)
-        graph[0].add(new Edge(0, 1, 1));
-        graph[0].add(new Edge(0, 2, 1));
-        graph[1].add(new Edge(2, 3, 1));
-        graph[2].add(new Edge(1, 3, 1));
+        graph[2].add(new Edge(2, 3, 1));
+        graph[3].add(new Edge(3, 1, 1));
+        graph[4].add(new Edge(4, 0, 1));
+        graph[4].add(new Edge(4, 1, 1));
+
+        graph[5].add(new Edge(5, 0, 1));
+        graph[5].add(new Edge(5, 2, 1));
 
         // int col[] = new int[graph.length];
 
@@ -67,39 +70,68 @@ class chapter_22 {
         // }
 
         // System.out.println(biPart(graph, col));
-        System.out.println(hasCycleDirected(graph));
+        // System.out.println(hasCycleDirected(graph));
+        topologicalSort(graph);
     }
 
-    public static boolean hasCycleDirected(ArrayList<Edge> graph[]) {
+    public static void topologicalSort(ArrayList<Edge> graph[]) {
         boolean vis[] = new boolean[graph.length];
-        boolean stack[] = new boolean[graph.length];
+        Stack<Integer> stack = new Stack<>();
 
         for (int i = 0; i < graph.length; i++) {
             if (!vis[i]) {
-                if (hasCycleDirectedUtil(graph, i, vis, stack)) {
-                    return true;
-                }
+                topSort(graph, i, vis, stack);
             }
         }
-        return false;
+
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop());
+        }
     }
 
-    public static boolean hasCycleDirectedUtil(ArrayList<Edge> graph[], int curr, boolean vis[], boolean stack[]) {
+    public static void topSort(ArrayList<Edge> graph[], int curr, boolean vis[], Stack<Integer> stack) {
         vis[curr] = true;
-        stack[curr] = true;
-
         for (int i = 0; i < graph[curr].size(); i++) {
             Edge e = graph[curr].get(i);
-            if (stack[e.destination]) {
-                return true;
-            }
-            if (!stack[e.destination] && hasCycleDirectedUtil(graph, e.destination, vis, stack)) {
-                return true;
+            if (!vis[e.destination]) {
+                topSort(graph, e.destination, vis, stack);
             }
         }
-        stack[curr] = false;
-        return false;
+        stack.push(curr);
     }
+
+    // public static boolean hasCycleDirected(ArrayList<Edge> graph[]) {
+    // boolean vis[] = new boolean[graph.length];
+    // boolean stack[] = new boolean[graph.length];
+
+    // for (int i = 0; i < graph.length; i++) {
+    // if (!vis[i]) {
+    // if (hasCycleDirectedUtil(graph, i, vis, stack)) {
+    // return true;
+    // }
+    // }
+    // }
+    // return false;
+    // }
+
+    // public static boolean hasCycleDirectedUtil(ArrayList<Edge> graph[], int curr,
+    // boolean vis[], boolean stack[]) {
+    // vis[curr] = true;
+    // stack[curr] = true;
+
+    // for (int i = 0; i < graph[curr].size(); i++) {
+    // Edge e = graph[curr].get(i);
+    // if (stack[e.destination]) {
+    // return true;
+    // }
+    // if (!stack[e.destination] && hasCycleDirectedUtil(graph, e.destination, vis,
+    // stack)) {
+    // return true;
+    // }
+    // }
+    // stack[curr] = false;
+    // return false;
+    // }
 
     // public static boolean biPart(ArrayList<Edge> graph[], int col[]) {
     // for (int i = 0; i < graph.length; i++) {
