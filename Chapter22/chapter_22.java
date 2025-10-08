@@ -71,34 +71,66 @@ class chapter_22 {
 
         // System.out.println(biPart(graph, col));
         // System.out.println(hasCycleDirected(graph));
-        topologicalSort(graph);
+        // topologicalSort(graph);
+        topologicalSortBFS(graph);
     }
 
-    public static void topologicalSort(ArrayList<Edge> graph[]) {
-        boolean vis[] = new boolean[graph.length];
-        Stack<Integer> stack = new Stack<>();
-
-        for (int i = 0; i < graph.length; i++) {
-            if (!vis[i]) {
-                topSort(graph, i, vis, stack);
+    public static void topologicalSortBFS(ArrayList<Edge> graph[]) {
+        int inEd[] = new int[graph.length];
+        for (int i = 0; i < inEd.length; i++) {
+            for (int j = 0; j < graph[i].size(); j++) {
+                Edge e = graph[i].get(j);
+                inEd[e.destination]++;
             }
         }
 
-        while (!stack.isEmpty()) {
-            System.out.println(stack.pop());
+        Queue<Integer> q = new LinkedList<>();
+
+        for (int i = 0; i < inEd.length; i++) {
+            if (inEd[i] == 0) {
+                q.add(i);
+            }
+        }
+
+        while (!q.isEmpty()) {
+            int val = q.remove();
+            System.out.println(val);
+            for (int i = 0; i < graph[val].size(); i++) {
+                Edge e = graph[val].get(i);
+                inEd[e.destination]--;
+                if (inEd[e.destination] == 0) {
+                    q.add(e.destination);
+                }
+            }
         }
     }
 
-    public static void topSort(ArrayList<Edge> graph[], int curr, boolean vis[], Stack<Integer> stack) {
-        vis[curr] = true;
-        for (int i = 0; i < graph[curr].size(); i++) {
-            Edge e = graph[curr].get(i);
-            if (!vis[e.destination]) {
-                topSort(graph, e.destination, vis, stack);
-            }
-        }
-        stack.push(curr);
-    }
+    // public static void topologicalSort(ArrayList<Edge> graph[]) {
+    // boolean vis[] = new boolean[graph.length];
+    // Stack<Integer> stack = new Stack<>();
+
+    // for (int i = 0; i < graph.length; i++) {
+    // if (!vis[i]) {
+    // topSort(graph, i, vis, stack);
+    // }
+    // }
+
+    // while (!stack.isEmpty()) {
+    // System.out.println(stack.pop());
+    // }
+    // }
+
+    // public static void topSort(ArrayList<Edge> graph[], int curr, boolean vis[],
+    // Stack<Integer> stack) {
+    // vis[curr] = true;
+    // for (int i = 0; i < graph[curr].size(); i++) {
+    // Edge e = graph[curr].get(i);
+    // if (!vis[e.destination]) {
+    // topSort(graph, e.destination, vis, stack);
+    // }
+    // }
+    // stack.push(curr);
+    // }
 
     // public static boolean hasCycleDirected(ArrayList<Edge> graph[]) {
     // boolean vis[] = new boolean[graph.length];
