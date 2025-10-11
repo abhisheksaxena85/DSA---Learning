@@ -55,6 +55,7 @@ class chapter_22 {
         }
 
         // Add edges for an undirected graph (example)
+        graph[0].add(new Edge(0, 3, 1));
         graph[2].add(new Edge(2, 3, 1));
         graph[3].add(new Edge(3, 1, 1));
         graph[4].add(new Edge(4, 0, 1));
@@ -72,38 +73,50 @@ class chapter_22 {
         // System.out.println(biPart(graph, col));
         // System.out.println(hasCycleDirected(graph));
         // topologicalSort(graph);
-        topologicalSortBFS(graph);
+        // topologicalSortBFS(graph);
+        allPaths(graph, 5, 1, "");
     }
 
-    public static void topologicalSortBFS(ArrayList<Edge> graph[]) {
-        int inEd[] = new int[graph.length];
-        for (int i = 0; i < inEd.length; i++) {
-            for (int j = 0; j < graph[i].size(); j++) {
-                Edge e = graph[i].get(j);
-                inEd[e.destination]++;
-            }
+    public static void allPaths(ArrayList<Edge> graph[], int src, int dest, String path) {
+        if (src == dest) {
+            System.out.println(path + dest);
         }
 
-        Queue<Integer> q = new LinkedList<>();
-
-        for (int i = 0; i < inEd.length; i++) {
-            if (inEd[i] == 0) {
-                q.add(i);
-            }
-        }
-
-        while (!q.isEmpty()) {
-            int val = q.remove();
-            System.out.println(val);
-            for (int i = 0; i < graph[val].size(); i++) {
-                Edge e = graph[val].get(i);
-                inEd[e.destination]--;
-                if (inEd[e.destination] == 0) {
-                    q.add(e.destination);
-                }
-            }
+        for (int i = 0; i < graph[src].size(); i++) {
+            Edge e = graph[src].get(i);
+            allPaths(graph, e.destination, dest, path + e.source);
         }
     }
+
+    // public static void topologicalSortBFS(ArrayList<Edge> graph[]) {
+    // int inEd[] = new int[graph.length];
+    // for (int i = 0; i < inEd.length; i++) {
+    // for (int j = 0; j < graph[i].size(); j++) {
+    // Edge e = graph[i].get(j);
+    // inEd[e.destination]++;
+    // }
+    // }
+
+    // Queue<Integer> q = new LinkedList<>();
+
+    // for (int i = 0; i < inEd.length; i++) {
+    // if (inEd[i] == 0) {
+    // q.add(i);
+    // }
+    // }
+
+    // while (!q.isEmpty()) {
+    // int val = q.remove();
+    // System.out.println(val);
+    // for (int i = 0; i < graph[val].size(); i++) {
+    // Edge e = graph[val].get(i);
+    // inEd[e.destination]--;
+    // if (inEd[e.destination] == 0) {
+    // q.add(e.destination);
+    // }
+    // }
+    // }
+    // }
 
     // public static void topologicalSort(ArrayList<Edge> graph[]) {
     // boolean vis[] = new boolean[graph.length];
