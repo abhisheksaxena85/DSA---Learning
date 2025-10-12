@@ -55,26 +55,79 @@ class chapter_22 {
         }
 
         // Add edges for an undirected graph (example)
-        graph[0].add(new Edge(0, 3, 1));
-        graph[2].add(new Edge(2, 3, 1));
-        graph[3].add(new Edge(3, 1, 1));
-        graph[4].add(new Edge(4, 0, 1));
-        graph[4].add(new Edge(4, 1, 1));
+        graph[0].add(new Edge(0, 1, 2));
+        graph[0].add(new Edge(0, 2, 4));
 
-        graph[5].add(new Edge(5, 0, 1));
-        graph[5].add(new Edge(5, 2, 1));
+        graph[1].add(new Edge(1, 3, 7));
+        graph[1].add(new Edge(1, 2, 1));
+
+        graph[2].add(new Edge(2, 4, 3));
+
+        graph[3].add(new Edge(3, 5, 1));
+
+        graph[4].add(new Edge(4, 3, 2));
+        graph[4].add(new Edge(4, 5, 5));
 
         // int col[] = new int[graph.length];
-
         // for (int i = 0; i < col.length; i++) {
         // col[i] = -1;
         // }
-
         // System.out.println(biPart(graph, col));
         // System.out.println(hasCycleDirected(graph));
         // topologicalSort(graph);
         // topologicalSortBFS(graph);
-        allPaths(graph, 5, 1, "");
+        // allPaths(graph, 5, 1, "");
+        dijkstraAlgo(graph, 0);
+    }
+
+    static class GraphNode implements Comparable<GraphNode> {
+        int index;
+        int pathVal;
+
+        GraphNode(int index, int pathVal) {
+            this.pathVal = pathVal;
+            this.index = index;
+        }
+
+        @Override
+        public int compareTo(GraphNode node) {
+            return this.pathVal - node.pathVal;
+
+        }
+    }
+
+    public static void dijkstraAlgo(ArrayList<Edge> graph[], int src) {
+
+        int weight[] = new int[graph.length];
+        boolean vis[] = new boolean[graph.length];
+
+        for (int i = 1; i < weight.length; i++) {
+            if (i != src) {
+                weight[i] = Integer.MAX_VALUE;
+            }
+        }
+
+        PriorityQueue<GraphNode> pq = new PriorityQueue<>();
+        pq.add(new GraphNode(src, 0));
+
+        while (!pq.isEmpty()) {
+            GraphNode node = pq.remove();
+            if (!vis[node.index]) {
+                vis[node.index] = true;
+                for (int i = 0; i < graph[node.index].size(); i++) {
+                    Edge e = graph[node.index].get(i);
+                    if (weight[e.source] + e.weight < weight[e.destination]) {
+                        weight[e.destination] = weight[node.index] + e.weight;
+                        pq.add(new GraphNode(e.destination, weight[e.destination]));
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < weight.length; i++) {
+            System.out.println(weight[i]);
+        }
+
     }
 
     public static void allPaths(ArrayList<Edge> graph[], int src, int dest, String path) {
