@@ -3,9 +3,7 @@
  * Start Date - Sep 28 2025, 10:03 PM
  */
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.LinkedList;
 
 class chapter_22 {
     public static void main(String a[]) {
@@ -48,25 +46,25 @@ class chapter_22 {
 
         // System.out.println(hasCycle(adjList));
 
-        ArrayList<Edge> graph[] = new ArrayList[6];
+        // ArrayList<Edge> graph[] = new ArrayList[6];
 
-        for (int i = 0; i < graph.length; i++) {
-            graph[i] = new ArrayList<>();
-        }
+        // for (int i = 0; i < graph.length; i++) {
+        // graph[i] = new ArrayList<>();
+        // }
 
         // Add edges for an undirected graph (example)
-        graph[0].add(new Edge(0, 1, 2));
-        graph[0].add(new Edge(0, 2, 4));
+        // graph[0].add(new Edge(0, 1, 2));
+        // graph[0].add(new Edge(0, 2, 4));
 
-        graph[1].add(new Edge(1, 3, 7));
-        graph[1].add(new Edge(1, 2, 1));
+        // graph[1].add(new Edge(1, 3, 7));
+        // graph[1].add(new Edge(1, 2, 1));
 
-        graph[2].add(new Edge(2, 4, 3));
+        // graph[2].add(new Edge(2, 4, 3));
 
-        graph[3].add(new Edge(3, 5, 1));
+        // graph[3].add(new Edge(3, 5, 1));
 
-        graph[4].add(new Edge(4, 3, 2));
-        graph[4].add(new Edge(4, 5, 5));
+        // graph[4].add(new Edge(4, 3, 2));
+        // graph[4].add(new Edge(4, 5, 5));
 
         // int col[] = new int[graph.length];
         // for (int i = 0; i < col.length; i++) {
@@ -77,7 +75,49 @@ class chapter_22 {
         // topologicalSort(graph);
         // topologicalSortBFS(graph);
         // allPaths(graph, 5, 1, "");
-        dijkstraAlgo(graph, 0);
+        // dijkstraAlgo(graph, 0);
+
+        @SuppressWarnings("unchecked")
+        ArrayList<Edge> graph[] = new ArrayList[5];
+
+        for (int i = 0; i < graph.length; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        graph[0].add(new Edge(0, 1, 2));
+        graph[0].add(new Edge(0, 2, 4));
+        graph[1].add(new Edge(1, 2, -4));
+        graph[2].add(new Edge(2, 3, 2));
+        graph[3].add(new Edge(3, 4, 4));
+        graph[4].add(new Edge(4, 1, -1));
+
+        bellmanFordAlgo(graph, 0);
+
+    }
+
+    public static void bellmanFordAlgo(ArrayList<Edge> graph[], int src) {
+        int weight[] = new int[graph.length];
+        for (int i = 0; i < weight.length; i++) {
+            if (i != src) {
+                weight[i] = Integer.MAX_VALUE;
+            }
+        }
+
+        for (int k = 0; k < graph.length - 1; k++) {
+            for (int i = 0; i < graph.length; i++) {
+                for (int j = 0; j < graph[i].size(); j++) {
+                    Edge e = graph[i].get(j);
+                    if (weight[e.source] != Integer.MAX_VALUE
+                            && (weight[e.source] + e.weight) < weight[e.destination]) {
+                        weight[e.destination] = weight[e.source] + e.weight;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < weight.length; i++) {
+            System.out.println(weight[i]);
+        }
     }
 
     static class GraphNode implements Comparable<GraphNode> {
@@ -92,7 +132,6 @@ class chapter_22 {
         @Override
         public int compareTo(GraphNode node) {
             return this.pathVal - node.pathVal;
-
         }
     }
 
@@ -127,7 +166,6 @@ class chapter_22 {
         for (int i = 0; i < weight.length; i++) {
             System.out.println(weight[i]);
         }
-
     }
 
     public static void allPaths(ArrayList<Edge> graph[], int src, int dest, String path) {
