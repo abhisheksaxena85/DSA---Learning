@@ -3,7 +3,9 @@
  * Start Date - Sep 28 2025, 10:03 PM
  */
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 class chapter_22 {
     public static void main(String a[]) {
@@ -77,12 +79,12 @@ class chapter_22 {
         // allPaths(graph, 5, 1, "");
         // dijkstraAlgo(graph, 0);
 
-        @SuppressWarnings("unchecked")
-        ArrayList<Edge> graph[] = new ArrayList[4];
+        // @SuppressWarnings("unchecked")
+        // ArrayList<Edge> graph[] = new ArrayList[4];
 
-        for (int i = 0; i < graph.length; i++) {
-            graph[i] = new ArrayList<>();
-        }
+        // for (int i = 0; i < graph.length; i++) {
+        // graph[i] = new ArrayList<>();
+        // }
 
         // graph[0].add(new Edge(0, 1, 2));
         // graph[0].add(new Edge(0, 2, 4));
@@ -93,141 +95,216 @@ class chapter_22 {
 
         // bellmanFordAlgo(graph, 0);
 
-        graph[0].add(new Edge(0, 1, 10));
-        graph[0].add(new Edge(0, 2, 15));
-        graph[0].add(new Edge(0, 3, 30));
+        // graph[0].add(new Edge(0, 1, 10));
+        // graph[0].add(new Edge(0, 2, 15));
+        // graph[0].add(new Edge(0, 3, 30));
 
-        graph[1].add(new Edge(1, 0, 10));
-        graph[1].add(new Edge(1, 3, 40));
+        // graph[1].add(new Edge(1, 0, 10));
+        // graph[1].add(new Edge(1, 3, 40));
 
-        graph[2].add(new Edge(2, 0, 15));
-        graph[2].add(new Edge(2, 3, 50));
+        // graph[2].add(new Edge(2, 0, 15));
+        // graph[2].add(new Edge(2, 3, 50));
 
-        graph[3].add(new Edge(3, 1, 40));
-        graph[3].add(new Edge(3, 2, 50));
+        // graph[3].add(new Edge(3, 1, 40));
+        // graph[3].add(new Edge(3, 2, 50));
 
-        primsAlgoMST(graph);
+        // primsAlgoMST(graph);
+
+        int flight[][] = { { 0, 1, 100 }, { 1, 2, 100 }, { 2, 0, 100 }, { 1, 3, 600 }, { 2, 3, 200 } };
+        int n = 4;
+        int src = 0;
+        int dst = 3;
+        int k = 1;
+        @SuppressWarnings("unchecked")
+        ArrayList<Edge> graph[] = new ArrayList[n];
+        int dist[] = new int[n];
+
+        for (int i = 0; i < graph.length; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        for (int i = 0; i < dist.length; i++) {
+            if (i != src) {
+                dist[i] = Integer.MAX_VALUE;
+            }
+        }
+
+        for (int i = 0; i < flight.length; i++) {
+            int s = flight[i][0];
+            int d = flight[i][1];
+            int w = flight[i][2];
+            graph[s].add(new Edge(s, d, w));
+        }
+
+        Queue<Node> q = new LinkedList<>();
+        q.add(new Node(0, 0, 0));
+
+        while (!q.isEmpty()) {
+            Node node = q.remove();
+            if (node.stop > k) {
+                break;
+            }
+            for (int i = 0; i < graph[node.vrtx].size(); i++) {
+                Edge e = graph[node.vrtx].get(i);
+                if (dist[e.src] != Integer.MAX_VALUE && dist[e.src] + e.wt < dist[e.dst] && node.stop <= k) {
+                    dist[e.dst] = dist[e.src] + e.wt;
+                    q.add(new Node(e.dst, dist[e.dst], node.stop + 1));
+                }
+            }
+        }
+
+        if (dist[dst] != Integer.MAX_VALUE) {
+            System.out.println(dist[dst]);
+        } else {
+            System.out.println(-1);
+        }
+
     }
 
-    static class Node implements Comparable<Node> {
-        int vertext;
+    static class Node {
+        int vrtx;
         int cost;
+        int stop;
 
-        Node(int v, int c) {
-            this.vertext = v;
-            this.cost = c;
-        }
-
-        @Override
-        public int compareTo(Node node) {
-            return this.cost - node.cost;// ascending order
+        Node(int vertex, int cost, int stop) {
+            this.vrtx = vertex;
+            this.cost = cost;
+            this.stop = stop;
         }
     }
 
-    public static void primsAlgoMST(ArrayList<Edge> graph[]) {
-        boolean vis[] = new boolean[graph.length];
-        PriorityQueue<Node> queue = new PriorityQueue<>();
-        queue.add(new Node(0, 0));
-        int finalCost = 0;
+    static class Edge {
+        int src;
+        int dst;
+        int wt;
 
-        while (!queue.isEmpty()) {
-            Node curr = queue.remove();
-            if (!vis[curr.vertext]) {
-                vis[curr.vertext] = true;
-                finalCost += curr.cost;
-                for (int i = 0; i < graph[curr.vertext].size(); i++) {
-                    Edge e = graph[curr.vertext].get(i);
-                    queue.add(new Node(e.destination, e.weight));
-                }
-            }
-        }
-
-        System.out.println(finalCost);
-    }
-
-    public static void bellmanFordAlgo(ArrayList<Edge> graph[], int src) {
-        int weight[] = new int[graph.length];
-        for (int i = 0; i < weight.length; i++) {
-            if (i != src) {
-                weight[i] = Integer.MAX_VALUE;
-            }
-        }
-
-        for (int k = 0; k < graph.length - 1; k++) {
-            for (int i = 0; i < graph.length; i++) {
-                for (int j = 0; j < graph[i].size(); j++) {
-                    Edge e = graph[i].get(j);
-                    if (weight[e.source] != Integer.MAX_VALUE
-                            && (weight[e.source] + e.weight) < weight[e.destination]) {
-                        weight[e.destination] = weight[e.source] + e.weight;
-                    }
-                }
-            }
-        }
-
-        for (int i = 0; i < weight.length; i++) {
-            System.out.println(weight[i]);
+        Edge(int src, int dst, int wt) {
+            this.src = src;
+            this.dst = dst;
+            this.wt = wt;
         }
     }
 
-    static class GraphNode implements Comparable<GraphNode> {
-        int index;
-        int pathVal;
+    // static class Node implements Comparable<Node> {
+    // int vertext;
+    // int cost;
 
-        GraphNode(int index, int pathVal) {
-            this.pathVal = pathVal;
-            this.index = index;
-        }
+    // Node(int v, int c) {
+    // this.vertext = v;
+    // this.cost = c;
+    // }
 
-        @Override
-        public int compareTo(GraphNode node) {
-            return this.pathVal - node.pathVal;
-        }
-    }
+    // @Override
+    // public int compareTo(Node node) {
+    // return this.cost - node.cost;// ascending order
+    // }
+    // }
 
-    public static void dijkstraAlgo(ArrayList<Edge> graph[], int src) {
+    // public static void primsAlgoMST(ArrayList<Edge> graph[]) {
+    // boolean vis[] = new boolean[graph.length];
+    // PriorityQueue<Node> queue = new PriorityQueue<>();
+    // queue.add(new Node(0, 0));
+    // int finalCost = 0;
 
-        int weight[] = new int[graph.length];
-        boolean vis[] = new boolean[graph.length];
+    // while (!queue.isEmpty()) {
+    // Node curr = queue.remove();
+    // if (!vis[curr.vertext]) {
+    // vis[curr.vertext] = true;
+    // finalCost += curr.cost;
+    // for (int i = 0; i < graph[curr.vertext].size(); i++) {
+    // Edge e = graph[curr.vertext].get(i);
+    // queue.add(new Node(e.destination, e.weight));
+    // }
+    // }
+    // }
 
-        for (int i = 1; i < weight.length; i++) {
-            if (i != src) {
-                weight[i] = Integer.MAX_VALUE;
-            }
-        }
+    // System.out.println(finalCost);
+    // }
 
-        PriorityQueue<GraphNode> pq = new PriorityQueue<>();
-        pq.add(new GraphNode(src, 0));
+    // public static void bellmanFordAlgo(ArrayList<Edge> graph[], int src) {
+    // int weight[] = new int[graph.length];
+    // for (int i = 0; i < weight.length; i++) {
+    // if (i != src) {
+    // weight[i] = Integer.MAX_VALUE;
+    // }
+    // }
 
-        while (!pq.isEmpty()) {
-            GraphNode node = pq.remove();
-            if (!vis[node.index]) {
-                vis[node.index] = true;
-                for (int i = 0; i < graph[node.index].size(); i++) {
-                    Edge e = graph[node.index].get(i);
-                    if (weight[e.source] + e.weight < weight[e.destination]) {
-                        weight[e.destination] = weight[node.index] + e.weight;
-                        pq.add(new GraphNode(e.destination, weight[e.destination]));
-                    }
-                }
-            }
-        }
+    // for (int k = 0; k < graph.length - 1; k++) {
+    // for (int i = 0; i < graph.length; i++) {
+    // for (int j = 0; j < graph[i].size(); j++) {
+    // Edge e = graph[i].get(j);
+    // if (weight[e.source] != Integer.MAX_VALUE
+    // && (weight[e.source] + e.weight) < weight[e.destination]) {
+    // weight[e.destination] = weight[e.source] + e.weight;
+    // }
+    // }
+    // }
+    // }
 
-        for (int i = 0; i < weight.length; i++) {
-            System.out.println(weight[i]);
-        }
-    }
+    // for (int i = 0; i < weight.length; i++) {
+    // System.out.println(weight[i]);
+    // }
+    // }
 
-    public static void allPaths(ArrayList<Edge> graph[], int src, int dest, String path) {
-        if (src == dest) {
-            System.out.println(path + dest);
-        }
+    // static class GraphNode implements Comparable<GraphNode> {
+    // int index;
+    // int pathVal;
 
-        for (int i = 0; i < graph[src].size(); i++) {
-            Edge e = graph[src].get(i);
-            allPaths(graph, e.destination, dest, path + e.source);
-        }
-    }
+    // GraphNode(int index, int pathVal) {
+    // this.pathVal = pathVal;
+    // this.index = index;
+    // }
+
+    // @Override
+    // public int compareTo(GraphNode node) {
+    // return this.pathVal - node.pathVal;
+    // }
+    // }
+
+    // public static void dijkstraAlgo(ArrayList<Edge> graph[], int src) {
+
+    // int weight[] = new int[graph.length];
+    // boolean vis[] = new boolean[graph.length];
+
+    // for (int i = 1; i < weight.length; i++) {
+    // if (i != src) {
+    // weight[i] = Integer.MAX_VALUE;
+    // }
+    // }
+
+    // PriorityQueue<GraphNode> pq = new PriorityQueue<>();
+    // pq.add(new GraphNode(src, 0));
+
+    // while (!pq.isEmpty()) {
+    // GraphNode node = pq.remove();
+    // if (!vis[node.index]) {
+    // vis[node.index] = true;
+    // for (int i = 0; i < graph[node.index].size(); i++) {
+    // Edge e = graph[node.index].get(i);
+    // if (weight[e.source] + e.weight < weight[e.destination]) {
+    // weight[e.destination] = weight[node.index] + e.weight;
+    // pq.add(new GraphNode(e.destination, weight[e.destination]));
+    // }
+    // }
+    // }
+    // }
+
+    // for (int i = 0; i < weight.length; i++) {
+    // System.out.println(weight[i]);
+    // }
+    // }
+
+    // public static void allPaths(ArrayList<Edge> graph[], int src, int dest,
+    // String path) {
+    // if (src == dest) {
+    // System.out.println(path + dest);
+    // }
+
+    // for (int i = 0; i < graph[src].size(); i++) {
+    // Edge e = graph[src].get(i);
+    // allPaths(graph, e.destination, dest, path + e.source);
+    // }
+    // }
 
     // public static void topologicalSortBFS(ArrayList<Edge> graph[]) {
     // int inEd[] = new int[graph.length];
@@ -414,13 +491,13 @@ class chapter_22 {
     // }
     // }
 
-    static class Edge {
-        int source, destination, weight;
+    // static class Edge {
+    // int source, destination, weight;
 
-        public Edge(int s, int d, int w) {
-            this.weight = w;
-            this.source = s;
-            this.destination = d;
-        }
-    }
+    // public Edge(int s, int d, int w) {
+    // this.weight = w;
+    // this.source = s;
+    // this.destination = d;
+    // }
+    // }
 }
