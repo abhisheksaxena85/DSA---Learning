@@ -1,11 +1,10 @@
+
+import java.util.PriorityQueue;
+
 /*
  * Starting Graphs
  * Start Date - Sep 28 2025, 10:03 PM
  */
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 class chapter_22 {
     public static void main(String a[]) {
@@ -110,80 +109,123 @@ class chapter_22 {
 
         // primsAlgoMST(graph);
 
-        int flight[][] = { { 0, 1, 100 }, { 1, 2, 100 }, { 2, 0, 100 }, { 1, 3, 600 }, { 2, 3, 200 } };
-        int n = 4;
-        int src = 0;
-        int dst = 3;
-        int k = 1;
-        @SuppressWarnings("unchecked")
-        ArrayList<Edge> graph[] = new ArrayList[n];
-        int dist[] = new int[n];
+        // int flight[][] = { { 0, 1, 100 }, { 1, 2, 100 }, { 2, 0, 100 }, { 1, 3, 600
+        // }, { 2, 3, 200 } };
+        // int n = 4;
+        // int src = 0;
+        // int dst = 3;
+        // int k = 1;
+        // @SuppressWarnings("unchecked")
+        // ArrayList<Edge> graph[] = new ArrayList[n];
+        // int dist[] = new int[n];
 
-        for (int i = 0; i < graph.length; i++) {
-            graph[i] = new ArrayList<>();
-        }
+        // for (int i = 0; i < graph.length; i++) {
+        // graph[i] = new ArrayList<>();
+        // }
 
-        for (int i = 0; i < dist.length; i++) {
-            if (i != src) {
-                dist[i] = Integer.MAX_VALUE;
-            }
-        }
+        // for (int i = 0; i < dist.length; i++) {
+        // if (i != src) {
+        // dist[i] = Integer.MAX_VALUE;
+        // }
+        // }
 
-        for (int i = 0; i < flight.length; i++) {
-            int s = flight[i][0];
-            int d = flight[i][1];
-            int w = flight[i][2];
-            graph[s].add(new Edge(s, d, w));
-        }
+        // for (int i = 0; i < flight.length; i++) {
+        // int s = flight[i][0];
+        // int d = flight[i][1];
+        // int w = flight[i][2];
+        // graph[s].add(new Edge(s, d, w));
+        // }
 
-        Queue<Node> q = new LinkedList<>();
-        q.add(new Node(0, 0, 0));
+        // Queue<Node> q = new LinkedList<>();
+        // q.add(new Node(0, 0, 0));
 
-        while (!q.isEmpty()) {
-            Node node = q.remove();
-            if (node.stop > k) {
-                break;
-            }
-            for (int i = 0; i < graph[node.vrtx].size(); i++) {
-                Edge e = graph[node.vrtx].get(i);
-                if (dist[e.src] != Integer.MAX_VALUE && dist[e.src] + e.wt < dist[e.dst] && node.stop <= k) {
-                    dist[e.dst] = dist[e.src] + e.wt;
-                    q.add(new Node(e.dst, dist[e.dst], node.stop + 1));
+        // while (!q.isEmpty()) {
+        // Node node = q.remove();
+        // if (node.stop > k) {
+        // break;
+        // }
+        // for (int i = 0; i < graph[node.vrtx].size(); i++) {
+        // Edge e = graph[node.vrtx].get(i);
+        // if (node.cost + e.wt < dist[e.dst] && node.stop <= k) {
+        // dist[e.dst] = node.cost + e.wt;
+        // q.add(new Node(e.dst, dist[e.dst], node.stop + 1));
+        // }
+        // }
+        // }
+
+        // if (dist[dst] != Integer.MAX_VALUE) {
+        // System.out.println(dist[dst]);
+        // } else {
+        // System.out.println(-1);
+        // }
+
+        int cities[][] = {
+                { 0, 1, 2, 3, 4 },
+                { 1, 0, 5, 0, 7 },
+                { 2, 5, 0, 6, 0 },
+                { 3, 0, 6, 0, 0 },
+                { 4, 7, 0, 0, 0 }
+        };
+
+        boolean vis[] = new boolean[cities.length];
+        PriorityQueue<Edge> pq = new PriorityQueue<>();
+        pq.add(new Edge(0, 0));
+        int cost = 0;
+
+        while (!pq.isEmpty()) {
+            Edge curr = pq.remove();
+            if (!vis[curr.dst]) {
+                vis[curr.dst] = true;
+                cost += curr.cost;
+                for (int i = 0; i < cities[curr.dst].length; i++) {
+                    if (cities[curr.dst][i] != 0) {
+                        pq.add(new Edge(i, cities[curr.dst][i]));
+                    }
                 }
             }
         }
 
-        if (dist[dst] != Integer.MAX_VALUE) {
-            System.out.println(dist[dst]);
-        } else {
-            System.out.println(-1);
-        }
-
+        System.out.println(cost);
     }
 
-    static class Node {
-        int vrtx;
-        int cost;
-        int stop;
-
-        Node(int vertex, int cost, int stop) {
-            this.vrtx = vertex;
-            this.cost = cost;
-            this.stop = stop;
-        }
-    }
-
-    static class Edge {
-        int src;
+    static class Edge implements Comparable<Edge> {
         int dst;
-        int wt;
+        int cost;
 
-        Edge(int src, int dst, int wt) {
-            this.src = src;
+        Edge(int dst, int cost) {
             this.dst = dst;
-            this.wt = wt;
+            this.cost = cost;
+        }
+
+        @Override
+        public int compareTo(Edge e) {
+            return this.cost - e.cost;
         }
     }
+
+    // static class Node {
+    // int vrtx;
+    // int cost;
+    // int stop;
+
+    // Node(int vertex, int cost, int stop) {
+    // this.vrtx = vertex;
+    // this.cost = cost;
+    // this.stop = stop;
+    // }
+    // }
+
+    // static class Edge {
+    // int src;
+    // int dst;
+    // int wt;
+
+    // Edge(int src, int dst, int wt) {
+    // this.src = src;
+    // this.dst = dst;
+    // this.wt = wt;
+    // }
+    // }
 
     // static class Node implements Comparable<Node> {
     // int vertext;
